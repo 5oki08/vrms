@@ -17,7 +17,19 @@ if ( isset($_POST['loginSubmit']) ) {
 		$userloginpassword = $_POST['userloginpassword'] ;
 	}
 
-	$logSql = " SELECT * FROM users WHERE userPhone='$userloginphone' && userPassword='$userloginpassword' " ;
+	$loginSql = " SELECT * FROM users WHERE userPhone='$userloginphone' && userPassword='".md5($userloginpassword)."' " ;
+	$loginResult = mysqli_query($conn,$loginSql) ;
+	$loginNum = mysqli_num_rows($loginResult) ;
+
+	if ( $loginNum == 1 ) {
+		if ( empty($userloginphone) && empty($userloginpassword) ) {
+			$_SESSION['activeuser'] ;
+			header(string) ;
+		} else {
+			
+		}
+	}
+
 
 }
 
