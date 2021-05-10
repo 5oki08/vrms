@@ -1,9 +1,13 @@
 <?php 
-
+session_start() ;
 require '../../connection.php' ;
 
+// $_SESSION['activeuser'] = "$userloginphone" ;
+$_SESSION['failCred'] = "Check Credentials" ;
+$_SESSION['classTypeError'] = "danger" ;
+
 $userloginphone = $userloginpassword = $userloginencryptpassword = '' ;
-$userloginphoneErr = $userloginpasswordErr = $userloginencryptpassword = '' ;
+$userloginphoneErr = $userloginpasswordErr = $userloginencryptpasswordErr = '' ;
 
 if ( isset($_POST['loginSubmit']) ) {
 	if ( empty($_POST['userloginphone']) ) {
@@ -22,13 +26,15 @@ if ( isset($_POST['loginSubmit']) ) {
 	$loginNum = mysqli_num_rows($loginResult) ;
 
 	if ( $loginNum == 1 ) {
-		if ( empty($userloginphone) && empty($userloginpassword) ) {
+		if ( empty($userloginphoneErr) && empty($userloginpasswordErr) ) {
 			$_SESSION['activeuser'] ;
-			header(string) ;
-		} else {
-			
+			header('location: ../registered/homeregistered.php') ;
 		}
-	}
+	} else {
+			$_SESSION['failCred'] ;
+			$_SESSION['classTypeError'] ;
+			header('location: login.php?credentialsReject') ;
+		}
 
 
 }
@@ -65,7 +71,6 @@ if ( isset($_POST['loginSubmit']) ) {
 </div>
 <br/>
 
-
 <div class="container-fluid">
 	<div class="jumbotron" id="loginjumbo">
 		<div class="row">
@@ -73,6 +78,25 @@ if ( isset($_POST['loginSubmit']) ) {
 				<br/>
 			</div>
 			<div class="col-md">
+				<p class="alert alert-<?php
+					if (isset($_GET['credentialsReject'])) {
+							echo $_SESSION['classTypeError'] ;
+							session_unset();
+							session_destroy();
+						}
+				?> ">
+					<?php
+						if ( isset($_GET['credentialsReject']) ) {
+							if (isset($_SESSION['failCred'])) {
+								echo $_SESSION['failCred'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Login failed. Check input credentials then try again.";
+							}
+						}
+					?>
+				</p>
 				<form class="form" method="post" action="login.php">
 					<div class="form-group">
 						<label for="userloginphone">Enter Phone Number</label>
@@ -89,6 +113,10 @@ if ( isset($_POST['loginSubmit']) ) {
 						<input type="reset" name="reset" id="resetLogin" class="form-control btn btn-outline-danger" value="Reset">
 					</div>
 				</form>
+				<div class="container-fluid">
+					<p>Don't have an account? Register <a href="loginregisterguests.php">here</a></p> 
+					<a href="resetpassword.php">Reset Passsword</a>
+				</div>
 			</div>
 		</div>
 	</div>

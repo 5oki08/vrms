@@ -19,12 +19,13 @@
 		<div class="navbar-header">
 	      <a class="navbar-brand" href="homeguests.php">VRSM</a>
 	    </div>
-		<li class="nav-item"><a href="../registered/homeregistered.php" class="nav-link" id="active">Home</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">Vehicle</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">My Booking</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">My Account</a></li>
+		<li class="nav-item"><a href="homeregistered.php" class="nav-link" id="active">Home</a></li>
+		<li class="nav-item"><a href="aboutregistered.php" class="nav-link">About Us</a></li>
+		<li class="nav-item"><a href="vehicleregistered.php" class="nav-link">Vehicle</a></li>
+		<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
+		<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
+		<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
+		<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
 	</nav>
 </div>
 <br/>

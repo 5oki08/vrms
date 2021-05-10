@@ -20,9 +20,9 @@
 	      <a class="navbar-brand" href="homeguests.php">VRSM</a>
 	    </div>
 		<li class="nav-item"><a href="homeguests.php" class="nav-link" id="active">Home</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">Vehicle</a></li>
-		<li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+		<li class="nav-item"><a href="aboutguests.php" class="nav-link">About Us</a></li>
+		<li class="nav-item"><a href="vehicleguests.php" class="nav-link">Vehicle</a></li>
+		<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
 		<li class="nav-item"><a href="loginregisterguests.php" class="nav-link">Login/Register</a></li>
 	</nav>
 </div>

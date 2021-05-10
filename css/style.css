@@ -1,3 +1,4 @@
+/*GUESTS*/
 /*homeguests.php*/
 .navbar-header {
 	border-right: 5px solid #000;
@@ -72,3 +73,53 @@ sup {
 
 
 /*login.php*/
+..
+
+/*resetpassword.php*/
+..
+
+
+/*aboutguests.php*/
+#aboutDiv1 {
+	grid-area: header;
+	background-color:  #DAF7A6 ;
+}
+#aboutDiv2 {
+	grid-area: menu;
+	background-color: #FFC300  ;
+}
+#aboutDiv3 {
+	grid-area: main;
+	background-color:  #FF5733 ;
+}
+#aboutDiv4 {
+	grid-area: footer;
+	background-color: #581845  ;
+}
+#divsAbout {
+	display: inline-grid;
+	grid-template-areas:
+	'header header header header'
+    'menu main main main'
+    'menu main main main'
+    'footer footer footer footer'
+	;
+	background-color: tomato;
+	grid-gap: 10px;
+}
+
+
+
+/*vehicleguests.php*/
+
+
+/*contact.php*/
+
+
+/*REGISTERED*/
+/*homeregistered.php*/
+/*aboutregistered.php*/
+/*vehicleregistered.php*/
+/*contactregistered.php*/
+/*mybookingregistered.php*/
+/*myaccountregistered.php*/
