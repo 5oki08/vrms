@@ -30,6 +30,50 @@
 </div>
 <br/>
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-1 bg-success"></div>
+		<div class="col-md-10">
+			<div class="container-fluid">
+				<h3 style="text-decoration:underline;">Our History</h3>
+				<br/>
+				<p style="column-count:3;">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<br/> <hr/> <br/>
+				<div class="row">
+					<div class="col-md" id="aboutVision">
+						<h4 style="text-decoration:underline;">Our Vision</h4><br/>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+					</div>
+					<div class="col-md" id="aboutMotto">
+						<h4 style="text-decoration:underline;">Our Motto</h4><br/>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+					</div>
+					<div class="col-md" id="aboutProjections">
+						<h4 style="text-decoration:underline;">Our Projections</h4><br/>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+					</div>
+				</div>
+				<br/> <hr/> <br/>
+			</div>
+		</div>
+		<div class="col-md-1 bg-danger"></div>
+	</div>
+</div>
 
 </body>
 </html>

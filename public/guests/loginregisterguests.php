@@ -121,7 +121,7 @@ if ( $insNums>=1 ) {
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<div class="jumbotron">
-				<p>Already have an account? Log In <a href="login.php">here</a></p>
+				<p>Already have an account? Log In <a href="homeguests.php">here</a></p>
 				<p style="text-align:center;">Thank you for choosing us as your sole vehicle dealership. We offer free membership, where you can register with the form below, and enjoy unlimited promotional offers.</p>
 				<p class="alert alert-<?php
 					if (isset($_GET['userdetailsaccepted'])) {

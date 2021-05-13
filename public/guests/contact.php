@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>VRMS-aboutUs</title>
+	<title>VRMS-contactUs</title>
 <meta charset="utf-8">	
 <meta name="viewport" content="width=device-width, initial-scale=1">	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -28,7 +28,40 @@
 </div>
 <br/>
 
-
+<div class="container-fluid">
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-md">
+				<h5 style="text-decoration:underline;">Social Media</h5>
+				<a href="https://www.facebook.com" target="_blank"><img src="../../images/contacticons/socialmedia/facebook.png" alt="" id="socialmediaicons"></a>
+				<a href="https://www.instagram.com/cseanarts" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="" id="socialmediaicons"></a>
+				<a href="https://www.twitter.com/i/trends" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="" id="socialmediaicons"></a>
+			</div>
+			<div class="col-md">
+				<h5 style="text-decoration:underline;">Email</h5>
+				<div class="row">
+					<div class="col-md-2">
+						<img src="../../images/contacticons/email/gmailemail.png" alt="" id="socialmediaicons">
+					</div>
+					<div class="col-md-2">
+						<p>rollingstone614@gmail.com</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md">
+				<h5 style="text-decoration:underline;">Phone</h5>
+				<div class="row">
+					<div class="col-md-2">
+						<img src="../../images/contacticons/phone/phone.png" alt="" id="socialmediaicons">
+					</div>
+					<div class="col-md-10">
+						<p>+254 748 304 696</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

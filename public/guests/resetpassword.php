@@ -136,7 +136,7 @@ if ( isset($_POST['newpasswordSubmit']) ) {
 						</div>
 					</div>
 				</form>
-				<p> Log In <a href="login.php">here</a></p>
+				<p> Log In <a href="homeguests.php">here</a></p>
 
 			</div>
 		</div>

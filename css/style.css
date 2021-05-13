@@ -1,3 +1,5 @@
+body {font-size:13px;}
+
 /*GUESTS*/
 /*homeguests.php*/
 .navbar-header {
@@ -7,14 +9,13 @@
 	font-weight: 700;
 }
 #guestsnav {
-	/*border:5px solid red;*/
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background-color: #00FFFF;
 }
 .nav-item {
-	margin-left: 10px;
-	margin-right: 10px;
+	/*margin-left: 10px;
+	margin-right: 10px;*/
 }
 .nav-item:hover {
 	text-transform: uppercase;
@@ -31,19 +32,47 @@
 	font-weight: 700;
 	text-decoration: underline;
 }
-.wheelexpl {
-	padding: 8px;
+.vrsmintro {
+	margin-top: 80px;
+}
+#homeAvailablewheelers {}
+.wheelexplfour {
+	padding: 10px;
+}
+.wheelexpltwo {
+	padding: 10px;
+}
+.wheelexp1:hover {
+	font-weight: 700;
 }
 .twowheeler {}
+.twowheelersamples {
+	border:none;
+}
 .twowheelertitles {
 	text-align: center;
 }
 .twowheelerimgs {
-	width: 300px;
+	width: 400px;
+	height: 250px;
 	text-align: center;
 	border: 2px solid #000;
 }
+.twowheelercaption {
+	text-align: center;
+}
 .fourwheeler {}
+.fourwheelerimgs {
+	width: 400px;
+	height: 250px;
+	text-align: center;
+	border: 2px solid #000;
+}
+.fourwheelercaption {
+	text-align: center;
+}
+
+
 
 
 /*loginregisterguests.php*/
@@ -64,11 +93,11 @@ sup {
 	text-decoration: none;
 }
 
-.alert {
+/*.alert {
 	font-weight: 700;
 	padding: 10px;
 	font-size: 18px;
-}
+}*/
 
 
 
@@ -80,40 +109,33 @@ sup {
 
 
 /*aboutguests.php*/
-#aboutDiv1 {
-	grid-area: header;
-	background-color:  #DAF7A6 ;
+#aboutVision {
+	padding:20px;
 }
-#aboutDiv2 {
-	grid-area: menu;
-	background-color: #FFC300  ;
+#aboutMotto {
+	padding:20px;
 }
-#aboutDiv3 {
-	grid-area: main;
-	background-color:  #FF5733 ;
-}
-#aboutDiv4 {
-	grid-area: footer;
-	background-color: #581845  ;
-}
-#divsAbout {
-	display: inline-grid;
-	grid-template-areas:
-	'header header header header'
-    'menu main main main'
-    'menu main main main'
-    'footer footer footer footer'
-	;
-	background-color: tomato;
-	grid-gap: 10px;
-}
+#aboutProjections {}
 
 
 
 /*vehicleguests.php*/
+.twoWheelervehiclesimg {
+	width: 50px;
+	height: 50px;
+}
+.wheelerLink {
+	color: #000;
+}
 
 
 /*contact.php*/
+#socialmediaicons {
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+}
+
 
 
 /*REGISTERED*/

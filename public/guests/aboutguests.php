@@ -15,29 +15,119 @@
 <body>
 
 <div class="container-fluid" id="guestsnav">
-	<nav class="nav nav-expand">
-		<div class="navbar-header">
-	      <a class="navbar-brand" href="homeguests.php">VRSM</a>
-	    </div>
-		<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
-		<li class="nav-item"><a href="aboutguests.php" class="nav-link" id="active">About Us</a></li>
-		<li class="nav-item"><a href="vehicleguests.php" class="nav-link">Vehicle</a></li>
-		<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
-		<li class="nav-item"><a href="loginregisterguests.php" class="nav-link">Login/Register</a></li>
-	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5"></div>
+			<div class="col-md-3">
+				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+			</div>
+			<div class="col-md-4">
+				<p>
+					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
+					+254 700 000 000
+				</p>
+				<p>
+					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
+					614rollingstone@gmail.com
+				</p>
+			</div>
+		</div>
+	</div> 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<nav class="nav nav-expand">
+					<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="aboutguests.php" class="nav-link"  id="active">About Us</a></li>
+					<div class="dropdown">
+						<!-- <div class="dropdown-header"> -->
+							<!-- <li class="nav-item"><a href="vehicleguests.php" class="nav-link" data-toggle="dropdown">Vehicle</a></li> -->
+							<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#00FFFF;">Vehicles</button>
+						<!-- </div>	 -->
+						<div class="dropdown-menu">
+							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
+							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
+						</div>
+					</div>	
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+				</nav>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>	
 </div>
+
 <br/>
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
-			<div class="grid-container" id="divsAbout">
-				<div id="aboutDiv1">aboutdivOne</div>
-				<div id="aboutDiv2">aboutdivTwo</div>
-				<div id="aboutDiv3">aboutdivThree</div>
-				<div id="aboutDiv4">aboutdivFour</div>
+		<div class="col-md-2" style="background-image:url(../../images/vrmslogo.png);"></div>
+		<div class="col-md-8">
+			<div class="container-fluid">
+				<div class="container-fluid" style="">
+					<h3 style="text-decoration:underline; text-align:center;">Our History</h3>
+					<br/>
+					<p style="/*column-count:2;*/ ">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					</p>
+				</div>	
+				<br/> <hr/> <br/>
+				<div class="container-fluid" id="aboutVision" style="text-align:center; /*background-image:url(../../images/galaxystars.jpg); padding:20px;*/ padding:20px;">
+					<h4 style="text-decoration:underline; ">Our Vision</h4><br/>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+				</div>
+				<br/> <hr/> <br/>
+				<div class="container-fluid"  id="aboutMotto" style="text-align:center; padding:20px; ">
+					<h4 style="text-decoration:underline; text-align:center;">Our Motto</h4><br/>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
+				</div>
+				<br/> <hr/> <br/>
 			</div>
+		</div>
+		<div class="col-md-2" style="background-image:url(../../images/vrmslogo.png);"></div>
+	</div>
+</div>
+
+
+<!-- footer -->
+<div class="container-fluid" style="background-color:#00FFFF; padding:20px;">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md" style="text-align:center;">
+			<p style="text-decoration:underline;">Quick Links</p>
+			<a href="homeguests.php" class="footer-links">Home</a><br/>
+			<a href="aboutguests.php" class="footer-links">About Us</a><br/>
+			<a href="#" class="footer-links">Privacy Policy</a>
+		</div>
+		<div class="col-md" style="text-align:center;">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat.
+		</div>
+		<div class="col-md" style="text-align:center;">
+			<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+			<p>
+				<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
+				+254 700 000 000
+			</p>
+			<p>
+				<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
+				614rollingstone@gmail.com
+			</p>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
