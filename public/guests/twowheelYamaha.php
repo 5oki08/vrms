@@ -81,20 +81,14 @@
 	<div class="col-md-2" id="twowheelnavigation">
 		<div class="container-fluid">
 			<nav class="">
-				<li class="twowheel-item"><a href="twowheelDucatti.php" class="twowheel-link" id="active">Ducatti</a></li>
+				<li class="twowheel-item"><a href="twowheelDucatti.php" class="twowheel-link">Ducatti</a></li>
 				<li class="twowheel-item"><a href="twowheelSuzuki.php" class="twowheel-link">Suzuki</a></li>
-				<li class="twowheel-item"><a href="twowheelYamaha.php" class="twowheel-link">Yamaha</a></li>
+				<li class="twowheel-item"><a href="twowheelYamaha.php" class="twowheel-link" id="active">Yamaha</a></li>
 			</nav>
 		</div>
 	</div>
 
-	<div class="col-md-8">
-		<div class="container-fluid">
-			
-			<div class="card"></div>
-
-		</div>
-	</div>
+	<div class="col-md-8"></div>
 
 	<div class="col-md-2"></div>
 
