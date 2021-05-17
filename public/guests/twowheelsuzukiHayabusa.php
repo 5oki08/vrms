@@ -103,9 +103,9 @@
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4b.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4c.jpg" id="detailedTwowheelerimg">
+				  <img class="ducattitwowheeler" src="../../images/twowheeler/suzukiHayabusaA.png" id="detailedTwowheelerimg">
+				  <img class="ducattitwowheeler" src="../../images/twowheeler/suzukiHayabusaB.png" id="detailedTwowheelerimg">
+				  <img class="ducattitwowheeler" src="../../images/twowheeler/suzukiHayabusaC.png" id="detailedTwowheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -127,17 +127,13 @@ function carousel() {
 		</div>
 
 		<div class="col-md-6">
-			<div class="container-fluid">
-				<p>For 2021 Ducati presents the Streetfighter V4 S in a new Dark Stealth colour scheme, which joins the sporty Ducati Red. Furthermore, all models in the Ducati Streetfighter V4 range become compliant with the Euro 5 anti-pollution legislation (Only for Markets where EU 5 is applied). </p> <br/>
-				<p>The bike not only appeals to my sport bike loving temperament, but it also marks the return of Ducati back to one of its more core elements – the sport bike category.</p> <br/>
-				<p>It is not enough that one can build a radical and raw machine, and then expect to get noticed in the current “super-naked” segment. While the Streetfighter 1098 has an obvious place in my heart, I can tell you that it is also a machine with many flaws.</p> <br/>
-				<p>In 2020, there is no shortage of super-nakeds with attitude, and the bar they set is very, very high. Some of the best motorcycles in the industry are in this category, which means coming out with a follow-up to the Streetfighter 1098, so many years later than its original debut, is a daunting task.</p> <br/>
-				<p>With 205hp (153 kW) and 90 lbs•ft (123 Nm) of torque on tap, along with a red line that pushes past the 14,000 rpm mark, on paper the Streetfighter V4 seems like a horrible idea for Ducati to turn into a street bike. And yet, what you realize within the first miles of riding the machine is that this is not the case.</p> <br/>
-				<p>New front brake pumps and a self-purging clutch have also been introduced, both originating from those used for the first time on the Superleggera V4. </p>
-			</div>
+			<p>The Hayabusa remains instantly recognizable as its restyled, wind-cheating body retains the cues that were inspired by the peregrine falcon – the world’s fastest animal. To bring a sophisticated appearance to the iconic Hayabusa, Suzuki’s design team incorporated distinct lines and shapes to achieve an expression of refinement and ultimate performance.</p> <br/>
+			<p>Suzuki didn’t want to kill the Busa in 2018, but in Europe its hand was forced by emissions rules. The last generation of the bike was only certified to Euro3 standards, and since Euro4 was brought in in 2016 it had been living on borrowed time, accounting for Suzuki’s quota of ‘end-of-series’ models permitted to remain on sale for up to two years after the introduction of the rules. With no Euro4 model forthcoming when that time was up, the bike had to be withdrawn from sale.</p> <br/>
+			<p>Having considered various options including a six-cylinder engine, a larger-capacity four and even a turbo version of the bike, Suzuki instead opted to keep the same 1340cc four-cylinder engine with design roots in the original 1999 model, and to use the same 81mm bore and 65mm stroke that was introduced in 2008. Forced to comply with Euro5 rules, a drop in power was almost inevitable. Torque, which previously peaked at 113.6lbft at 7200rpm, now tops out at 110.6lbft at 7000rpm.</p> <br/>
+			<p>The changes mean that despite lower peaks for power and torque, Suzuki claims the new bike is quicker than ever before. The 2021 model is claimed to reach 62mph from standstill in 3.2 seconds, 0.2 seconds faster than the 2nd gen bike and 0.1 second quicker than the original model. The 0-200 metre time is also down to 6.8 seconds (6.9s for the 2nd gen, 7.1s for the 1st gen bike). On the downside, it drinks a bit more heavily than before, managing 42.1mpg where the 2nd gen achieved 49.7mpg. But then again, if that’s a concern you’re probably more likely to buy a Honda Cub than a Suzuki Hayabusa.</p> <br/>
 		</div>
 	</div>
-
+	<br/>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">

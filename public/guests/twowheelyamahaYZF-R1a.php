@@ -103,9 +103,9 @@
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4b.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4c.jpg" id="detailedTwowheelerimg">
+				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaYZF-R1a.png" id="detailedTwowheelerimg">
+				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaYZF-R1b.jpg" id="detailedTwowheelerimg">
+				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaYZF-R1c.jpg" id="detailedTwowheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -113,7 +113,7 @@ carousel();
 
 function carousel() {
   var i;
-  var x = document.getElementsByClassName("ducattitwowheeler");
+  var x = document.getElementsByClassName("yamahatwowheeler");
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
@@ -127,17 +127,14 @@ function carousel() {
 		</div>
 
 		<div class="col-md-6">
-			<div class="container-fluid">
-				<p>For 2021 Ducati presents the Streetfighter V4 S in a new Dark Stealth colour scheme, which joins the sporty Ducati Red. Furthermore, all models in the Ducati Streetfighter V4 range become compliant with the Euro 5 anti-pollution legislation (Only for Markets where EU 5 is applied). </p> <br/>
-				<p>The bike not only appeals to my sport bike loving temperament, but it also marks the return of Ducati back to one of its more core elements – the sport bike category.</p> <br/>
-				<p>It is not enough that one can build a radical and raw machine, and then expect to get noticed in the current “super-naked” segment. While the Streetfighter 1098 has an obvious place in my heart, I can tell you that it is also a machine with many flaws.</p> <br/>
-				<p>In 2020, there is no shortage of super-nakeds with attitude, and the bar they set is very, very high. Some of the best motorcycles in the industry are in this category, which means coming out with a follow-up to the Streetfighter 1098, so many years later than its original debut, is a daunting task.</p> <br/>
-				<p>With 205hp (153 kW) and 90 lbs•ft (123 Nm) of torque on tap, along with a red line that pushes past the 14,000 rpm mark, on paper the Streetfighter V4 seems like a horrible idea for Ducati to turn into a street bike. And yet, what you realize within the first miles of riding the machine is that this is not the case.</p> <br/>
-				<p>New front brake pumps and a self-purging clutch have also been introduced, both originating from those used for the first time on the Superleggera V4. </p>
-			</div>
+			<p>The 998cc inline-four-cylinder engine features Yamaha’s exclusive crossplane crankshaft technology derived from the YZR-M1 MotoGP® machine. Every aspect of this unique engine is built to thrill.</p> <br/>
+			<p>The R1® features a cable-less ride-by-wire Yamaha Chip Controlled Throttle (YCC-T®) system that transforms the rider’s inputs into motion, with a full suite of IMU-powered electronic rider aids that bring new meaning to the term "rider confidence."</p> <br/>
+			<p>The YZF-R1® utilizes track-focused braking hardware, featuring potent 4-piston radial-mounted front calipers, stainless steel front lines, big 320mm rotors with high-friction pads and a compact ABS unit. The Bridgestone® RS11 tires ensure true racetrack-ready traction with balanced road feel and handling.</p> <br/>
+			<p>The R1’s 998cc inline-four-cylinder engine features Yamaha’s exclusive crossplane crankshaft technology derived from the YZR-M1 MotoGP® machine. By equalizing inertial forces at the crankshaft, the CP4 motor delivers a direct feeling of linear torque, giving the rider the ultimate connection between throttle grip and the rear wheel.</p> <br/>
+			<p>Developed on racetracks around the world, Yamaha’s Brake Control system works with an Antilock Braking System (ABS) to minimize brake slip under aggressive braking or on less than ideal surfaces. The adjustable BC system uses the IMU to provide progressive brake force intervention as lean angle increases which boosts rider confidence when braking mid-corner.</p> <br/>
 		</div>
 	</div>
-
+	<br/>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">

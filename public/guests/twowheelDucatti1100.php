@@ -103,9 +103,9 @@
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4b.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4c.jpg" id="detailedTwowheelerimg">
+				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducatti1100.jpg" id="detailedTwowheelerimg">
+				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducatti1100b.jpg" id="detailedTwowheelerimg">
+				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducatti1100c.jpg" id="detailedTwowheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -128,16 +128,55 @@ function carousel() {
 
 		<div class="col-md-6">
 			<div class="container-fluid">
-				<p>For 2021 Ducati presents the Streetfighter V4 S in a new Dark Stealth colour scheme, which joins the sporty Ducati Red. Furthermore, all models in the Ducati Streetfighter V4 range become compliant with the Euro 5 anti-pollution legislation (Only for Markets where EU 5 is applied). </p> <br/>
-				<p>The bike not only appeals to my sport bike loving temperament, but it also marks the return of Ducati back to one of its more core elements – the sport bike category.</p> <br/>
-				<p>It is not enough that one can build a radical and raw machine, and then expect to get noticed in the current “super-naked” segment. While the Streetfighter 1098 has an obvious place in my heart, I can tell you that it is also a machine with many flaws.</p> <br/>
-				<p>In 2020, there is no shortage of super-nakeds with attitude, and the bar they set is very, very high. Some of the best motorcycles in the industry are in this category, which means coming out with a follow-up to the Streetfighter 1098, so many years later than its original debut, is a daunting task.</p> <br/>
-				<p>With 205hp (153 kW) and 90 lbs•ft (123 Nm) of torque on tap, along with a red line that pushes past the 14,000 rpm mark, on paper the Streetfighter V4 seems like a horrible idea for Ducati to turn into a street bike. And yet, what you realize within the first miles of riding the machine is that this is not the case.</p> <br/>
-				<p>New front brake pumps and a self-purging clutch have also been introduced, both originating from those used for the first time on the Superleggera V4. </p>
+				
+				<table class="table table-hover">
+					<tr>
+						<div class="row">
+							<div class="col-md">
+								<th>Type</th>
+							</div>
+							<div class="col-md">
+								<td>L-Twin, Desmodromic distribution, 2 valves per cylinder, air cooled</td>
+							</div>
+						</div>
+					</tr>
+					<tr>
+						<div class="row">
+							<div class="col-md">
+								<th>Power</th>
+							</div>
+							<div class="col-md">
+								<td>86 hp (63 kW) 7,500 rpm/min</td>
+							</div>
+						</div>
+					</tr>
+					<tr>
+						<div class="row">
+							<div class="col-md">
+								<th>Torque</th>
+							</div>
+							<div class="col-md">
+								<td>65 lb-ft (88 Nm) @ 4,750 rpm</td>
+							</div>
+						</div>
+					</tr>
+					<tr>
+						<div class="row">
+							<div class="col-md">
+								<th>Consumption and emissions</th>
+							</div>
+							<div class="col-md">
+								<td>5.0 l/100km - CO2 120 g/km</td>
+							</div>
+						</div>
+					</tr>
+				</table>
+				<br/> <br/> <br/>
+				<p>Both the 1100 Pro and 1100 Sport Pro feature revamped graphics, new exhaust and seat trim, shorter rear fender, and low plate holder. The Ducati Scrambler 1100 Sport Pro is, well, sportier with a new, narrower, and shorter handlebar with café racer-style mirrors, and Öhlins suspension. The 1100 Pro is available in the new Ocean Drive color scheme and the 1100 Sport Pro comes in matte black.</p>
 			</div>
 		</div>
 	</div>
-
+	<br/>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>VRMS-contactUs</title>
+	<title>VRMS-fourWheeler</title>
 <meta charset="utf-8">	
 <meta name="viewport" content="width=device-width, initial-scale=1">	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,7 +10,28 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../../css/style.css">
-<link rel="stylesheet" type="text/css" href="../../css/styleresponsive.css">	
+<link rel="stylesheet" type="text/css" href="../../css/styleresponsive.css">		
+
+<style type="text/css">
+	
+	#fourwheelnavigation {
+		border-right: 5px solid;
+	}
+	.fourwheel-item {
+		text-align: center;
+		list-style-type: none;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.fourwheel-link {
+		color: #000;
+	}
+	.fourwheel-link:hover {
+		text-decoration: none;
+	}
+
+</style>
+
 </head>
 <body>
 
@@ -40,14 +61,14 @@
 				<nav class="nav nav-expand">
 					<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="aboutguests.php" class="nav-link">About Us</a></li>
-					<div class="dropdown">
+					<div class="dropdown"  id="active">
 						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#00FFFF;">Vehicles</button>
 						<div class="dropdown-menu">
 							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
 							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
 						</div>
 					</div>	
-					<li class="nav-item"><a href="contact.php" class="nav-link" id="active">Contact Us</a></li>
+					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -58,39 +79,23 @@
 <br/>
 
 <div class="container-fluid">
-	<div class="jumbotron">
-		<div class="row">
-			<div class="col-md">
-				<h5 style="text-decoration:underline;">Social Media</h5>
-				<a href="https://www.facebook.com" target="_blank"><img src="../../images/contacticons/socialmedia/facebook.png" alt="" id="socialmediaicons"></a>
-				<a href="https://www.instagram.com/cseanarts" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="" id="socialmediaicons"></a>
-				<a href="https://www.twitter.com/i/trends" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="" id="socialmediaicons"></a>
-			</div>
-			<div class="col-md">
-				<h5 style="text-decoration:underline;">Email</h5>
-				<div class="row">
-					<div class="col-md-2">
-						<img src="../../images/contacticons/email/gmailemail.png" alt="" id="socialmediaicons">
-					</div>
-					<div class="col-md-2">
-						<p>rollingstone614@gmail.com</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md">
-				<h5 style="text-decoration:underline;">Phone</h5>
-				<div class="row">
-					<div class="col-md-2">
-						<img src="../../images/contacticons/phone/phone.png" alt="" id="socialmediaicons">
-					</div>
-					<div class="col-md-10">
-						<p>+254 748 304 696</p>
-					</div>
-				</div>
-			</div>
+	
+	<div class="col-md-2" id="fourwheelnavigation">
+		<div class="container-fluid">
+			<nav class="">
+				<li class="fourwheel-item"><a href="fourwheeler.php" class="fourwheel-link">Aston Martin</a></li>
+				<li class="fourwheel-item"><a href="fourwheelMitsubishi.php" class="fourwheel-link" id="active">Mitsubishi</a></li>
+				<li class="fourwheel-item"><a href="fourwheelJeep.php" class="fourwheel-link">Jeep</a></li>
+			</nav>
 		</div>
 	</div>
+
+	<div class="col-md-8"></div>
+
+	<div class="col-md-2"></div>
+
 </div>
+
 
 </body>
 </html>

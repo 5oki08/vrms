@@ -28,6 +28,25 @@
 	.twowheel-link:hover {
 		text-decoration: none;
 	}
+
+	#detailedTwowheelerimg {
+		width:350px;
+		height:260px;
+	}
+	.figcaption {
+		text-align: right;
+		margin-top: 5px;
+	}
+	#hirebutton {
+		width: 50%;
+	}
+	.hirebtnlink {
+		color: #000;
+	}
+	.hirebtnlink:hover {
+		color: #fff;
+	}
+
 </style>
 
 </head>
@@ -78,19 +97,56 @@
 
 <div class="container-fluid">
 	
-	<div class="col-md-2" id="twowheelnavigation">
-		<div class="container-fluid">
-			<nav class="">
-				<li class="twowheel-item"><a href="twowheelDucatti.php" class="twowheel-link">Ducatti</a></li>
-				<li class="twowheel-item"><a href="twowheelSuzuki.php" class="twowheel-link" id="active">Suzuki</a></li>
-				<li class="twowheel-item"><a href="twowheelYamaha.php" class="twowheel-link">Yamaha</a></li>
-			</nav>
+	<div class="row">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-4">
+			<div class="container-fluid">
+				<div class="" style="max-width:500px">
+				  <img class="suzukitwowheeler" src="../../images/twowheeler/RM-Z450a.jpg" id="detailedTwowheelerimg">
+				  <img class="suzukitwowheeler" src="../../images/twowheeler/RM-Z450b.png" id="detailedTwowheelerimg">
+				</div>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("suzukitwowheeler");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<ol>
+				<li>Strong, Usable Engine Performance</li> <br/>
+				<li>Unmatched Cornering Performance</li> <br/>
+				<li>Controlled Braking Performance</li> <br/>
+				<li>Functional Styling</li> <br/>
+				<li>The 449cc, liquid-cooled, four-stroke, four-valve, DOHC engine is the latest incarnation of Suzuki’s proven and reliable fuel-injected powerplant. The engine has high peak horsepower with strong torque at lower engine speeds for excellent throttle response through the entire rev range.</li> <br/>
+			</ol>
 		</div>
 	</div>
-
-	<div class="col-md-8"></div>
-
-	<div class="col-md-2"></div>
+	<br/>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col">
+			<div class="container-fluid">
+				<button type="button" class="btn btn-outline-success" id="hirebutton">
+					<a href="#" class="hirebtnlink">Hire </a>
+				</button>
+			</div>
+		</div>
+		<div class="col"></div>
+	</div>
 
 </div>
 

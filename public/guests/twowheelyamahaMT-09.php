@@ -103,9 +103,9 @@
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4b.jpg" id="detailedTwowheelerimg">
-				  <img class="ducattitwowheeler" src="../../images/twowheeler/ducattiSfV4c.jpg" id="detailedTwowheelerimg">
+				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09b.jpg" id="detailedTwowheelerimg">
+				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09a.jpg" id="detailedTwowheelerimg">
+				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09.png" id="detailedTwowheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -113,7 +113,7 @@ carousel();
 
 function carousel() {
   var i;
-  var x = document.getElementsByClassName("ducattitwowheeler");
+  var x = document.getElementsByClassName("yamahatwowheeler");
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
@@ -127,17 +127,11 @@ function carousel() {
 		</div>
 
 		<div class="col-md-6">
-			<div class="container-fluid">
-				<p>For 2021 Ducati presents the Streetfighter V4 S in a new Dark Stealth colour scheme, which joins the sporty Ducati Red. Furthermore, all models in the Ducati Streetfighter V4 range become compliant with the Euro 5 anti-pollution legislation (Only for Markets where EU 5 is applied). </p> <br/>
-				<p>The bike not only appeals to my sport bike loving temperament, but it also marks the return of Ducati back to one of its more core elements – the sport bike category.</p> <br/>
-				<p>It is not enough that one can build a radical and raw machine, and then expect to get noticed in the current “super-naked” segment. While the Streetfighter 1098 has an obvious place in my heart, I can tell you that it is also a machine with many flaws.</p> <br/>
-				<p>In 2020, there is no shortage of super-nakeds with attitude, and the bar they set is very, very high. Some of the best motorcycles in the industry are in this category, which means coming out with a follow-up to the Streetfighter 1098, so many years later than its original debut, is a daunting task.</p> <br/>
-				<p>With 205hp (153 kW) and 90 lbs•ft (123 Nm) of torque on tap, along with a red line that pushes past the 14,000 rpm mark, on paper the Streetfighter V4 seems like a horrible idea for Ducati to turn into a street bike. And yet, what you realize within the first miles of riding the machine is that this is not the case.</p> <br/>
-				<p>New front brake pumps and a self-purging clutch have also been introduced, both originating from those used for the first time on the Superleggera V4. </p>
-			</div>
+			<p>A new cylinder head was created for both emissions and performance. It was given 12 percent less coolant volume for faster engine warm-up; most hydrocarbon emissions are created while an engine is still warming, while the fuel mixture must be rich and the exhaust catalyst isn’t yet up to temperature. For better performance, the new cooling passages completely encircle each exhaust valve seat, eliminating the potential hot spot between the valves. Intake ports were redesigned with reduced volume for faster flow, and the injectors were repositioned and re-aimed to hit the backs of the intake valve. All these changes lead to better fuel vaporization and mixing, improving both emissions and drivability. New camshafts have reduced timing, with 30 percent less overlap; there is now only a 20-degree period during which both intake and exhaust valves are open simultaneously. Shorter timing and less overlap generally favor emissions and torque over top-end performance, but the engineers gave the cams notably steeper ramps, so the curtain area under the whole lift curve stays relatively high. The new ramps are so steep that the entire cam drive had to be redesigned with a wider and stronger cam chain and an oil-pressure-powered cam-chain tensioner added. The tensioner provides more tension when the engine is spinning fast, when the cam chain is more likely to whip around, and less drag at lower rpm.</p> <br/>
+			<p>The intake and exhaust systems also were retuned and redesigned. Three unequal-length runners poke up into the airbox, a design that delivers more torque, a smoother powerband, and a delightful intake note. The exhaust system is pieced together from stainless steel stampings with beautiful robotic welds that look as good as those on some high-end race pipes. It’s an all-new design that places the catalyst forward in the conical header portion of the pipe for quicker warming (emissions again) and tucks almost all the muffler under the engine for better mass centralization. The increased displacement and new engine tuning is claimed to increase torque by 6 percent while further broadening the band. Fuel economy is said to be 11 percent better than with the previous model.</p> <br/>
 		</div>
 	</div>
-
+	<br/>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">

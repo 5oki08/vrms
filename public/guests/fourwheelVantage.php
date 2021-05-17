@@ -28,23 +28,29 @@
 	.twowheel-link:hover {
 		text-decoration: none;
 	}
-	.card-header {
-		border: none;
+
+	#detailedTwowheelerimg {
+		width:350px;
+		height:260px;
 	}
-	#twowheelercardimg {
-		width: 280px;
-		height: 190px;
+	.figcaption {
+		text-align: right;
+		margin-top: 5px;
 	}
-	.card-text {
-		text-align: center;
+	#hirebutton {
+		width: 50%;
 	}
-	.twowheelermoreinfo {
+	.hirebtnlink {
 		color: #000;
 	}
-	.twowheelermoreinfo:hover {
-		text-decoration: none;
+	.hirebtnlink:hover {
 		color: #fff;
 	}
+	#detailedFourwheelerimg {
+		width:350px;
+		height:260px;
+	}
+
 
 </style>
 
@@ -96,68 +102,49 @@
 
 <div class="container-fluid">
 	
-	<div class="col-md-2" id="twowheelnavigation">
-		<div class="container-fluid">
-			<nav class="">
-				<li class="twowheel-item"><a href="twowheeler.php" class="twowheel-link">Ducatti</a></li>
-				<li class="twowheel-item"><a href="twowheelS.php" class="twowheel-link">Suzuki</a></li>
-				<li class="twowheel-item"><a href="twowheelYamaha.php" class="twowheel-link" id="active">Yamaha</a></li>
-			</nav>
-		</div>
-	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
 
-	<div class="col-md-8">
-		<div class="container-fluid">
-
-			<div class="card">
-				<div class="row">
-					<div class="col-md">
-						<div class="card-header">
-							<img src="../../images/twowheeler/yamahaMT-09.png" id="twowheelercardimg">
-						</div>
-					</div>
-					<div class="col-md">
-						<div class="card-body">
-							<h3 class="card-text">MT-09</h3>
-						</div>
-						<div class="card-footer">
-							<p class="card-text">Weighing in at only 417 pounds, the 2021 MT-09's new engine, chassis and bodywork extensively incorporate weight-reducing technologies, to weigh in 8 pounds lighter than the former MT-09.</p>
-							<br/>
-							<button type="button" class="btn btn-outline-primary">
-								<a href="twowheelyamahaMT-09.php" class="twowheelermoreinfo">More Info</a>
-							</button>
-						</div>
-					</div>
+		<div class="col-md-4">
+			<div class="container-fluid">
+				<div class="" style="max-width:500px">
+				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageC.jpg" id="detailedFourwheelerimg">
+				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageA.jpg" id="detailedFourwheelerimg">
+				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageB.jpg" id="detailedFourwheelerimg">
 				</div>
-			</div>
-			<br/>
-			<div class="card">
-				<div class="row">
-					<div class="col-md">
-						<div class="card-header">
-							<img src="../../images/twowheeler/yamahaYZF-R1a.png" id="twowheelercardimg">
-						</div>
-					</div>
-					<div class="col-md">
-						<div class="card-body">
-							<h3 class="card-text">YZF-R1</h3>
-						</div>
-						<div class="card-footer">
-							<p class="card-text">The R1® features a cable-less ride-by-wire Yamaha Chip Controlled Throttle (YCC-T®) system that transforms the rider’s inputs into motion, with a full suite of IMU-powered electronic rider aids that bring new meaning to the term "rider confidence."</p>
-							<br/>
-							<button type="button" class="btn btn-outline-primary">
-								<a href="twowheelyamahaYZF-R1a.php" class="twowheelermoreinfo">More Info</a>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br/>
+<script>
+var myIndex = 0;
+carousel();
 
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("vantagefourwheeler");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+			</div>
 		</div>
-	</div>
 
-	<div class="col-md-2"></div>
+		<div class="col-md-6"></div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col">
+			<div class="container-fluid">
+				<button type="button" class="btn btn-outline-success" id="hirebutton">
+					<a href="#" class="hirebtnlink">Hire </a>
+				</button>
+			</div>
+		</div>
+		<div class="col"></div>
+	</div>
 
 </div>
 

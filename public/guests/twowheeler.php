@@ -28,6 +28,24 @@
 	.twowheel-link:hover {
 		text-decoration: none;
 	}
+	.card-header {
+		border: none;
+	}
+	#twowheelercardimg {
+		width: 280px;
+		height: 190px;
+	}
+	.card-text {
+		text-align: center;
+	}
+	.twowheelermoreinfo {
+		color: #000;
+	}
+	.twowheelermoreinfo:hover {
+		text-decoration: none;
+		color: #fff;
+	}
+
 </style>
 
 </head>
@@ -81,8 +99,8 @@
 	<div class="col-md-2" id="twowheelnavigation">
 		<div class="container-fluid">
 			<nav class="">
-				<li class="twowheel-item"><a href="twowheelDucatti.php" class="twowheel-link" id="active">Ducatti</a></li>
-				<li class="twowheel-item"><a href="twowheelSuzuki.php" class="twowheel-link">Suzuki</a></li>
+				<li class="twowheel-item"><a href="twowheeler.php" class="twowheel-link" id="active">Ducatti</a></li>
+				<li class="twowheel-item"><a href="twowheelS.php" class="twowheel-link">Suzuki</a></li>
 				<li class="twowheel-item"><a href="twowheelYamaha.php" class="twowheel-link">Yamaha</a></li>
 			</nav>
 		</div>
@@ -90,8 +108,50 @@
 
 	<div class="col-md-8">
 		<div class="container-fluid">
-			
-			<div class="card"></div>
+
+			<div class="card">
+				<div class="row">
+					<div class="col-md">
+						<div class="card-header">
+							<img src="../../images/twowheeler/ducattiSfV4.jpg" id="twowheelercardimg">
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="card-body">
+							<h3 class="card-text">Ducatti SfV4</h3>
+						</div>
+						<div class="card-footer">
+							<p class="card-text">The modern and technological Ducati naked bike has immediately enjoyed great success among motorcyclists all over the world, also confirmed by the positive feedback from the international media.</p>
+							<br/>
+							<button type="button" class="btn btn-outline-primary">
+								<a href="twowheelDucatti.php" class="twowheelermoreinfo">More Info</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="card">
+				<div class="row">
+					<div class="col-md">
+						<div class="card-header">
+							<img src="../../images/twowheeler/ducatti1100.jpg" id="twowheelercardimg">
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="card-body">
+							<h3 class="card-text">Ducatti 1100</h3>
+						</div>
+						<div class="card-footer">
+							<p class="card-text">Ride bigger, ride better. With the Ducati Scrambler 1100, the Land of Joy greets the most demanding and expert motorcyclists, to offer fun, style and freedom in an upgraded and uncompromised fashion.</p>
+							<br/>
+							<button type="button" class="btn btn-outline-primary">
+								<a href="twowheelDucatti1100.php" class="twowheelermoreinfo">More Info</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</div>
 	</div>
