@@ -33,13 +33,16 @@
 		width: 280px;
 		height: 190px;
 	}
+	#registerednav {
+		background-color: #efa12b;
+	}
 
 </style>
 
 </head>
 <body>
 
-<div class="container-fluid" id="guestsnav">
+<div class="container-fluid" id="registerednav">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5"></div>
@@ -63,16 +66,19 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<nav class="nav nav-expand">
-					<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="aboutguests.php" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="homeguestsregistered.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="aboutregistered.php" class="nav-link">About Us</a></li>
 					<div class="dropdown"  id="active">
-						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#00FFFF;">Vehicles</button>
+						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
 						<div class="dropdown-menu">
-							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
-							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
+							<a href="twowheelerregistered.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
+							<a href="fourwheelerregistered.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
 						</div>
 					</div>	
-					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
+					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
+					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -87,9 +93,9 @@
 	<div class="col-md-2" id="fourwheelnavigation">
 		<div class="container-fluid">
 			<nav class="">
-				<li class="fourwheel-item"><a href="fourwheeler.php" class="fourwheel-link" id="active">Aston Martin</a></li>
-				<li class="fourwheel-item"><a href="fourwheelMitsubishi.php" class="fourwheel-link">Mitsubishi</a></li>
-				<li class="fourwheel-item"><a href="fourwheelJeep.php" class="fourwheel-link">Jeep</a></li>
+				<li class="fourwheel-item"><a href="fourwheelerregistered.php" class="fourwheel-link" id="active">Aston Martin</a></li>
+				<li class="fourwheel-item"><a href="fourwheelMitsubishiregistered.php" class="fourwheel-link">Mitsubishi</a></li>
+				<li class="fourwheel-item"><a href="fourwheelJeepregistered.php" class="fourwheel-link">Jeep</a></li>
 			</nav>
 		</div>
 	</div>
@@ -112,7 +118,7 @@
 							<p class="card-text">The Aston Martin Vantage is a two-seater sports car manufactured by British luxury car manufacturer Aston Martin as a successor to the previous outgoing model which had been in production for 12 years.</p>
 							<br/>
 							<button type="button" class="btn btn-outline-primary">
-								<a href="fourwheelVantage.php" class="fourwheelermoreinfo">More Info</a>
+								<a href="fourwheelVantageregistered.php" class="fourwheelermoreinfo">More Info</a>
 							</button>
 						</div>
 					</div>

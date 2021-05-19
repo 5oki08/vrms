@@ -46,13 +46,16 @@
 	.hirebtnlink:hover {
 		color: #fff;
 	}
+	#registerednav {
+		background-color: #efa12b;
+	}
 
 </style>
 
 </head>
 <body>
 
-<div class="container-fluid" id="guestsnav">
+<div class="container-fluid" id="registerednav">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5"></div>
@@ -76,16 +79,19 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<nav class="nav nav-expand">
-					<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="aboutguests.php" class="nav-link"  >About Us</a></li>
+					<li class="nav-item"><a href="homeguestsregistered.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="aboutregistered.php" class="nav-link"  >About Us</a></li>
 					<div class="dropdown" id="active">
-						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#00FFFF;">Vehicles</button>
+						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
 						<div class="dropdown-menu">
-							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
-							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
+							<a href="twowheelerregistered.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
+							<a href="fourwheelerregistered.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
 						</div>
 					</div>	
-					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
+					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
+					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -132,35 +138,13 @@ function carousel() {
 		</div>
 	</div>
 	<br/>
-	
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonguests" class="hirebtnlinkguests">
-				    Hire
-				  </button>
-				  <div class="modal" id="hirebuttonguests">
-				    <div class="modal-dialog">
-				      <div class="modal-content">
-				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				        </div>
-				        <div class="modal-body" style="text-align:center;">
-				          You must login  to hire. <br/> <br/>
-
-				          <p>Have an account? Log in <a href="homeguests.php" class="">here</a> </p> <br/>
-				          <p> <a href="loginregisterguests.php" class="">Create an account</a> </p>
-
-				        </div>
-				        <div class="modal-footer">
-				          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
-				  
-				</div>
+				<button type="button" class="btn btn-outline-success" id="hirebutton">
+					<a href="#" class="hirebtnlink">Hire </a>
+				</button>
 			</div>
 		</div>
 		<div class="col"></div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>VRMS-fourWheeler</title>
+	<title>VRMS-twoWheeler</title>
 <meta charset="utf-8">	
 <meta name="viewport" content="width=device-width, initial-scale=1">	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -46,18 +46,16 @@
 	.hirebtnlink:hover {
 		color: #fff;
 	}
-	#detailedFourwheelerimg {
-		width:350px;
-		height:260px;
+	#registerednav {
+		background-color: #efa12b;
 	}
-
 
 </style>
 
 </head>
 <body>
 
-<div class="container-fluid" id="guestsnav">
+<div class="container-fluid" id="registerednav">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5"></div>
@@ -81,16 +79,19 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<nav class="nav nav-expand">
-					<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="aboutguests.php" class="nav-link"  >About Us</a></li>
+					<li class="nav-item"><a href="homeguestsregistered.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="aboutregistered.php" class="nav-link"  >About Us</a></li>
 					<div class="dropdown" id="active">
-						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#00FFFF;">Vehicles</button>
+						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
 						<div class="dropdown-menu">
 							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
 							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
 						</div>
 					</div>	
-					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
+					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
+					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -108,9 +109,8 @@
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageC.jpg" id="detailedFourwheelerimg">
-				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageA.jpg" id="detailedFourwheelerimg">
-				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageB.jpg" id="detailedFourwheelerimg">
+				  <img class="suzukitwowheeler" src="../../images/twowheeler/RM-Z450a.jpg" id="detailedTwowheelerimg">
+				  <img class="suzukitwowheeler" src="../../images/twowheeler/RM-Z450b.png" id="detailedTwowheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -118,7 +118,7 @@ carousel();
 
 function carousel() {
   var i;
-  var x = document.getElementsByClassName("vantagefourwheeler");
+  var x = document.getElementsByClassName("suzukitwowheeler");
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
@@ -131,38 +131,24 @@ function carousel() {
 			</div>
 		</div>
 
-		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<ol>
+				<li>Strong, Usable Engine Performance</li> <br/>
+				<li>Unmatched Cornering Performance</li> <br/>
+				<li>Controlled Braking Performance</li> <br/>
+				<li>Functional Styling</li> <br/>
+				<li>The 449cc, liquid-cooled, four-stroke, four-valve, DOHC engine is the latest incarnation of Suzuki’s proven and reliable fuel-injected powerplant. The engine has high peak horsepower with strong torque at lower engine speeds for excellent throttle response through the entire rev range.</li> <br/>
+			</ol>
+		</div>
 	</div>
 	<br/>
-	
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonguests" class="hirebtnlinkguests">
-				    Hire
-				  </button>
-				  <div class="modal" id="hirebuttonguests">
-				    <div class="modal-dialog">
-				      <div class="modal-content">
-				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				        </div>
-				        <div class="modal-body" style="text-align:center;">
-				          You must login  to hire. <br/> <br/>
-
-				          <p>Have an account? Log in <a href="homeguests.php" class="">here</a> </p> <br/>
-				          <p> <a href="loginregisterguests.php" class="">Create an account</a> </p>
-
-				        </div>
-				        <div class="modal-footer">
-				          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
-				  
-				</div>
+				<button type="button" class="btn btn-outline-success" id="hirebutton">
+					<a href="#" class="hirebtnlink">Hire </a>
+				</button>
 			</div>
 		</div>
 		<div class="col"></div>

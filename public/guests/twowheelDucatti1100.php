@@ -177,13 +177,35 @@ function carousel() {
 		</div>
 	</div>
 	<br/>
+	
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				<button type="button" class="btn btn-outline-success" id="hirebutton">
-					<a href="#" class="hirebtnlink">Hire </a>
-				</button>
+				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonguests" class="hirebtnlinkguests">
+				    Hire
+				  </button>
+				  <div class="modal" id="hirebuttonguests">
+				    <div class="modal-dialog">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        </div>
+				        <div class="modal-body" style="text-align:center;">
+				          You must login  to hire. <br/> <br/>
+
+				          <p>Have an account? Log in <a href="homeguests.php" class="">here</a> </p> <br/>
+				          <p> <a href="loginregisterguests.php" class="">Create an account</a> </p>
+
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				  
+				</div>
 			</div>
 		</div>
 		<div class="col"></div>

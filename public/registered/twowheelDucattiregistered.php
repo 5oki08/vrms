@@ -1,3 +1,21 @@
+<?php
+
+require '../../connection.php' ;
+
+$fnameregistered = $snameregistered = '' ;
+
+$fetchSql = " SELECT * FROM users WHERE fName='$fnameregistered' && sName='$snameregistered' " ;
+$fetchResult = mysqli_query($conn,$fetchSql) or die( mysqli_error() ) ;
+
+
+while ( $row = mysqli_fetch_array($fetchResult) ) {
+	$fnameregistered = $row['fName'] ;
+	$snameregistered = $row['sName'] ;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,13 +64,16 @@
 	.hirebtnlink:hover {
 		color: #fff;
 	}
+	#registerednav {
+		background-color: #efa12b;
+	}
 
 </style>
 
 </head>
 <body>
 
-<div class="container-fluid" id="guestsnav">
+<div class="container-fluid" id="registerednav">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5"></div>
@@ -76,16 +97,19 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<nav class="nav nav-expand">
-					<li class="nav-item"><a href="homeguests.php" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="aboutguests.php" class="nav-link"  >About Us</a></li>
+					<li class="nav-item"><a href="homeguestsregistered.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="aboutregistered.php" class="nav-link"  >About Us</a></li>
 					<div class="dropdown" id="active">
-						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#00FFFF;">Vehicles</button>
+						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
 						<div class="dropdown-menu">
 							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
 							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
 						</div>
 					</div>	
-					<li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
+					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
+					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
+					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -134,6 +158,9 @@ function carousel() {
 				<p>In 2020, there is no shortage of super-nakeds with attitude, and the bar they set is very, very high. Some of the best motorcycles in the industry are in this category, which means coming out with a follow-up to the Streetfighter 1098, so many years later than its original debut, is a daunting task.</p> <br/>
 				<p>With 205hp (153 kW) and 90 lbs•ft (123 Nm) of torque on tap, along with a red line that pushes past the 14,000 rpm mark, on paper the Streetfighter V4 seems like a horrible idea for Ducati to turn into a street bike. And yet, what you realize within the first miles of riding the machine is that this is not the case.</p> <br/>
 				<p>New front brake pumps and a self-purging clutch have also been introduced, both originating from those used for the first time on the Superleggera V4. </p>
+				<div class="container">
+					<p>Hire Price : KES1897/Day</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -142,25 +169,86 @@ function carousel() {
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonguests" class="hirebtnlinkguests">
+				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonregistered" class="hirebtnlinkguests">
 				    Hire
 				  </button>
-				  <div class="modal" id="hirebuttonguests">
+				  <div class="modal" id="hirebuttonregistered">
 				    <div class="modal-dialog">
 				      <div class="modal-content">
+
 				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        	<h5>Hire Form</h5>
+				          	<button type="button" class="close" data-dismiss="modal">&times;</button>
 				        </div>
-				        <div class="modal-body" style="text-align:center;">
-				          You must login  to hire. <br/> <br/>
 
-				          <p>Have an account? Log in <a href="homeguests.php" class="">here</a> </p> <br/>
-				          <p> <a href="loginregisterguests.php" class="">Create an account</a> </p>
+				        <div class="modal-body">
+				          
+				        	<form class="form" action="twoWheelDucattiregistered.php" method="post">
+				        		<div class="row">
+									<div class="col-md">
+										<div class="form-group">
+											<label for="fnameregistered">First Name</label>
+											<input type="text" name="fnameregistered" class="form-control" id="fnameregistered" value=" <?php echo $row['fName'] ?> ">
 
+										</div>
+									</div>
+									<div class="col-md">
+										<div class="form-group">
+											<label for="snameregistered">Second Name</label>
+											<input type="text" name="snameregistered" class="form-control" id="snameregistered" value=" <?php echo $row['sName'] ?> ">					
+										</div>
+									</div>
+								</div>
+
+				        		<div class="form-group">
+				        			<label for="selectedDrivetwoWheel">Selected Drive</label>
+				        			<input type="text" name="selectedDrivetwoWheel" class="form-control" id="selectedDrivetwoWheel">
+				        		</div>
+
+				        		<div class="form-group">
+				        			<label for="numberOfdaysHired">Number of Days For Hire</label>
+				        			<input type="number" name="numberOfdaysHired" id="numberOfdaysHired" class="form-control">
+				        		</div>
+
+				        		<div class="form-group">
+				        			<label for="paymentMode">Mode of Payment</label>
+				        			<select name="paymentMode" id="paymentMode" class="form-control" onchange="onchangeStatus()">
+					        			<option></option>
+					        			<option value="mpesa">M-PESA</option>
+					        			<option value="visa">VISA</option>
+					        			<br/>
+<script type="text/javascript">
+	function onchangeStatus() {
+		var status = document.getElementById('paymentMode') ;
+		if ( status.value == "mpesa" ) {
+			document.getElementById('mpesaCodeInput').style.visibility = "visible" ;
+		} else {
+			document.getElementById('mpesaCodeInput').style.visibility = "hidden" ;
+		}
+	}
+</script>
+				        			</select>
+				        			<br/>
+					        		<input type="text" name="mpesaCodeInput" id="mpesaCodeInput" class="form-control" placeholder="Enter MPesa Code for verification">
+				        		</div>
+
+				        	</form>
+							
 				        </div>
+
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				          <div class="row">
+				          	<div class="col">
+				          		<button type="button" class="btn btn-primary">
+				          			<a href="#" class="" style="color:#fff;">Submit</a>
+				          		</button>
+				          	</div>
+				          	<div class="col">
+				          		<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				          	</div>
+				          </div>
 				        </div>
+
 				      </div>
 				    </div>
 				  </div>

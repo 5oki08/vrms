@@ -27,7 +27,8 @@ if ( isset($_POST['loginSubmit']) ) {
 
 	if ( $loginNum == 1 ) {
 		if ( empty($userloginphoneErr) && empty($userloginpasswordErr) ) {
-			$_SESSION['activeuser'] = $userloginphone ;
+			$_SESSION['activeuser'] = $_POST['userloginphone'] ;
+			echo "Welcome" , $_SESSION['activeuser'] ;
 			header('location: ../registered/homeregistered.php') ;
 		}
 	} else {
