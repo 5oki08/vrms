@@ -1,16 +1,79 @@
 <?php
 
 require '../../connection.php' ;
+// require '../guests/login.php' ;
+session_start() ;
 
-$fnameregistered = $snameregistered = '' ;
+$snameregistered = '' ;
 
-$fetchSql = " SELECT * FROM users WHERE fName='$fnameregistered' && sName='$snameregistered' " ;
+$fetchSql = " SELECT * FROM users WHERE sName='$snameregistered' " ;
 $fetchResult = mysqli_query($conn,$fetchSql) or die( mysqli_error() ) ;
 
 
 while ( $row = mysqli_fetch_array($fetchResult) ) {
-	$fnameregistered = $row['fName'] ;
 	$snameregistered = $row['sName'] ;
+}
+
+$_SESSION['activeuser'] = $snameregistered ;
+
+$_SESSION['hireQueried'] = "Hire Details Submitted. Kindly wait for approval." ;
+$_SESSION['classTypeAccept'] = "success" ;
+$_SESSION['hireDenied'] = "Hire Details Submission Failed." ;
+$_SESSION['classTypeError'] = "danger" ;
+
+
+$snameregistered = $selectedDrivetwoWheel = $numberOfdaysHired = $paymentMode = $mpesaCodeInput = '' ;
+$snameregisteredErr = $selectedDrivetwoWheelErr = $numberOfdaysHiredErr = $paymentModeErr = $mpesaCodeInputErr = '' ;
+
+
+if ( isset($_POST['hireSubmitdetails']) ) {
+
+	if (empty($_POST['snameregistered'])) {
+		$snameregisteredErr = "Last Name does not match" ;
+	} else {
+		$snameregistered = $_POST['snameregistered'] ;
+	}
+	if (empty($_POST['selectedDrivetwoWheel'])) {
+		$selectedDrivetwoWheelErr = "no selected wheels" ;
+	} else {
+		$selectedDrivetwoWheel = $_POST['selectedDrivetwoWheel'] ;
+	}
+	if (empty($_POST['numberOfdaysHired'])) {
+		$numberOfdaysHiredErr = "Input number of days to hire" ;
+	} else {
+		$numberOfdaysHired = $_POST['numberOfdaysHired'] ;
+	}
+	if (empty($_POST['paymentMode'])) {
+		$paymentModeErr = "Select payment mode" ;
+	} else {
+		$paymentMode = $_POST['paymentMode'] ;
+	}
+
+
+	$hireSql = " SELECT * FROM selecteddrive WHERE snameregistered='$snameregistered' && selectedDrivetwoWheel='$selectedDrivetwoWheel' && numberOfdaysHired='$numberOfdaysHired' && paymentMode='$paymentMode' " ;
+	$hireSqlresult = mysqli_query($conn,$hireSql) ;
+	$hireSqlNum = mysqli_num_rows($hireSqlresult) ;
+
+	if ( empty($snameregisteredErr) && empty($selectedDrivetwoWheelErr) && empty($numberOfdaysHiredErr) && empty($paymentModeErr) ) {
+		$hireStmt = $conn->prepare(" INSERT INTO selecteddrive (snameregistered,selectedDrivetwoWheel,numberOfdaysHired,paymentMode) VALUES(?,?,?,?) ") ;
+		$hireStmt->bind_param('ssss',$snameregistered,$selectedDrivetwoWheel,$numberOfdaysHired,$paymentMode) ;
+
+		if ($hireStmt->execute() === TRUE ) {
+			$_SESSION['hireQueried'] ;
+			$_SESSION['classTypeAccept'] ;
+			header('location: twowheelDucattiregistered.php?hireSubmitTrue') ;
+		} else {
+			$_SESSION['hireDenied'] ;
+			$_SESSION['classTypeError'] ;
+			header('location: twowheelDucattiregistered.php?hireSubmittedFail') ;
+		}
+	} else {
+			$_SESSION['hireDenied'] ;
+			$_SESSION['classTypeError'] ;
+			header('location: twowheelDucattiregistered.php?hireSubmittedFail') ;
+		}
+
+
 }
 
 
@@ -89,6 +152,7 @@ while ( $row = mysqli_fetch_array($fetchResult) ) {
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<p style="font-weight:800;"> <?php echo "Welcome" , " ", $_SESSION['activeuser']  ; ?> </p>
 			</div>
 		</div>
 	</div> 
@@ -97,7 +161,7 @@ while ( $row = mysqli_fetch_array($fetchResult) ) {
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<nav class="nav nav-expand">
-					<li class="nav-item"><a href="homeguestsregistered.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="homeregistered.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="aboutregistered.php" class="nav-link"  >About Us</a></li>
 					<div class="dropdown" id="active">
 						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
@@ -150,6 +214,36 @@ function carousel() {
 			</div>
 		</div>
 
+		<p class="alert alert-<?php
+			if ( isset($_GET['hireSubmitTrue']) ) {
+						echo $_SESSION['classTypeAccept'] ;
+						session_unset() ;
+						session_destroy() ;
+					}
+			if ( isset($_GET['hireSubmittedFail']) ) {
+						echo $_SESSION['classTypeError'] ;
+						session_unset() ;
+						session_destroy() ;
+					}		
+		?> " >
+			<?php
+				if ( isset($_GET['hireSubmitTrue']) ) {
+					if ( isset($_SESSION['hireQueried']) ) {
+						echo $_SESSION['hireQueried'] ;
+						session_unset() ;
+						session_destroy() ;
+					} else { echo "Hire Details Submitted. Kindly wait for approval."; }
+				}	
+				if ( isset($_GET['hireSubmittedFail']) ) {
+					if ( isset($_SESSION['hireDenied']) ) {
+						echo $_SESSION['hireDenied'] ;
+						session_unset() ;
+						session_destroy() ;
+					} else { echo "Hire Details Submission Failed."; }
+				}
+			?>
+		</p>
+
 		<div class="col-md-6">
 			<div class="container-fluid">
 				<p>For 2021 Ducati presents the Streetfighter V4 S in a new Dark Stealth colour scheme, which joins the sporty Ducati Red. Furthermore, all models in the Ducati Streetfighter V4 range become compliant with the Euro 5 anti-pollution legislation (Only for Markets where EU 5 is applied). </p> <br/>
@@ -183,39 +277,34 @@ function carousel() {
 
 				        <div class="modal-body">
 				          
-				        	<form class="form" action="twoWheelDucattiregistered.php" method="post">
-				        		<div class="row">
-									<div class="col-md">
-										<div class="form-group">
-											<label for="fnameregistered">First Name</label>
-											<input type="text" name="fnameregistered" class="form-control" id="fnameregistered" value=" <?php echo $row['fName'] ?> ">
-
-										</div>
-									</div>
-									<div class="col-md">
-										<div class="form-group">
-											<label for="snameregistered">Second Name</label>
-											<input type="text" name="snameregistered" class="form-control" id="snameregistered" value=" <?php echo $row['sName'] ?> ">					
-										</div>
-									</div>
+				        	<form class="form" action="twowheelDucattiregistered.php" method="post">
+				        		<div class="form-group">
+									<label for="snameregistered">Second Name</label>
+									<input type="text" name="snameregistered" class="form-control" id="snameregistered">			
+									<span style="color:red;"> <?php echo $snameregisteredErr ; ?> </span>	
 								</div>
 
 				        		<div class="form-group">
 				        			<label for="selectedDrivetwoWheel">Selected Drive</label>
-				        			<input type="text" name="selectedDrivetwoWheel" class="form-control" id="selectedDrivetwoWheel">
+				        			<select name="selectedDrivetwoWheel" id="selectedDrivetwoWheel" class="form-control">
+				        				<option></option>
+				        				<option value="ducattiSfv4">Ducatti Sfv4</option>
+				        			</select>
+				        			<span style="color:red;"> <?php echo $selectedDrivetwoWheelErr ; ?> </span>
 				        		</div>
 
 				        		<div class="form-group">
 				        			<label for="numberOfdaysHired">Number of Days For Hire</label>
 				        			<input type="number" name="numberOfdaysHired" id="numberOfdaysHired" class="form-control">
+				        			<span style="color:red;"> <?php echo $numberOfdaysHiredErr ; ?> </span>
 				        		</div>
 
 				        		<div class="form-group">
 				        			<label for="paymentMode">Mode of Payment</label>
 				        			<select name="paymentMode" id="paymentMode" class="form-control" onchange="onchangeStatus()">
 					        			<option></option>
-					        			<option value="mpesa">M-PESA</option>
 					        			<option value="visa">VISA</option>
+					        			<option value="mpesa">M-PESA</option>
 					        			<br/>
 <script type="text/javascript">
 	function onchangeStatus() {
@@ -228,25 +317,37 @@ function carousel() {
 	}
 </script>
 				        			</select>
+				        			<span style="color:red;"> <?php echo $numberOfdaysHiredErr ; ?> </span>
 				        			<br/>
 					        		<input type="text" name="mpesaCodeInput" id="mpesaCodeInput" class="form-control" placeholder="Enter MPesa Code for verification">
 				        		</div>
+
+				        		<div class="row">
+						          	<div class="col">
+						          		<input type="submit" name="hireSubmitdetails" class="form-control btn btn-outline-success" id="hireSubmitdetails" value="Submit Hire Details">
+						          	</div>
+						          	<div class="col">
+						          		<button type="button" class="" data-dismiss="modal" style="border:none;">
+						          			<input type="reset" name="reset" class="form-control btn btn-outline-danger" id="reset" value="Close">
+						          		</button>
+						          	</div>
+						        </div>  	
 
 				        	</form>
 							
 				        </div>
 
 				        <div class="modal-footer">
-				          <div class="row">
+				          <!-- <div class="row">
 				          	<div class="col">
-				          		<button type="button" class="btn btn-primary">
-				          			<a href="#" class="" style="color:#fff;">Submit</a>
+				          		<input type="submit" name="hireSubmitdetails" class="form-control btn btn-outline-success" id="hireSubmitdetails" value="Submit Hire Details">
+				          	</div>
+				          	<div class="col">
+				          		<button type="button" class="" data-dismiss="modal" style="border:none;">
+				          			<input type="reset" name="reset" class="form-control btn btn-outline-danger" id="reset" value="Close">
 				          		</button>
-				          	</div>
-				          	<div class="col">
-				          		<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				          	</div>
-				          </div>
+				          	</div> 
+				          </div>	-->
 				        </div>
 
 				      </div>

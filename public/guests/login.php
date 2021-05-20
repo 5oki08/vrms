@@ -6,8 +6,8 @@ require '../../connection.php' ;
 $_SESSION['failCred'] = "Check Credentials" ;
 $_SESSION['classTypeError'] = "danger" ;
 
-$userloginphone = $userloginpassword = $userloginencryptpassword = '' ;
-$userloginphoneErr = $userloginpasswordErr = '' ;
+$userloginphone = $userloginLastName = $userloginpassword = $userloginencryptpassword = '' ;
+$userloginphoneErr = $userloginLastNameErr = $userloginpasswordErr = '' ;
 
 if ( isset($_POST['loginSubmit']) ) {
 	if ( empty($_POST['userloginphone']) ) {
@@ -15,20 +15,25 @@ if ( isset($_POST['loginSubmit']) ) {
 	} else {
 		$userloginphone = $_POST['userloginphone'] ;
 	}
+	if ( empty($_POST['userloginLastName']) ) {
+		$userloginLastNameErr = "Incorrect Last Name" ;
+	} else {
+		$userloginLastName = $_POST['userloginLastName'] ;
+	}
 	if ( empty($_POST['userloginpassword']) ) {
 		$userloginpasswordErr = "Incorrect Password" ;
 	} else {
 		$userloginpassword = $_POST['userloginpassword'] ;
 	}
 
-	$loginSql = " SELECT * FROM users WHERE userPhone='$userloginphone' && userPassword='".md5($userloginpassword)."' " ;
+	$loginSql = " SELECT * FROM users WHERE userPhone='$userloginphone' && sName='$userloginLastName' && userPassword='".md5($userloginpassword)."' " ;
 	$loginResult = mysqli_query($conn,$loginSql) ;
 	$loginNum = mysqli_num_rows($loginResult) ;
 
 	if ( $loginNum == 1 ) {
-		if ( empty($userloginphoneErr) && empty($userloginpasswordErr) ) {
-			$_SESSION['activeuser'] = $_POST['userloginphone'] ;
-			echo "Welcome" , $_SESSION['activeuser'] ;
+		if ( empty($userloginphoneErr) && empty($userloginLastNameErr) && empty($userloginpasswordErr) ) {
+			$_SESSION['activeuser'] = $userloginLastName ;
+			echo "Welcome" , " " , $_SESSION['activeuser'] ;
 			header('location: ../registered/homeregistered.php') ;
 		}
 	} else {

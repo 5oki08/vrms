@@ -35,5 +35,20 @@ $conn = new mysqli($servername,$username,$password,$dbname) ;
 // 	echo "Table not created" . $conn->error ;
 // }
 
+// $sql = " CREATE TABLE selectedDrive (
+// id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+// snameregistered VARCHAR(250) NOT NULL,
+// selectedDrivetwoWheel VARCHAR(250) NOT NULL,
+// numberOfdaysHired VARCHAR(250) NOT NULL,
+// paymentMode VARCHAR(250) NOT NULL,
+// mpesaCodeInput VARCHAR(250) NOT NULL,
+// reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+// ) " ;
+// if ( $conn->query($sql) === TRUE ) {
+// 	echo "Table Created, proceed with entries.";
+// } else {
+// 	echo "Table not created" . $conn->error ;
+// }
+
 
 ?>

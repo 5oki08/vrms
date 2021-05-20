@@ -115,6 +115,10 @@ require 'login.php' ;
 						<span> <?php echo $userloginphoneErr; ?> </span>
 					</div>
 					<div class="form-group">
+						<label for="userloginLastName">Enter Last Name</label>
+						<input type="text" name="userloginLastName" id="userloginLastName" class="form-control">
+					</div>
+					<div class="form-group">
 						<label for="userloginpassword">Enter Password</label>
 						<input type="password" name="userloginpassword" class="form-control">
 						<span> <?php echo $userloginpasswordErr; ?> </span>
