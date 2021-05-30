@@ -2,6 +2,7 @@
 
 require '../../connection.php' ;
 require 'login.php' ;
+// session_start() ;
 
  ?>
 <!DOCTYPE html>
@@ -95,6 +96,21 @@ require 'login.php' ;
 							session_unset();
 							session_destroy();
 						}
+					if (isset($_GET['userdetailsaccepted'])) {
+							echo $_SESSION['classTypeAccept'] ;
+							session_unset();
+							session_destroy();
+						}	
+					if (isset($_GET['passResetAccept'])) {
+							echo $_SESSION['classTypeAccept'] ;
+							session_unset();
+							session_destroy();
+						}	
+					if (isset($_GET['logIn'])) {
+							echo $_SESSION['classTypeError'] ;
+							session_unset();
+							session_destroy();
+						}			
 				?> ">
 					<?php
 						if ( isset($_GET['credentialsReject']) ) {
@@ -106,6 +122,33 @@ require 'login.php' ;
 								echo "Login failed. Check input credentials then try again.";
 							}
 						}
+						if ( isset($_GET['userdetailsaccepted']) ) {
+							if (isset($_SESSION['userAccept'])) {
+								echo $_SESSION['userAccept'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Successful Registration. Proceed with log in.";
+							}
+						}
+						if ( isset($_GET['passResetAccept']) ) {
+							if (isset($_SESSION['passUpdateComplete'])) {
+								echo $_SESSION['passUpdateComplete'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Password Reset Complete. The new credentials can now be used to login";
+							}
+						}
+						if ( isset($_GET['logIn']) ) {
+							if (isset($_SESSION['noactiveaccount'])) {
+								echo $_SESSION['noactiveaccount'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "No active account. Kindly log in.";
+							}
+						}					
 					?>
 				</p>
 				<form class="form" method="post" action="login.php">

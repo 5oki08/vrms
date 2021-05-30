@@ -1,20 +1,24 @@
 <?php
 
 require '../../connection.php' ;
-// require '../guests/login.php' ;
-session_start() ;
+require '../guests/login.php' ;
 
-$snameregistered = '' ;
+// $snameregistered = '' ;
 
-$fetchSql = " SELECT * FROM users WHERE sName='$snameregistered' " ;
-$fetchResult = mysqli_query($conn,$fetchSql) or die( mysqli_error() ) ;
-
-
-while ( $row = mysqli_fetch_array($fetchResult) ) {
-	$snameregistered = $row['sName'] ;
+if ( isset($_POST['activeuser']) ) {
+	if ( empty($_POST['activeuser']) ) {
+		$_SESSION['noactiveaccount'] ;
+		$_SESSION['classTypeError'] ;
+		header('location: ../guests/homeguests.php?logIn') ;
+	} else {
+		$_POST['activeuser'] ;
+	}
 }
 
-$_SESSION['activeuser'] = $snameregistered ;
+
+$fetchSql = " SELECT * FROM users " ;
+$fetchResult = mysqli_query($conn,$fetchSql) or die( mysqli_error() ) ;
+
 
 $_SESSION['hireQueried'] = "Hire Details Submitted. Kindly wait for approval." ;
 $_SESSION['classTypeAccept'] = "success" ;
@@ -24,6 +28,7 @@ $_SESSION['classTypeError'] = "danger" ;
 
 $snameregistered = $selectedDrivetwoWheel = $numberOfdaysHired = $paymentMode = $mpesaCodeInput = '' ;
 $snameregisteredErr = $selectedDrivetwoWheelErr = $numberOfdaysHiredErr = $paymentModeErr = $mpesaCodeInputErr = '' ;
+
 
 
 if ( isset($_POST['hireSubmitdetails']) ) {
@@ -54,24 +59,28 @@ if ( isset($_POST['hireSubmitdetails']) ) {
 	$hireSqlresult = mysqli_query($conn,$hireSql) ;
 	$hireSqlNum = mysqli_num_rows($hireSqlresult) ;
 
-	if ( empty($snameregisteredErr) && empty($selectedDrivetwoWheelErr) && empty($numberOfdaysHiredErr) && empty($paymentModeErr) ) {
-		$hireStmt = $conn->prepare(" INSERT INTO selecteddrive (snameregistered,selectedDrivetwoWheel,numberOfdaysHired,paymentMode) VALUES(?,?,?,?) ") ;
-		$hireStmt->bind_param('ssss',$snameregistered,$selectedDrivetwoWheel,$numberOfdaysHired,$paymentMode) ;
+	if ( $hireSqlNum<=0 ) {
+		
+		if ( empty($snameregisteredErr) && empty($selectedDrivetwoWheelErr) && empty($numberOfdaysHiredErr) && empty($paymentModeErr) ) {
+			$hireStmt = $conn->prepare(" INSERT INTO selecteddrive (snameregistered,selectedDrivetwoWheel,numberOfdaysHired,paymentMode) VALUES(?,?,?,?) ") ;
+			$hireStmt->bind_param('ssss',$snameregistered,$selectedDrivetwoWheel,$numberOfdaysHired,$paymentMode) ;
 
-		if ($hireStmt->execute() === TRUE ) {
-			$_SESSION['hireQueried'] ;
-			$_SESSION['classTypeAccept'] ;
-			header('location: twowheelDucattiregistered.php?hireSubmitTrue') ;
+			if ($hireStmt->execute() === TRUE ) {
+				$_SESSION['hireQueried'] ;
+				$_SESSION['classTypeAccept'] ;
+				header('location: twowheelDucattiregistered.php?hireSubmitTrue') ;
+			} else {
+				$_SESSION['hireDenied'] ;
+				$_SESSION['classTypeError'] ;
+				header('location: twowheelDucattiregistered.php?hireSubmittedFail') ;
+			}
 		} else {
-			$_SESSION['hireDenied'] ;
-			$_SESSION['classTypeError'] ;
-			header('location: twowheelDucattiregistered.php?hireSubmittedFail') ;
-		}
-	} else {
-			$_SESSION['hireDenied'] ;
-			$_SESSION['classTypeError'] ;
-			header('location: twowheelDucattiregistered.php?hireSubmittedFail') ;
-		}
+				$_SESSION['hireDenied'] ;
+				$_SESSION['classTypeError'] ;
+				header('location: twowheelDucattiregistered.php?hireSubmittedFail') ;
+			}
+
+	} 
 
 
 }
@@ -152,7 +161,6 @@ if ( isset($_POST['hireSubmitdetails']) ) {
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
-				<p style="font-weight:800;"> <?php echo "Welcome" , " ", $_SESSION['activeuser']  ; ?> </p>
 			</div>
 		</div>
 	</div> 
@@ -166,14 +174,22 @@ if ( isset($_POST['hireSubmitdetails']) ) {
 					<div class="dropdown" id="active">
 						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
 						<div class="dropdown-menu">
-							<a href="twowheeler.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
-							<a href="fourwheeler.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
+							<a href="twowheelerregistered.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
+							<a href="fourwheelerregistered.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
 						</div>
 					</div>	
 					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
 					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
-					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
-					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
+					<!-- <li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li> -->
+					<!-- <li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li> -->
+					<div class="dropdown" class="nav-link">
+						<!-- <button type="" class="" data-toggle="dropdown" style="">My Profile</button> -->
+						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
+						<div class="dropdown-menu">
+							<a href="myaccountregistered.php" class="" style="text-align:center; color:#000; text-decoration-style:dotted; font-size:18px;"> <?php echo $_SESSION['activeuser'] ; ?> </a>
+							<a href="logoutregistered.php" class="nav-link">Log Out</a>
+						</div>
+					</div>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -280,8 +296,7 @@ function carousel() {
 				        	<form class="form" action="twowheelDucattiregistered.php" method="post">
 				        		<div class="form-group">
 									<label for="snameregistered">Second Name</label>
-									<input type="text" name="snameregistered" class="form-control" id="snameregistered">			
-									<span style="color:red;"> <?php echo $snameregisteredErr ; ?> </span>	
+									<input type="text" name="snameregistered" class="form-control" id="snameregistered" value="<?php echo $_SESSION['activeuser'] ; ?>" disabled>
 								</div>
 
 				        		<div class="form-group">
@@ -337,18 +352,7 @@ function carousel() {
 							
 				        </div>
 
-				        <div class="modal-footer">
-				          <!-- <div class="row">
-				          	<div class="col">
-				          		<input type="submit" name="hireSubmitdetails" class="form-control btn btn-outline-success" id="hireSubmitdetails" value="Submit Hire Details">
-				          	</div>
-				          	<div class="col">
-				          		<button type="button" class="" data-dismiss="modal" style="border:none;">
-				          			<input type="reset" name="reset" class="form-control btn btn-outline-danger" id="reset" value="Close">
-				          		</button>
-				          	</div> 
-				          </div>	-->
-				        </div>
+				        <div class="modal-footer"></div>
 
 				      </div>
 				    </div>
@@ -359,6 +363,37 @@ function carousel() {
 		</div>
 		<div class="col"></div>
 	</div>
+
+	<!-- <div class="row">
+		<div class="col"></div>
+		<div class="col">
+			<div class="container-fluid">
+				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonregister" class="hirebtnreister">
+				    Hire
+				  </button>
+				  <div class="modal" id="hirebuttonregister">
+				    <div class="modal-dialog">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        </div>
+				        <div class="modal-body" style="text-align:center;">
+				          
+				          <p>Your Hire details for the select vehicle has been submitted. Kindly wait for approval. <br/> Check for approval response within 24hours from initial submission date.</p>
+
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				  
+				</div>
+			</div>
+		</div>
+		<div class="col"></div>
+	</div> -->
 
 </div>
 

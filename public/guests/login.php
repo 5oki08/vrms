@@ -33,8 +33,7 @@ if ( isset($_POST['loginSubmit']) ) {
 	if ( $loginNum == 1 ) {
 		if ( empty($userloginphoneErr) && empty($userloginLastNameErr) && empty($userloginpasswordErr) ) {
 			$_SESSION['activeuser'] = $userloginLastName ;
-			echo "Welcome" , " " , $_SESSION['activeuser'] ;
-			header('location: ../registered/homeregistered.php') ;
+			header('location: ../registered/homeregistered.php?logged') ;
 		}
 	} else {
 			$_SESSION['failCred'] ;

@@ -33,7 +33,7 @@ if ( isset($_POST['newpasswordSubmit']) ) {
 		if ( $resultresetpass ) {
 			$_SESSION['passUpdateComplete'] ;
 			$_SESSION['classTypeAccept'] ;
-			header('location: resetpassword.php?passResetAccept') ;
+			header('location: homeguests.php?passResetAccept') ;
 		} else {
 		// echo "Invalid Details";
 		$_SESSION['invalidCred'] ;
@@ -81,12 +81,12 @@ if ( isset($_POST['newpasswordSubmit']) ) {
 		<div class="col-md-6">
 			<div class="container-fluid">
 				<p class="alert alert-<?php
-					if ( isset($_SESSION['passUpdateComplete']) ) {
+					if ( isset($_GET['passUpdateComplete']) ) {
 							echo $_SESSION['classTypeAccept'] ;
 							session_unset() ;
 							session_destroy() ;
 						}
-						if ( isset($_SESSION['passresetfalseinvalidcred']) ) {
+						if ( isset($_GET['passresetfalseinvalidcred']) ) {
 							echo $_SESSION['classTypeError'] ;
 							session_unset() ;
 							session_destroy() ;

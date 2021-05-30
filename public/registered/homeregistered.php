@@ -1,3 +1,26 @@
+<?php 
+
+require '../../connection.php' ;
+require '../guests/login.php' ;
+
+$_SESSION['noactiveaccount'] = "No active account. Kindly log in.";
+$_SESSION['classTypeError'] = "danger" ;
+
+if ( isset($_POST['activeuser']) ) {
+	if ( empty($_POST['activeuser']) ) {
+		$_SESSION['noactiveaccount'] ;
+		$_SESSION['classTypeError'] ;
+		header('location: ../guests/homeguests.php?logIn') ;
+	} else {
+		$_POST['activeuser'] ;
+	}
+}
+	
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +63,11 @@
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<!-- <p>
+					<?php echo "Welcome," . " " .  $_SESSION['activeuser'] ; ?>
+				</p> -->
+					
+
 			</div>
 		</div>
 	</div> 
@@ -59,8 +87,16 @@
 					</div>	
 					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
 					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
-					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
-					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
+					<!-- <li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li> -->
+					<!-- <li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li> -->
+					<div class="dropdown" class="nav-link">
+						<!-- <button type="" class="" data-toggle="dropdown" style="">My Profile</button> -->
+						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
+						<div class="dropdown-menu">
+							<a href="myaccountregistered.php" class="" style="text-align:center; color:#000; text-decoration-style:dotted; font-size:18px;"> <?php echo $_SESSION['activeuser'] ; ?> </a>
+							<a href="logoutregistered.php" class="nav-link">Log Out</a>
+						</div>
+					</div>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>

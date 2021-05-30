@@ -1,3 +1,23 @@
+<?php
+
+require '../../connection.php' ;
+require '../guests/login.php' ;
+// session_start() ;
+
+if ( isset($_POST['activeuser']) ) {
+	if ( empty($_POST['activeuser']) ) {
+		$_SESSION['noactiveaccount'] ;
+		$_SESSION['classTypeError'] ;
+		header('location: ../guests/homeguests.php?logIn') ;
+	} else {
+		$_POST['activeuser'] ;
+	}
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +60,9 @@
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<p>
+					<?php echo "Welcome," . " " .  $_SESSION['activeuser'] ; ?>
+				</p>
 			</div>
 		</div>
 	</div> 
@@ -59,8 +82,16 @@
 					</div>	
 					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
 					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link" id="active">My Booking</a></li>
-					<li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li>
-					<li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li>
+					<!-- <li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li> -->
+					<!-- <li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li> -->
+					<div class="dropdown" class="nav-link">
+						<!-- <button type="" class="" data-toggle="dropdown" style="">My Profile</button> -->
+						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
+						<div class="dropdown-menu">
+							<a href="myaccountregistered.php" class="" style="text-align:center; color:#000; text-decoration-style:dotted; font-size:18px;"> <?php echo $_SESSION['activeuser'] ; ?> </a>
+							<a href="logoutregistered.php" class="nav-link">Log Out</a>
+						</div>
+					</div>
 				</nav>
 			</div>
 			<div class="col-md-2"></div>
@@ -70,6 +101,45 @@
 
 <br/>
 
+<div class="jumbotron">
+	<div class="row">
+		
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			
+			<table class="table table-hovered">
+				<tr>
+					<th> Second Name Registered </th>
+					<th> Selected Drive </th>
+					<th> Days Hired </th>
+					<th> Payment Mode </th>
+					<th> Status </th>
+				</tr>
+
+			<?php
+				$fetchBookingsql = "SELECT snameregistered, selectedDrivetwoWheel, numberOfdaysHired, paymentMode FROM selecteddrive WHERE snameregistered='{$_SESSION['activeuser']}' ";
+				$resultBooking = $conn->query($fetchBookingsql);
+
+				if ($resultBooking->num_rows > 0) {
+				    while($rowFetch = $resultBooking->fetch_assoc()) {
+			?>
+				<tr>
+					<td> <?php echo $rowFetch["snameregistered"]; ?> </td> 
+					<td> <?php echo $rowFetch["selectedDrivetwoWheel"] ; ?> </td>
+					<td> <?php echo $rowFetch["numberOfdaysHired"] ; ?> </td>
+					<td> <?php echo $rowFetch["paymentMode"] ; ?> </td>
+				</tr>
+				<?php  }
+					} else {
+					    echo "No bookings yet.";
+					} ?>
+			</table> 
+
+		</div>
+		<div class="col-md-1"></div>
+
+	</div>
+</div>
 
 </body>
 </html>

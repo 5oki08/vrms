@@ -171,5 +171,40 @@ function carousel() {
 </div>
 
 
+<br/>
+
+<!-- footer -->
+<div class="container-fluid" style="background-color:#00FFFF; padding:20px;">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md" style="text-align:center;">
+			<p style="text-decoration:underline;">Quick Links</p>
+			<a href="homeguests.php" class="footer-links">Home</a><br/>
+			<a href="aboutguests.php" class="footer-links">About Us</a><br/>
+			<a href="#" class="footer-links">Privacy Policy</a>
+		</div>
+		<div class="col-md" style="text-align:center;">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat.
+		</div>
+		<div class="col-md" style="text-align:center;">
+			<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+			<p>
+				<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
+				+254 700 000 000
+			</p>
+			<p>
+				<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
+				614rollingstone@gmail.com
+			</p>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+</div>
+
+
+
 </body>
 </html>
