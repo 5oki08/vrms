@@ -50,6 +50,9 @@ require 'login.php' ;
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<p>
+					ADMIN login <a href="adminlogin.php">here</a> .
+				</p>
 			</div>
 		</div>
 	</div> 
@@ -110,7 +113,27 @@ require 'login.php' ;
 							echo $_SESSION['classTypeError'] ;
 							session_unset();
 							session_destroy();
-						}			
+						}
+					if (isset($_GET['adS'])) {
+							echo $_SESSION['classTypeAccept'] ;
+							session_unset();
+							session_destroy();
+						}
+					if (isset($_GET['adF'])) {
+							echo $_SESSION['classTypeError'] ;
+							session_unset();
+							session_destroy();
+						}
+					if (isset($_GET['none'])) {
+							echo $_SESSION['classTypeError'] ;
+							session_unset();
+							session_destroy();
+						}	
+					if (isset($_GET['nonead'])) {
+							echo $_SESSION['classTypeError'] ;
+							session_unset();
+							session_destroy();
+						}							
 				?> ">
 					<?php
 						if ( isset($_GET['credentialsReject']) ) {
@@ -147,6 +170,42 @@ require 'login.php' ;
 								session_destory() ;
 							} else {
 								echo "No active account. Kindly log in.";
+							}
+						}
+						if ( isset($_GET['adS']) ) {
+							if (isset($_SESSION['adminRegAccept'])) {
+								echo $_SESSION['adminRegAccept'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Admin Register Accept.";
+							}
+						}
+						if ( isset($_GET['adF']) ) {
+							if (isset($_SESSION['adminRegFail'])) {
+								echo $_SESSION['adminRegFail'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Admin Register Declined.";
+							}
+						}		
+						if ( isset($_GET['none']) ) {
+							if (isset($_SESSION['adminDupRej'])) {
+								echo $_SESSION['adminDupRej'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Similar admin details. Rejected";
+							}
+						}
+						if ( isset($_GET['nonead']) ) {
+							if (isset($_SESSION['adminNone'])) {
+								echo $_SESSION['adminNone'] ;
+								session_unset() ;
+								session_destory() ;
+							} else {
+								echo "Details Rejected";
 							}
 						}					
 					?>

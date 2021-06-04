@@ -14,9 +14,11 @@ if ( isset($_POST['activeuser']) ) {
 	}
 }
 
-// $id = 0 ;
-// $update = false ;
 
+$_SESSION['updateDprofile'] = "Profile Successfully Updated." ;
+$_SESSION['classTypeAccept'] = "success" ;
+$_SESSION['FailupdateDprofile'] = "Failed Profile Update." ;
+$_SESSION['classTypeError'] = "danger" ;
 
 
 $registeredLocation = $registeredPhone = $registeredConfirmNewPassword = '' ;
@@ -37,29 +39,19 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 	}
 
 
-	// $updateSql = "UPDATE userLocation,userPhone FROM users WHERE userLocation='$registeredLocation' && userPhone='$registeredPhone' " ;
-	// $updateSql = " UPDATE users SET userLocation, userPhone "
-	// $updateSQLresult = mysqli_query($conn,$updateSql) ;
+	if ( empty($registeredLocationErr) && empty($registeredPhoneErr) ) {
+		$updateProfile = " UPDATE users SET userLocation='$registeredLocation' && userPhone='$registeredPhone' WHERE registeredSecondname='{$_SESSION['activeuser']}' " ;
 
+		$resultUpdatePass = mysqli_query($conn,$updateProfile) ;
 
-	if ( isset($_POST['activeuser']) ) {
-		if ( isset($_SESSION['activeuser']) ) {
-			echo $_SESSION['activeuser'] ;
-		}
-	}
-	// $_SESSION['activeuser'] = $activeusername ;
-	// $updateResultNum = $activeusername ;
-
-	if ( $updateSQLresult->execute() === TRUE ) {
-		
-		if ( empty($registeredLocationErr) && empty($registeredPhoneErr) ) {
-			$_SESSION['recordUpdate'] ;
+		if ( $resultUpdatePass ) {
+			$_SESSION['updateDprofile'] ;
 			$_SESSION['classTypeAccept'] ;
-			header('location: myaccountregistered.php?ProfileUpdateAccept') ;
+			header('location: myaccountregistered.php?ProfileUpdateSuccess') ;
 		} else {
-			$_SESSION['recordUpdateFail'] ;
+			$_SESSION['FailupdateDprofile'] ;
 			$_SESSION['classTypeError'] ;
-			header('location: myaccountregistered.php?ProfileUpdateFail') ;
+			header('location: myaccountregistered.php?ProfileUpdateFailed') ;
 		}
 
 	} else {}
@@ -69,6 +61,7 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,9 +115,6 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
-				<p>
-					<?php echo "Welcome," . " " . $_SESSION['activeuser'] ; ?>
-				</p>
 			</div>
 		</div>
 	</div> 
@@ -144,13 +134,10 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 					</div>	
 					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
 					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
-					<!-- <li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li> -->
-					<!-- <li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li> -->
 					<div class="dropdown" class="nav-link">
-						<!-- <button type="" class="" data-toggle="dropdown" style="">My Profile</button> -->
 						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
 						<div class="dropdown-menu">
-							<a href="myaccountregistered.php" class="" style="text-align:center; color:#000; text-decoration-style:dotted; font-size:18px;"> <?php echo $_SESSION['activeuser'] ; ?> </a>
+							<a href="myaccountregistered.php" class="" style="color:#000; text-align:center;"> My Account</a>
 							<a href="logoutregistered.php" class="nav-link">Log Out</a>
 						</div>
 					</div>
@@ -163,10 +150,45 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 
 <br/>
 
+
 <div class="container-fluid">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				
+				<p class=" alert alert-<?php
+					if ( isset($_GET['ProfileUpdateSuccess']) ) {
+								echo $_SESSION['classTypeAccept']  ;
+								session_unset() ;
+								session_destroy() ;
+							}
+					if ( isset($_GET['ProfileUpdateFailed']) ) {
+								echo $_SESSION['classTypeError']  ;
+								session_unset() ;
+								session_destroy() ;
+							}		
+				?> " >
+					<?php
+
+						if ( isset($_GET['ProfileUpdateSuccess']) ) {
+							if ( isset($_SESSION['updateDprofile']) ) {
+								echo $_SESSION['updateDprofile'] ;
+								session_unset() ;
+								session_destroy() ;
+							} else { echo "Profile Successfully Updated."; }
+						} 
+						if ( isset($_GET['ProfileUpdateFailed']) ) {
+							if ( isset($_SESSION['FailupdateDprofile']) ) {
+								echo $_SESSION['FailupdateDprofile'] ;
+								session_unset() ;
+								session_destroy() ;
+							} else { echo "Failed Profile Update."; }
+						}
+
+					?>
+				</p>
+
+			</div>
 			<div class="col-md" >
 				<div class="container">
 					<div class="jumbotron" id="picturecontainer">
@@ -204,8 +226,8 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 
 							<div class="form-group">
 								<label for="registeredLocation">User Location</label>
-								<input type="text" name="registeredLocation" id="registeredLocation" class="form-control" value="<?php echo $rowFetchuserdetails['userLocation'] ; ?>">
-								<span id="submiterrormsg"> <?php echo $registeredLocationErr ; ?> </span>
+								<input type="text" name="registeredLocation" id="registeredLocation" class="form-control" value="<?php echo $rowFetchuserdetails['userLocation'] ; ?>" disabled>
+								<!-- <span id="submiterrormsg"> <?php echo $registeredLocationErr ; ?> </span> -->
 							</div>		
 
 							<div class="form-group">
@@ -215,8 +237,8 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 
 							<div class="form-group">
 								<label for="registeredPhone">Phone Number</label>
-								<input type="phone" name="registeredPhone" id="registeredPhone" class="form-control" value="<?php echo $rowFetchuserdetails['userPhone'] ; ?>">
-								<span id="submiterrormsg"> <?php echo $registeredPhoneErr ; ?> </span>
+								<input type="phone" name="registeredPhone" id="registeredPhone" class="form-control" value="<?php echo $rowFetchuserdetails['userPhone'] ; ?>" disabled>
+								<!-- <span id="submiterrormsg"> <?php echo $registeredPhoneErr ; ?> </span> -->
 							</div>	
 
 							<div class="form-group">
@@ -224,39 +246,16 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 								<input type="password" name="registeredcurrentPassword" id="registeredPassword" class="form-control" value="<?php echo $rowFetchuserdetails['userPassword'] ; ?>" disabled>
 							</div>		
 
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<div class="row">
 									<div class="col-md">
 										<input type="submit" name="submitUpdateDetails" id="submitUpdateDetails" class="form-control btn btn-outline-success">
-										<!-- <button type="button" style="border:none;" class="btn btn-success" id="submitUpdateDetails"  onclick="passwordTochangeprofile()">Update Details</button> -->
 									</div>
 									<div class="col-md">
 										<input type="reset" name="resetupdateDetails" id="resetupdateDetails" class="form-control" > 
 									</div>
 								</div>
-							</div>
-<!-- <div class="modal" id="changeprofilePassword">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-	    <div class="modal-header">
-	      <button type="button" class="close" data-dismiss="modal">&times;</button>
-	    </div>
-	    <div class="modal-body" style="text-align:center;">
-	      
-	      <form class="form" action="myaccountregistered.php" method="post">
-	      	<label for="PasswordforChange">Enter Current Password To Confirm Changes</label>
-	      	<input type="password" name="PasswordforChange" id="PasswordforChange" class="form-control">
-	      	<br/>
-	      	<input type="submit" name="submitpassforChange" id="submitpassforChange" class="btn btn-warning">
-	      </form>
-	      
-	    </div>
-	    <div class="modal-footer">
-	      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-	    </div>
-	  </div>
-	</div>
-</div> -->
+							</div> -->
 							<?php  }
 					} ?>
 						</form>

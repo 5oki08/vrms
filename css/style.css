@@ -176,3 +176,21 @@ sup {
 /*contactregistered.php*/
 /*mybookingregistered.php*/
 /*myaccountregistered.php*/
+
+
+
+
+
+
+
+
+
+/*admin dashboard*/
+/*#adminnav {
+	background-color: #ffe135;
+}*/
+#adminnav {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #ffe135;
+}

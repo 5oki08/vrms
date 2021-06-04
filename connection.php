@@ -50,5 +50,19 @@ $conn = new mysqli($servername,$username,$password,$dbname) ;
 // 	echo "Table not created" . $conn->error ;
 // }
 
+// $sql = " CREATE TABLE adminusers (
+// id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+// adminfirstName VARCHAR(250) NOT NULL,
+// adminSecondName VARCHAR(250) NOT NULL,
+// adminEmail VARCHAR(250) NOT NULL,
+// adminUniqueNumber VARCHAR(250) NOT NULL,
+// reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+// ) " ;
+// if ( $conn->query($sql) === TRUE ) {
+// 	echo "Table Created, proceed with entries.";
+// } else {
+// 	echo "Table not created" . $conn->error ;
+// }
+
 
 ?>

@@ -63,9 +63,6 @@ if ( isset($_POST['activeuser']) ) {
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
-				<!-- <p>
-					<?php echo "Welcome," . " " .  $_SESSION['activeuser'] ; ?>
-				</p> -->
 					
 
 			</div>
@@ -87,13 +84,10 @@ if ( isset($_POST['activeuser']) ) {
 					</div>	
 					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
 					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link">My Booking</a></li>
-					<!-- <li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li> -->
-					<!-- <li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li> -->
 					<div class="dropdown" class="nav-link">
-						<!-- <button type="" class="" data-toggle="dropdown" style="">My Profile</button> -->
-						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
+						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;"> My Profile </a>
 						<div class="dropdown-menu">
-							<a href="myaccountregistered.php" class="" style="text-align:center; color:#000; text-decoration-style:dotted; font-size:18px;"> <?php echo $_SESSION['activeuser'] ; ?> </a>
+							<a href="myaccountregistered.php" class="" style="color:#000; text-align:center;"> My Account</a>
 							<a href="logoutregistered.php" class="nav-link">Log Out</a>
 						</div>
 					</div>

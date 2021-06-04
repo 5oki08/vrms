@@ -5,14 +5,14 @@ require '../guests/login.php' ;
 // session_start() ;
 
 if ( isset($_POST['activeuser']) ) {
-	if ( empty($_POST['activeuser']) ) {
+	if ( empty($_SESSION['activeuser']) ) {
 		$_SESSION['noactiveaccount'] ;
 		$_SESSION['classTypeError'] ;
 		header('location: ../guests/homeguests.php?logIn') ;
 	} else {
-		$_POST['activeuser'] ;
+		$_SESSION['activeuser'] ;
 	}
-}
+} 
 
 
 
@@ -60,9 +60,6 @@ if ( isset($_POST['activeuser']) ) {
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
-				<p>
-					<?php echo "Welcome," . " " .  $_SESSION['activeuser'] ; ?>
-				</p>
 			</div>
 		</div>
 	</div> 
@@ -82,13 +79,10 @@ if ( isset($_POST['activeuser']) ) {
 					</div>	
 					<li class="nav-item"><a href="contactregistered.php" class="nav-link">Contact Us</a></li>
 					<li class="nav-item"><a href="mybookingregistered.php" class="nav-link" id="active">My Booking</a></li>
-					<!-- <li class="nav-item"><a href="myaccountregistered.php" class="nav-link">My Account</a></li> -->
-					<!-- <li class="nav-item"><a href="logoutregistered.php" class="nav-link">Log Out</a></li> -->
 					<div class="dropdown" class="nav-link">
-						<!-- <button type="" class="" data-toggle="dropdown" style="">My Profile</button> -->
-						<a href="#" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
+						<a href="myaccountregistered.php" class="text-danger" data-toggle="dropdown" style="font-size:16px;">My Profile</a>
 						<div class="dropdown-menu">
-							<a href="myaccountregistered.php" class="" style="text-align:center; color:#000; text-decoration-style:dotted; font-size:18px;"> <?php echo $_SESSION['activeuser'] ; ?> </a>
+							<a href="myaccountregistered.php" class="" style="color:#000; text-align:center;"> My Account</a>
 							<a href="logoutregistered.php" class="nav-link">Log Out</a>
 						</div>
 					</div>
@@ -106,6 +100,18 @@ if ( isset($_POST['activeuser']) ) {
 		
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
+
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<form class="form" action="mybookingregistered.php" method="post">
+						<input type="text" name="searchSecondNameRecord" id="searchSecondNameRecord" class="form-control" placeholder="Input Second Name ...">
+						<br/>
+						<input type="submit" name="searchSecondNamebtn" id="searchSecondNamebtn" class="btn btn-outline-primary" value="Search Record">
+					</form>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
 			
 			<table class="table table-hovered">
 				<tr>
@@ -117,7 +123,16 @@ if ( isset($_POST['activeuser']) ) {
 				</tr>
 
 			<?php
-				$fetchBookingsql = "SELECT snameregistered, selectedDrivetwoWheel, numberOfdaysHired, paymentMode FROM selecteddrive WHERE snameregistered='{$_SESSION['activeuser']}' ";
+
+				$searchSecondNameRecord = '' ;
+
+				if ( isset($_POST['searchSecondNamebtn']) ) {
+					if ( !empty($_POST['searchSecondNameRecord']) ) {
+						$searchSecondNameRecord = $_POST['searchSecondNameRecord'] ;
+					}
+				}
+
+				$fetchBookingsql = "SELECT * FROM selecteddrive WHERE snameregistered='$searchSecondNameRecord' ";
 				$resultBooking = $conn->query($fetchBookingsql);
 
 				if ($resultBooking->num_rows > 0) {
@@ -131,7 +146,7 @@ if ( isset($_POST['activeuser']) ) {
 				</tr>
 				<?php  }
 					} else {
-					    echo "No bookings yet.";
+					    echo "Enter Second Name to Retrieve Booking Record .";
 					} ?>
 			</table> 
 
