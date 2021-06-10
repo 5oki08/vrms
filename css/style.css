@@ -1,8 +1,8 @@
-body {font-size:13px;}
+body {font-size:12px;}
 
 /*GUESTS*/
 /*homeguests.php*/
-.navbar-header {
+/*.navbar-header {
 	border-right: 5px solid #000;
 }
 .navbar-header:hover {
@@ -12,10 +12,10 @@ body {font-size:13px;}
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background-color: #00FFFF;
-}
-.nav-item {
+}*/
+/*.nav-item {
 	/*margin-left: 10px;
-	margin-right: 10px;*/
+	margin-right: 10px;
 }
 .nav-item:hover {
 	text-transform: uppercase;
@@ -70,9 +70,9 @@ body {font-size:13px;}
 }
 .fourwheelercaption {
 	text-align: center;
-}
-
-
+}*/
+/*#mainheader1 { border: 3px solid tomato; }
+#heading1 { padding-left:5px; padding-right:5px; }*/
 
 
 /*loginregisterguests.php*/

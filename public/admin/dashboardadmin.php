@@ -1,3 +1,11 @@
+<?php
+
+require '../../connection.php' ;
+// require 'regdusersadmin.php' ;
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,6 +96,43 @@
 
 <br/>
 
+<div class="jumbotron">
+	<h4>Vehicle Rental Management System</h4><br/>
+	<img src="../../images/vrmslogo.png">
+</div>
+
+
+<div class="container">
+	<table class="table table-hovered">
+	
+		<tr>
+			<td>Second Name</td>
+			<td>Selected Vehicle</td>
+			<td>Number Of days</td>
+			<td>Payment Mode</td>
+		</tr>
+<?php
+						$adminFetchHire = "SELECT * FROM selecteddrive" ;
+						$adminFetchHireResult = mysqli_query($conn,$adminFetchHire) ;
+
+						if ($adminFetchHireResult->num_rows > 0) {
+					   	 while($row = $adminFetchHireResult->fetch_assoc()) {
+					?>
+		<tr>
+			<td> <?php echo $row['snameregistered'] ; ?> </td>
+			<td> <?php echo $row['selectedDrivetwoWheel'] ; ?> </td>
+			<td> <?php echo $row['numberOfdaysHired'] ?> </td>
+			<td> <?php echo $row['paymentMode'] ?> </td>
+		</tr>
+<?php  }
+							} else {
+							    echo "No bookings .";
+							} ?>
+	</table>	
+</div>
+
+<br/> <br/> <br/>
+.
 
 </body>
 </html>

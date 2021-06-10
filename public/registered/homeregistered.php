@@ -76,7 +76,8 @@ if ( isset($_POST['activeuser']) ) {
 					<li class="nav-item"><a href="homeregistered.php" class="nav-link" id="active">Home</a></li>
 					<li class="nav-item"><a href="aboutregistered.php" class="nav-link">About Us</a></li>
 					<div class="dropdown">
-						<button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button>
+						<!-- <button type="" class="dropdown-toggle nav-link" data-toggle="dropdown" style="border:none; background-color:#efa12b;">Vehicles</button> -->
+						<a href="#" class="text-danger dropdown-toggle nav-link" data-toggle="dropdown" style="font-size:16px;"> Vehicles </a>
 						<div class="dropdown-menu">
 							<a href="twowheelerregistered.php" class="dropdown-item">TWO WHEELER VEHICLES</a>
 							<a href="fourwheelerregistered.php" class="dropdown-item">FOUR WHEELER VEHICLES</a>
