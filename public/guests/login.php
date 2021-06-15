@@ -2,6 +2,8 @@
 session_start() ;
 require '../../connection.php' ;
 
+require_once '../registered/activeusersession.php' ;
+
 // $_SESSION['activeuser'] = "$userloginphone" ;
 $_SESSION['failCred'] = "Check Credentials" ;
 $_SESSION['classTypeError'] = "danger" ;
@@ -33,6 +35,7 @@ if ( isset($_POST['loginSubmit']) ) {
 	if ( $loginNum == 1 ) {
 		if ( empty($userloginphoneErr) && empty($userloginLastNameErr) && empty($userloginpasswordErr) ) {
 			$_SESSION['activeuser'] = $userloginLastName ;
+			constant($_SESSION['activeuser']) ;
 			header('location: ../registered/homeregistered.php?logged') ;
 		}
 	} else {

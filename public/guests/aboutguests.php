@@ -34,6 +34,7 @@ li a { width: 100%; }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
+#aboutVision { text-align:center; padding:20px; }
 
 
 @media only screen and (max-width: 600px) {
@@ -71,7 +72,7 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -94,9 +95,6 @@ li a { width: 100%; }
 			    </div>
 			 </li>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
-	      </ul>
 	    </div>
 	  </div>
 	</nav>
@@ -106,15 +104,15 @@ li a { width: 100%; }
 
 <br/>
 
-<div class="container-fluid">
+<section class="container-fluid">
 	<div class="row">
-		<div class="col-md-2" style="background-image:url(../../images/vrmslogo.png);"></div>
+		<div class="col-md-2" style="background-image:url(../../images/vrmslogo.png); background-repeat: no-repeat; position:relative; top: 400px;"></div>
 		<div class="col-md-8">
 			<div class="container-fluid">
 				<div class="container-fluid" style="">
-					<h3 style="text-decoration:underline; text-align:center;">Our History</h3>
+					<h3 style="text-decoration:underline;" class="text-center">Our History</h3>
 					<br/>
-					<p style="/*column-count:2;*/ ">
+					<p>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -129,7 +127,7 @@ li a { width: 100%; }
 					</p>
 				</div>	
 				<br/> <hr/> <br/>
-				<div class="container-fluid" id="aboutVision" style="text-align:center; /*background-image:url(../../images/galaxystars.jpg); padding:20px;*/ padding:20px;">
+				<div class="container-fluid" id="aboutVision" style="">
 					<h4 style="text-decoration:underline; ">Our Vision</h4><br/>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
@@ -143,13 +141,13 @@ li a { width: 100%; }
 				<br/> <hr/> <br/>
 			</div>
 		</div>
-		<div class="col-md-2" style="background-image:url(../../images/vrmslogo.png);"></div>
+		<div class="col-md-2" style="background-image:url(../../images/vrmslogo.png); background-repeat: no-repeat;"></div>
 	</div>
-</div>
+</section>
 
 
 
-<footer class="footer bg-info">
+<footer class="footer bg-info"> 
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>

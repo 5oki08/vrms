@@ -99,7 +99,7 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	     <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -121,9 +121,6 @@ li a { width: 100%; }
 			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
 			    </div>
 			 </li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
 	      </ul>
 	    </div>
 	  </div>
@@ -171,16 +168,20 @@ li a { width: 100%; }
 			<article>
 				<aside id="asidehome" class="card text-center justify-content-center border border-0 card-light">
 					<div class="card-header bg-light">
-						<p class="card-text">The big brown fox</p>
+						<p class="text-center">The big brown fox</p>
 					</div>
 					<div class="card-body">
 						<p class="card-text text-center"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 						consequat. </p>
+						<p class="card-text">Jumpred Over The</p>
 					</div>
 					<div class="card-footer bg-light">
-						<p class="card-text">Jumpred Over The</p>
+						<blockquote class="blockquote">
+							<p>Come let us reason</p>
+							<footer class="blockquote-footer">Culture, Joseph Hill</footer>
+						</blockquote>
 					</div>
 				</aside>
 			</article>

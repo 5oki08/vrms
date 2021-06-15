@@ -63,7 +63,7 @@ li a { width: 100%; }
 
 </head>
 <body>
-
+ 
 <header id="mainheader1" class="">
 	<ul id="heading1">
 		<li class="heading1subj" >3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya </li>
@@ -81,7 +81,7 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -103,9 +103,6 @@ li a { width: 100%; }
 			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
 			    </div>
 			 </li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
 	      </ul>
 	    </div>
 	  </div>

@@ -1,6 +1,6 @@
 <?php 
 
-require '../../connection.php';
+require '../../connection.php' ; 
 session_start();
 
 if ( isset($_POST['activeuser']) ) {
@@ -14,6 +14,8 @@ if ( isset($_POST['activeuser']) ) {
 }
 
 
+
+ 
 $_SESSION['hireQueried'] = "Hire Details Submitted. Kindly wait for approval." ;
 $_SESSION['classTypeAccept'] = "success" ;
 $_SESSION['hireDenied'] = "Hire Details Submission Failed." ;
@@ -61,18 +63,18 @@ if ( isset($_POST['hireSubmitdetails']) ) {
 				$_SESSION['hireQueried'] ;
 				$_SESSION['activeuser'] ;
 				$_SESSION['classTypeAccept'] ;
-				header('location: twowheelyamahaMT-09registered.php?hireSubmitTrue') ;
+				header('location: fourwheelDBxregistered.php?hireSubmitTrue') ;
 			} else {
 				$_SESSION['hireDenied'] ;
 				$_SESSION['activeuser'] ;
 				$_SESSION['classTypeError'] ;
-				header('location: twowheelyamahaMT-09registered.php?hireSubmittedFail') ;
+				header('location: fourwheelDBxregistered.php?hireSubmittedFail') ;
 			}
 		} else {
 				$_SESSION['hireDenied'] ;
 				$_SESSION['activeuser'] ;
 				$_SESSION['classTypeError'] ;
-				header('location: twowheelyamahaMT-09registered.php?hireSubmittedFail') ;
+				header('location: fourwheelDBxregistered.php?hireSubmittedFail') ;
 			}
 
 	} 
@@ -81,12 +83,19 @@ if ( isset($_POST['hireSubmitdetails']) ) {
 }
 
 
+  
+
+
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>VRMS-twoWheeler</title>
+	<title>VRMS-fourWheeler</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -103,7 +112,7 @@ if ( isset($_POST['hireSubmitdetails']) ) {
 <style type="text/css">
 
 
-body {font-size:14px;}
+body { font-size: 14px; }
 #mainheader1 {  padding: 5px; }
 #heading1 { letter-spacing: 1px; text-align: center; margin-top: 5px; list-style-type: none;}
 .heading1subj { display: inline; margin-left:7px; margin-right:7px; }
@@ -111,47 +120,52 @@ body {font-size:14px;}
 .nav-link {}
 .active { text-transform: uppercase; text-decoration: underline; font-weight: 600;}
 li a { width: 100%; }
-
 .carousel-inner img { width: 1100; height: 470; }
-.carousel-inner { margin: 0 auto; width: 80%; }
-
- 
+#asidehome { padding: 10px; height: 100%; }
+.card-text { margin-top: 50px; }
+.form { padding: 20px; }
+.form form-control { padding: 15px; }
 .footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
+#fourwheelercardimg { width: 100%; }
+#fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }
+#fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
 
-#twowheelnavigation { border-right: 2px solid #000; padding: 20px; }
-#twowheelercardimg { width: 100%; }
-#twowheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; } 
-
-#detailedTwowheelerimg { width:350px; height:260px;	}
-
-.alert { height: 50px;  width: 50%; margin: 0 auto; }  
+#detailedFourwheelerimg { width:350px; height:260px;	}
 
 #hirebtnlinkguests { padding: 10px; width: 20%; }
 #hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
+
+
+.alert { height: 50px;  width: 50%; margin: 0 auto; }  
+
 
 
 @media only screen and (max-width: 600px) {
   
 .heading1subj { display: block; margin-top: 3px; margin-bottom: 3px; }
 .navbar-toggle { float: right; }
-
 .carousel-inner img { width: 400; height: 270; }
-.carousel-inner { margin: 0 auto; width: 100%; }
-
 #footerSec1 { margin-bottom: 30px; }
 #footerSec2 { margin-bottom: 30px; }
-#footerSec3 {} 
+#footerSec3 {}
 
-.alert { height: 70px;  width: 50%; margin: 0 auto; } 
+#twowheelnavigation { border: none; }
+
 
 #hirebtnlinkguests { padding: 10px; width: 50%; }
-#hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; } 
+#hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }  
 
 
-}	
+.alert { height: 70px;  width: 50%; margin: 0 auto; }  
+
+
+}
+
+
+
 
 
 </style>
@@ -159,7 +173,8 @@ li a { width: 100%; }
 </head>
 <body>
 
-<header id="mainheader1" class="">
+
+ <header id="mainheader1" class="">
 	<ul id="heading1">
 		<li class="heading1subj" >3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya </li>
 		<li class="heading1subj" > <img src="../../images/phonecall.png" alt="" width="20px" height="20px"> +254 700 000 000 </li>
@@ -181,15 +196,15 @@ li a { width: 100%; }
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeregistered.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutregistered.php" class="text-dark">About Us</a> </li>
-			 <li class="active"> <a href="twowheelerregistered.php" class="text-dark bg-light font-weight-bold">Two Wheeler Vehicles</a> </li>
 			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
+			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
 			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheelerregistered.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishiregistered.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeepregistered.php">Jeep</a>
+			      <a class="dropdown-item h4 text-center" href="twowheelerregistered.php">Ducatti</a> 
+			      <a class="dropdown-item h4 text-center" href="twowheelSregistered.php">Suzuki</a>
+			      <a class="dropdown-item h4 text-center" href="twowheelYamaharegistered.php">Yamaha</a>
 			    </div>
 			 </li>
+			 <li class="active"> <a href="fourwheelerregistered.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
 			 <li> <a href="mybookingregistered.php" class="text-dark">My Booking</a> </li>
 			 <li> <a href="myaccountregistered.php" class="text-dark"> My Account</a> </li>
 			 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li>
@@ -198,12 +213,13 @@ li a { width: 100%; }
 	  </div>
 	</nav>
 
-</header> 
+</header>  
 
-<br/>
+<br/> 
+
 
 <div class="container-fluid">
-	
+
 	<p class="alert alert-<?php
 			if ( isset($_GET['hireSubmitTrue']) ) {
 						echo $_SESSION['classTypeAccept'] ;
@@ -232,18 +248,18 @@ li a { width: 100%; }
 					} else { echo "Hire Details Submission Failed."; }
 				}
 			?>
-		</p>  <br/>
+		</p> <br/>
 
+	
 	<div class="row">
-		
 		<div class="col-md-1"></div>
 
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09b.jpg" id="detailedTwowheelerimg">
-				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09a.jpg" id="detailedTwowheelerimg">
-				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09.png" id="detailedTwowheelerimg">
+				  <img class="dbxfourwheeler" src="../../images/fourwheeler/dbxA.jpg" id="detailedFourwheelerimg">
+				  <img class="dbxfourwheeler" src="../../images/fourwheeler/dbxB.jpg" id="detailedFourwheelerimg">
+				  <img class="dbxfourwheeler" src="../../images/fourwheeler/dbxC.jpg" id="detailedFourwheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -251,7 +267,7 @@ carousel();
 
 function carousel() {
   var i;
-  var x = document.getElementsByClassName("yamahatwowheeler");
+  var x = document.getElementsByClassName("dbxfourwheeler"); 
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
@@ -265,15 +281,114 @@ function carousel() {
 		</div>
 
 		
-
 		<div class="col-md-6">
-			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Yamaha MT-09</kbd><br/><br/>
-			<p>A new cylinder head was created for both emissions and performance. It was given 12 percent less coolant volume for faster engine warm-up; most hydrocarbon emissions are created while an engine is still warming, while the fuel mixture must be rich and the exhaust catalyst isn’t yet up to temperature. For better performance, the new cooling passages completely encircle each exhaust valve seat, eliminating the potential hot spot between the valves. Intake ports were redesigned with reduced volume for faster flow, and the injectors were repositioned and re-aimed to hit the backs of the intake valve. All these changes lead to better fuel vaporization and mixing, improving both emissions and drivability. New camshafts have reduced timing, with 30 percent less overlap; there is now only a 20-degree period during which both intake and exhaust valves are open simultaneously. Shorter timing and less overlap generally favor emissions and torque over top-end performance, but the engineers gave the cams notably steeper ramps, so the curtain area under the whole lift curve stays relatively high. The new ramps are so steep that the entire cam drive had to be redesigned with a wider and stronger cam chain and an oil-pressure-powered cam-chain tensioner added. The tensioner provides more tension when the engine is spinning fast, when the cam chain is more likely to whip around, and less drag at lower rpm.</p> <br/>
-			<p>The intake and exhaust systems also were retuned and redesigned. Three unequal-length runners poke up into the airbox, a design that delivers more torque, a smoother powerband, and a delightful intake note. The exhaust system is pieced together from stainless steel stampings with beautiful robotic welds that look as good as those on some high-end race pipes. It’s an all-new design that places the catalyst forward in the conical header portion of the pipe for quicker warming (emissions again) and tucks almost all the muffler under the engine for better mass centralization. The increased displacement and new engine tuning is claimed to increase torque by 6 percent while further broadening the band. Fuel economy is said to be 11 percent better than with the previous model.</p> <br/>
-		</div>
+			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Aston Martin DBx</kbd><br/><br/>
+			<form class="form">
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelcolor">Color</label>
+							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="Grey" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelYear">Model Year</label>
+							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="2018" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelFuelType">Fuel Type</label>
+							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="Diesel" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSittingCapacity">Sitting Capacity</label>
+							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="5" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelEngineCylinders">Engine Cylinders</label>
+							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="8" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSteering">Steering Side</label>
+							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="Right" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelDriveModes">Drive Modes</label>
+							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="3" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelTransmission">Transmission</label>
+							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="Automatic" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelGearbox">Gearbox</label>
+							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="9-speed automatic" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelWheelDrive">Wheel Drive</label>
+							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="AWD" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelPowerSteering">Power Steering</label>
+							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="Active" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSpareWheel">Spare Wheel</label>
+							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="Available" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelHorsepower">Horsepower</label>
+							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="542" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelHybrid">Hybrid</label>
+							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="No" disabled="">
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="modelPrice">Price per day (KES) </label>
+					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="6255" disabled="">
+				</div>
+
+			</form>
+		</div> <br/> 
 	</div>
 	<br/>
-	
+	</div>
+	<br/>
+
+
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
@@ -290,10 +405,9 @@ function carousel() {
 				          	<button type="button" class="close" data-dismiss="modal">&times;</button>
 				        </div>
 
-				        <div class="modal-body">
+				        <div class="modal-body"> 
 				          
-				        	
-				        	<form class="form" action="twowheelyamahaMT-09registered.php" method="post">
+				        	<form class="form" action="fourwheelDBxregistered.php" method="post">
 				        		<div class="form-group">
 									<label for="snameregistered">Second Name</label>
 									<input type="text" name="snameregistered" class="form-control form-control-lg" id="snameregistered">
@@ -303,7 +417,7 @@ function carousel() {
 				        			<label for="selectedDrivetwoWheel">Selected Drive</label>
 				        			<select name="selectedDrivetwoWheel" id="selectedDrivetwoWheel" class="form-control form-control-lg">
 				        				<option></option>
-				        				<option value="yamahaMT-09">Yamaha MT-09</option>
+				        				<option value="astonMartinDB5">Aston Martin DB5</option> 
 				        			</select>
 				        			<span style="color:red;"> <?php echo $selectedDrivetwoWheelErr ; ?> </span>
 				        		</div>
@@ -342,7 +456,7 @@ function carousel() {
 						          		<input type="submit" name="hireSubmitdetails" class="form-control form-control-lg btn btn-lg btn-outline-success" id="hireSubmitdetails" value="Submit Hire Details">
 						          	</div>
 						          	<div class="col">
-						          		<button type="button" class="" data-dismiss="modal" style="border:none;">
+						          		<button type="button" class="border border-0" data-dismiss="modal" >
 						          			<input type="reset" name="reset" class="form-control form-control-lg btn btn-lg btn-outline-danger" id="reset" value="Close">
 						          		</button>
 						          	</div>
@@ -362,10 +476,28 @@ function carousel() {
 			</div>
 		</div>
 		<div class="col"></div>
-	</div>
+	</div> 
+
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -402,6 +534,7 @@ function carousel() {
 		</div>
 	</div>
 </footer> 
+
 
 </body>
 </html>

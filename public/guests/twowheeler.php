@@ -79,7 +79,7 @@ li { list-style-type: none; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -94,9 +94,6 @@ li { list-style-type: none; }
 			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
 			    </div>
 			 </li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
 	      </ul>
 	    </div>
 	  </div>

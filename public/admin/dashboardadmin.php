@@ -132,7 +132,114 @@ require '../../connection.php' ;
 </div>
 
 <br/> <br/> <br/>
-.
+
+<div class="col-md-6">
+			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Aston Martin DBx</kbd><br/><br/>
+			<form class="form">
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelcolor">Color</label>
+							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelYear">Model Year</label>
+							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelFuelType">Engine Capacity</label>
+							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSittingCapacity">Sitting Capacity</label>
+							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelEngineCylinders">Engine Cylinders</label>
+							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSteering">Steering Side</label>
+							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelDriveModes">Drive Modes</label>
+							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelTransmission">Transmission</label>
+							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelGearbox">Gearbox</label>
+							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelWheelDrive">Wheel Drive</label>
+							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelPowerSteering">Power Steering</label>
+							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSpareWheel">Spare Wheel</label>
+							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelHorsepower">Horsepower</label>
+							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelHybrid">Hybrid</label>
+							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="" disabled="">
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="modelPrice">Price per day (KES) </label>
+					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="5555" disabled="">
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<br/>
+
+
+<br/><br/><br/>	
 
 </body>
 </html>

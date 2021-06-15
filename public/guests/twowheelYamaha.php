@@ -79,7 +79,7 @@ li { list-style-type: none; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a> 
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -94,9 +94,6 @@ li { list-style-type: none; }
 			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
 			    </div>
 			 </li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
 	      </ul>
 	    </div>
 	  </div>
@@ -156,37 +153,38 @@ li { list-style-type: none; }
 
 <br/>
 
-<!-- footer -->
-<div class="container-fluid" style="background-color:#00FFFF; padding:20px;">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md" style="text-align:center;">
-			<p style="text-decoration:underline;">Quick Links</p>
-			<a href="homeguests.php" class="footer-links">Home</a><br/>
-			<a href="aboutguests.php" class="footer-links">About Us</a><br/>
-			<a href="#" class="footer-links">Privacy Policy</a>
-		</div>
-		<div class="col-md" style="text-align:center;">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat.
-		</div>
-		<div class="col-md" style="text-align:center;">
-			<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
-			<p>
-				<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
-				+254 700 000 000
-			</p>
-			<p>
-				<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
-				614rollingstone@gmail.com
-			</p>
-		</div>
-		<div class="col-md-1"></div>
-	</div>
-</div>
 
+<footer class="footer bg-info">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md text-center" id="footerSec1">
+				<p style="text-decoration:underline;">Quick Links</p>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
+				<a href="#" class="footer-links">Privacy Policy</a>
+			</div>
+			<div class="col-md text-center" id="footerSec2">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat.
+			</div>
+			<div class="col-md text-center" id="footerSec3">
+				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p>
+					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
+					+254 700 000 000
+				</p>
+				<p>
+					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
+					614rollingstone@gmail.com
+				</p>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</footer>
 
 
 </body>

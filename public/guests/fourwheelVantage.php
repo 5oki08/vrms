@@ -16,43 +16,6 @@
 <link rel="stylesheet" type="text/css" href="../../css/styleresponsive.css">	
 
 <style type="text/css">
-	/*#twowheelnavigation {
-		border-right: 5px solid;
-	}
-	.twowheel-item {
-		text-align: center;
-		list-style-type: none;
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-	.twowheel-link {
-		color: #000;
-	}
-	.twowheel-link:hover {
-		text-decoration: none;
-	}
-
-	#detailedTwowheelerimg {
-		width:350px;
-		height:260px;
-	}
-	.figcaption {
-		text-align: right;
-		margin-top: 5px;
-	}
-	#hirebutton {
-		width: 50%;
-	}
-	.hirebtnlink {
-		color: #000;
-	}
-	.hirebtnlink:hover {
-		color: #fff;
-	}
-	#detailedFourwheelerimg {
-		width:350px;
-		height:260px;
-	}*/
 
 
 body { font-size: 14px; }
@@ -77,6 +40,10 @@ li a { width: 100%; }
 #fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
 #detailedFourwheelerimg { width:350px; height:260px;	}
 
+#hirebtnlinkguests { padding: 10px; width: 20%; }
+#hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
+
+/*.form-group { padding: 15px; }*/
 
 
 
@@ -90,6 +57,14 @@ li a { width: 100%; }
 #footerSec3 {}
 
 #twowheelnavigation { border: none; }
+
+
+#hirebtnlinkguests { padding: 10px; width: 50%; }
+#hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
+
+
+
+
 
 }
 
@@ -118,7 +93,7 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -141,9 +116,6 @@ li a { width: 100%; }
 			    </div>
 			 </li>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
-	      </ul>
 	    </div>
 	  </div>
 	</nav>
@@ -161,7 +133,7 @@ li a { width: 100%; }
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageC.jpg" id="detailedFourwheelerimg">
+				  <!-- <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageC.jpg" id="detailedFourwheelerimg"> -->
 				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageA.jpg" id="detailedFourwheelerimg">
 				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageB.jpg" id="detailedFourwheelerimg">
 				</div>
@@ -184,7 +156,108 @@ function carousel() {
 			</div>
 		</div>
 
-		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Aston Martin Vantage</kbd><br/><br/>
+			<form class="form">
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelcolor">Color</label>
+							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="Red" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelYear">Model Year</label>
+							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="2020" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelFuelType">Fuel Type</label>
+							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="Petrol" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSittingCapacity">Sitting Capacity</label>
+							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="4" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelEngineCylinders">Engine Cylinders</label>
+							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="8" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSteering">Steering Side</label>
+							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="right" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelDriveModes">Drive Modes</label>
+							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="3" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelTransmission">Transmission</label>
+							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="manual" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelGearbox">Gearbox</label>
+							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="AMG Speedshift 9G TCT Automatic" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelWheelDrive">Wheel Drive</label>
+							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="AWD" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelPowerSteering">Power Steering</label>
+							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="Available" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSpareWheel">Spare Wheel</label>
+							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="Available" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelHorsepower">Horsepower</label>
+							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="500" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelHybrid">Hybrid</label>
+							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="No" disabled="">
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="modelPrice">Price per day (KES) </label>
+					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="5555" disabled="">
+				</div>
+
+			</form>
+		</div>
 	</div>
 	<br/>
 	
@@ -192,7 +265,7 @@ function carousel() {
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hirebuttonguests" class="hirebtnlinkguests">
+				 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
 				    Hire
 				  </button>
 				  <div class="modal" id="hirebuttonguests">
@@ -226,36 +299,39 @@ function carousel() {
 
 <br/>
 
-<!-- footer -->
-<div class="container-fluid" style="background-color:#00FFFF; padding:20px;">
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md" style="text-align:center;">
-			<p style="text-decoration:underline;">Quick Links</p>
-			<a href="homeguests.php" class="footer-links">Home</a><br/>
-			<a href="aboutguests.php" class="footer-links">About Us</a><br/>
-			<a href="#" class="footer-links">Privacy Policy</a>
+
+
+<footer class="footer bg-info">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md text-center" id="footerSec1">
+				<p style="text-decoration:underline;">Quick Links</p>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
+				<a href="#" class="footer-links">Privacy Policy</a>
+			</div>
+			<div class="col-md text-center" id="footerSec2">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat.
+			</div>
+			<div class="col-md text-center" id="footerSec3">
+				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p>
+					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
+					+254 700 000 000
+				</p>
+				<p>
+					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
+					614rollingstone@gmail.com
+				</p>
+			</div>
+			<div class="col-md-1"></div>
 		</div>
-		<div class="col-md" style="text-align:center;">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat.
-		</div>
-		<div class="col-md" style="text-align:center;">
-			<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
-			<p>
-				<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
-				+254 700 000 000
-			</p>
-			<p>
-				<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
-				614rollingstone@gmail.com
-			</p>
-		</div>
-		<div class="col-md-1"></div>
 	</div>
-</div>
+</footer>
 
 
 

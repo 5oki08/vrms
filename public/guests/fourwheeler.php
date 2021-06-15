@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/styleresponsive.css">		
 
 <style type="text/css">
-	
+	 
 
 body { font-size: 14px; }
 #mainheader1 {  padding: 5px; }
@@ -78,7 +78,7 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"></a>
+	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
@@ -94,14 +94,11 @@ li a { width: 100%; }
 			 </li>
 	        <li class="active"> <a href="fourwheeler.php" class="text-dark bg-light font-weight-bold" >Four Wheeler Vehicles</a> </li>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right navbar-expand-md">
-	        <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80">
-	      </ul>
 	    </div>
 	  </div>
 	</nav>
 
-</header>
+</header> 
 
 <br/>
 
@@ -144,7 +141,7 @@ li a { width: 100%; }
 						<hr style="width: 50%;" />
 						<p>The engine was enlarged from the 3.6 liter engine in the DB4 Series V to a more modern 4.0 liter all-aluminum straight-six engine that produced 282 hp and 288 foot pounds of torque and gave the car a top speed of about 145 mph (233 km/h).</p>
 					</p> <br/>
-					<a href="" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
+					<a href="fourwheelDB5.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
 				</div>
 			</div>
 
@@ -158,7 +155,7 @@ li a { width: 100%; }
 						<hr style="width: 50%;" />
 						<p>The Aston Martin DBX delivers all the practicality and refinement you’d expect from a luxury SUV, with a driver-focused approach that sets it apart from its closest rivals. The British sports car manufacturer has gone with what it knows best - applying its technical wizardry to produce the finest-handling SUV available.</p>
 					</p> <br/>
-					<a href="" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
+					<a href="fourwheelDBx.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
 				</div>
 			</div>
 

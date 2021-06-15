@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>VRMS-twoWheeler</title>
+	<title>VRMS-fourWheeler</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/styleresponsive.css">	
 
 <style type="text/css">
+
 
 body { font-size: 14px; }
 #mainheader1 {  padding: 5px; }
@@ -34,10 +35,15 @@ li a { width: 100%; }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
+#fourwheelercardimg { width: 100%; }
+#fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }
+#fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
+#detailedFourwheelerimg { width:350px; height:260px;	}
 
 #hirebtnlinkguests { padding: 10px; width: 20%; }
 #hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
-#detailedTwowheelerimg { width:350px; height:260px;	}
+
+
 
 
 @media only screen and (max-width: 600px) {
@@ -56,14 +62,19 @@ li a { width: 100%; }
 #hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
 
 
-}	
+
+
+
+}
+
 
 
 </style>
 
 </head>
 <body>
- 
+
+
 <header id="mainheader1" class="">
 	<ul id="heading1">
 		<li class="heading1subj" >3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya </li>
@@ -81,14 +92,14 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
+	     <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeguests.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutguests.php" class="text-dark">About Us</a> </li>
 	        <li class="dropdown">
-			 	<a href="twowheeler.php" class="text-dark dropdown-toggle active bg-light font-weight-bold" data-toggle="dropdown">Two Wheeler Vehicles</a>
+			 	<a href="twowheeler.php" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
 			 	<div class="dropdown-menu">
 			      <a class="dropdown-item h4 text-center" href="twowheeler.php">Ducatti</a>
 			      <a class="dropdown-item h4 text-center" href="twowheelS.php">Suzuki</a>
@@ -96,7 +107,7 @@ li a { width: 100%; }
 			    </div>
 			 </li>
 	        <li class="dropdown">
-			 	<a href="fourwheeler.php" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
+			 	<a href="fourwheeler.php" class="text-dark dropdown-toggle active bg-light font-weight-bold" data-toggle="dropdown">Four Wheeler Vehicles</a>
 			 	<div class="dropdown-menu">
 			      <a class="dropdown-item h4 text-center" href="fourwheeler.php">Aston Martin</a>
 			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishi.php">Mitsubishi</a>
@@ -110,6 +121,7 @@ li a { width: 100%; }
 
 </header>
 
+
 <br/>
 
 <div class="container-fluid">
@@ -120,9 +132,9 @@ li a { width: 100%; }
 		<div class="col-md-4">
 			<div class="container-fluid">
 				<div class="" style="max-width:500px">
-				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09b.jpg" id="detailedTwowheelerimg">
-				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09a.jpg" id="detailedTwowheelerimg">
-				  <img class="yamahatwowheeler" src="../../images/twowheeler/yamahaMT-09.png" id="detailedTwowheelerimg">
+				  <img class="dbxfourwheeler" src="../../images/fourwheeler/dbxA.jpg" id="detailedFourwheelerimg">
+				  <img class="dbxfourwheeler" src="../../images/fourwheeler/dbxB.jpg" id="detailedFourwheelerimg">
+				  <img class="dbxfourwheeler" src="../../images/fourwheeler/dbxC.jpg" id="detailedFourwheelerimg">
 				</div>
 <script>
 var myIndex = 0;
@@ -130,7 +142,7 @@ carousel();
 
 function carousel() {
   var i;
-  var x = document.getElementsByClassName("yamahatwowheeler");
+  var x = document.getElementsByClassName("dbxfourwheeler");
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
@@ -144,18 +156,113 @@ function carousel() {
 		</div>
 
 		<div class="col-md-6">
-			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">yamahaMT-09</kbd><br/><br/>
-			<p>A new cylinder head was created for both emissions and performance. It was given 12 percent less coolant volume for faster engine warm-up; most hydrocarbon emissions are created while an engine is still warming, while the fuel mixture must be rich and the exhaust catalyst isn’t yet up to temperature. For better performance, the new cooling passages completely encircle each exhaust valve seat, eliminating the potential hot spot between the valves. Intake ports were redesigned with reduced volume for faster flow, and the injectors were repositioned and re-aimed to hit the backs of the intake valve. All these changes lead to better fuel vaporization and mixing, improving both emissions and drivability. New camshafts have reduced timing, with 30 percent less overlap; there is now only a 20-degree period during which both intake and exhaust valves are open simultaneously. Shorter timing and less overlap generally favor emissions and torque over top-end performance, but the engineers gave the cams notably steeper ramps, so the curtain area under the whole lift curve stays relatively high. The new ramps are so steep that the entire cam drive had to be redesigned with a wider and stronger cam chain and an oil-pressure-powered cam-chain tensioner added. The tensioner provides more tension when the engine is spinning fast, when the cam chain is more likely to whip around, and less drag at lower rpm.</p> <br/>
-			<p>The intake and exhaust systems also were retuned and redesigned. Three unequal-length runners poke up into the airbox, a design that delivers more torque, a smoother powerband, and a delightful intake note. The exhaust system is pieced together from stainless steel stampings with beautiful robotic welds that look as good as those on some high-end race pipes. It’s an all-new design that places the catalyst forward in the conical header portion of the pipe for quicker warming (emissions again) and tucks almost all the muffler under the engine for better mass centralization. The increased displacement and new engine tuning is claimed to increase torque by 6 percent while further broadening the band. Fuel economy is said to be 11 percent better than with the previous model.</p> <br/>
-		</div>
-	</div>
-	<br/>
+			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Aston Martin DBx</kbd><br/><br/>
+			<form class="form">
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelcolor">Color</label>
+							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="Grey" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelYear">Model Year</label>
+							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="2018" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelFuelType">Fuel Type</label>
+							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="Diesel" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSittingCapacity">Sitting Capacity</label>
+							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="5" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelEngineCylinders">Engine Cylinders</label>
+							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="8" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSteering">Steering Side</label>
+							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="Right" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelDriveModes">Drive Modes</label>
+							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="3" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelTransmission">Transmission</label>
+							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="Automatic" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelGearbox">Gearbox</label>
+							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="9-speed automatic" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelWheelDrive">Wheel Drive</label>
+							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="AWD" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelPowerSteering">Power Steering</label>
+							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="Active" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelSpareWheel">Spare Wheel</label>
+							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="Available" disabled="">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<label for="modelHorsepower">Horsepower</label>
+							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="542" disabled="">
+						</div>
+						<div class="col-md">
+							<label for="modelHybrid">Hybrid</label>
+							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="No" disabled="">
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label for="modelPrice">Price per day (KES) </label>
+					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="6255" disabled="">
+				</div>
+
+			</form>
+		</div> <br/>
 	
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
+				 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
 				    Hire
 				  </button>
 				  <div class="modal" id="hirebuttonguests">
@@ -172,7 +279,7 @@ function carousel() {
 
 				        </div>
 				        <div class="modal-footer">
-				          <button class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
 				        </div>
 				      </div>
 				    </div>
