@@ -65,4 +65,33 @@ $conn = new mysqli($servername,$username,$password,$dbname) ;
 // }
 
 
+// $sql = " CREATE TABLE fourwheel (
+// id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+// brand VARCHAR(250) NOT NULL,
+// FourwheelName VARCHAR(250) NOT NULL,
+// modelyear VARCHAR(250) NOT NULL,
+// fueltype VARCHAR(250) NOT NULL,
+// sittingcapacity VARCHAR(250) NOT NULL,
+// enginecylinders VARCHAR(250) NOT NULL,
+// steeringside VARCHAR(250) NOT NULL,
+// drivemodes VARCHAR(250) NOT NULL,
+// transmission VARCHAR(250) NOT NULL,
+// gearbox VARCHAR(250) NOT NULL,
+// wheeldrive VARCHAR(250) NOT NULL,
+// powersteering VARCHAR(250) NOT NULL,
+// sparewheel VARCHAR(250) NOT NULL,
+// horsepower VARCHAR(250) NOT NULL,
+// hybrid VARCHAR(250) NOT NULL,
+// priceperday VARCHAR(250) NOT NULL,
+// reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+// ) " ;
+
+// if ( $conn->query($sql) === TRUE ) {
+// 	echo "Table Created, proceed with entries.";
+// } else {
+// 	echo "Table not created" . $conn->error ;
+// }
+
+
+
 ?>

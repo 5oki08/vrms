@@ -3,60 +3,63 @@
 require '../../connection.php' ;
 
 
-$_SESSION['userAccept'] = "Successful Registration. You can now login with the details." ;
+$_SESSION['userAccept'] = "Successful User Entry. ^admin" ;
 $_SESSION['classTypeAccept'] = "success" ;
-$_SESSION['userFail'] = "Registration Failed. Check input details then try again." ;
-$_SESSION['userDup'] = "A user with the same details has already registered. Try again with different details." ;
+$_SESSION['userFail'] = "Reg Failed. ^admin" ;
+$_SESSION['userDup'] = "A user with the same details has already registered. Try again with different details. ^admin" ;
 $_SESSION['classTypeError'] = "danger" ;
 $_SESSION['recordCut'] = "Record Deleted" ;
 
-$fname = $sname = $userLocation = $yob = $userPhone = $userGender ='' ;
-$fnameErr = $snameErr = $userLocationErr = $yobErr = $userPhoneErr = $userGenderErr = '' ;
+$_SESSION['recUpdated'] = "Record Successfully Updated" ;
+$_SESSION['recFail'] = "Record Update Failed." ;
 
-if ( isset($_POST['detailsSubmit']) ) {
+$fnameAdminreg = $snameAdminreg = $userLocationAdminreg = $yobAdminreg = $userPhoneAdminreg = $userGenderAdminreg ='' ;
+$fnameAdminregErr = $snameAdminregErr = $userLocationAdminregErr = $yobAdminregErr = $userPhoneAdminregErr = $userGenderAdminregErr = '' ;
 
-	if ( empty($_POST['fname']) ) {
-		$fnameErr = "Enter First Name" ;
+if ( isset($_POST['detailsadminSubmit']) ) {
+
+	if ( empty($_POST['fnameAdminreg']) ) {
+		$fnameAdminregErr = "Enter First Name" ;
 	} else {
-		$fname = $_POST['fname'] ;
+		$fnameAdminreg = $_POST['fnameAdminreg'] ;
 	}
-	if ( empty($_POST['sname']) ) {
-		$snameErr = "Enter Second Name" ; 
+	if ( empty($_POST['snameAdminreg']) ) {
+		$snamAdminregeErr = "Enter Second Name" ; 
 	} else {
-		$sname = $_POST['sname'] ;
+		$snameAdminreg = $_POST['snameAdminreg'] ;
 	}
-	if ( empty($_POST['userLocation']) ) {
-		$userLocationErr = "Provide Location" ;
+	if ( empty($_POST['userLocationAdminreg']) ) {
+		$userLocationAdminregErr = "Provide Location" ;
 	} else {
-		$userLocation = $_POST['userLocation'] ;
+		$userLocationAdminreg = $_POST['userLocationAdminreg'] ;
 	}
-	if ( empty($_POST['yob']) ) {
-		$yobErr = "DOB details cannot be empty" ;
+	if ( empty($_POST['yobAdminreg']) ) {
+		$yobAdminregErr = "DOB details cannot be empty" ;
 	} else {
-		$yob = $_POST['yob'] ;
+		$yobAdminreg = $_POST['yobAdminreg'] ;
 	}
-	if ( empty($_POST['userPhone']) ) {
-		$userPhoneErr = "Input Phone Number" ;
+	if ( empty($_POST['userPhoneAdminreg']) ) {
+		$userPhoneAdminregErr = "Input Phone Number" ;
 	} else {
-		$userPhone = $_POST['userPhone'] ;
+		$userPhoneAdminreg = $_POST['userPhoneAdminreg'] ;
 	} 
-	if ( empty($_POST['userGender']) ) {
-		$userGenderErr = "Select Gender" ;
+	if ( empty($_POST['userGenderAdminreg']) ) {
+		$userGenderAdminregErr = "Select Gender" ;
 	} else {
-		$userGender = $_POST['userGender'] ;
+		$userGenderAdminreg = $_POST['userGenderAdminreg'] ;
 	}
 
-$insSql = " SELECT * FROM users WHERE fName='$fname' &&  sName='$sname' && userLocation='$userLocation' && userGender='$userGender' && userAge='$yob' && userPhone='$userPhone' " ;
+$insSql = " SELECT * FROM users WHERE fName='$fnameAdminreg' &&  sName='$snameAdminreg' && userLocation='$userLocationAdminreg' && userGender='$userGenderAdminreg' && userAge='$yobAdminreg' && userPhone='$userPhoneAdminreg' " ;
 $insResult = mysqli_query($conn,$insSql) ;
 $insNums = mysqli_num_rows($insResult) ;
 
 if ( $insNums>=1 ) {
 	$_SESSION['userDup'] ;
-	header('location: loginregisterguests.php?userdetailsdup') ;
+	header('location: regdusersadmin.php?userdetailsdup') ;
 } else {
-	if ( empty($fnameErr) && empty($snameErr) && empty($userLocationErr) && empty($yobErr) && empty($userPhoneErr) && empty($userGenderErr) ) {
+	if ( empty($fnameAdminregErr) && empty($snameAdminregErr) && empty($userLocationAdminregErr) && empty($yobAdminregErr) && empty($userPhoneAdminregErr) && empty($userGenderAdminregErr) ) {
 		$insStmt = $conn->prepare(" INSERT INTO users (fName,sName,userLocation,userGender,userAge,userPhone) VALUES (?,?,?,?,?,?) ") ;
-		$insStmt->bind_param("ssssss",$fname,$sname,$userLocation,$userGender,$yob,$userPhone) ;
+		$insStmt->bind_param("ssssss",$fnameAdminreg,$snameAdminreg,$userLocationAdminreg,$userGenderAdminreg,$yobAdminreg,$userPhoneAdminreg) ;
 		if ( $insStmt->execute() === TRUE ) {
 			$_SESSION['userAccept'] ;
 			$_SESSION['classTypeAccept'] ;
@@ -69,12 +72,11 @@ if ( $insNums>=1 ) {
 	} else {
 		$_SESSION['userFail'] ;
 		$_SESSION['classTypeError'] ;
-		header('location: regdusersadmin.php?userdetailsfail');
+		header('location: regdusersadmin.php?userdetailsfaill');
 	}
 }
 
 }
-
 
 
 $id = 0 ;
@@ -96,56 +98,56 @@ if ( isset($_GET['edit']) ) {
 	$id = $_GET['edit'] ;
 	$update = TRUE ;
 
-	$pulluserRecords = $conn->query(" SELECT * FROM users WHERE id='$id' ") ;
+	$pulluserRecords = $conn->query(" SELECT * FROM users WHERE id='$id' ") or die($conn->error) ;
+
 	$userRecordsRow = $pulluserRecords->fetch_array() ;
 
-	$fname = $sname = $userLocation = $yob = $userPhone = $userGender ='' ;
+	$fnameEd = $snameEd = $userLocationEd = $userPhoneEd = $userGenderEd ='' ;
 
-	$fname = $userRecordsRow['fName'] ;
-	$sname = $userRecordsRow['sName'] ;
-	$userLocation = $userRecordsRow['userLocation'] ;
-	$yob = $userRecordsRow['userAge'] ;
-	$userPhone = $userRecordsRow['userPhone'] ;
-	$userGender = $userRecordsRow['userGender'] ;
+
+	$fnameEd = $userRecordsRow['fName'] ;
+	$snameEd = $userRecordsRow['sName'] ;
+	$userLocationEd = $userRecordsRow['userLocation'] ;
+	$userPhoneEd = $userRecordsRow['userPhone'] ;
+	$userGenderEd = $userRecordsRow['userGender'] ;
 }
+
+$fnameEd = $snameEd = $userLocationEd = $userPhoneEd = $userGenderEd ='' ; 
+
+	$fnameErr = $snameErr = $userLocationErr = $userPhoneErr = $userGenderErr ='' ;
 
 
 if ( isset($_POST['detailsEditUpdate']) ) {
-	if ( empty($_POST['fname']) ) {
+	if ( empty($_POST['fnameEd']) ) {
 		$fnameErr = "Enter First Name" ;
 	} else {
-		$fname = $_POST['fname'] ;
+		$fnameEd = $_POST['fnameEd'] ;
 	}
-	if ( empty($_POST['sname']) ) {
+	if ( empty($_POST['snameEd']) ) {
 		$snameErr = "Enter Second Name" ; 
 	} else {
-		$sname = $_POST['sname'] ;
+		$snameEd = $_POST['snameEd'] ;
 	}
-	if ( empty($_POST['userLocation']) ) {
+	if ( empty($_POST['userLocationEd']) ) {
 		$userLocationErr = "Provide Location" ;
 	} else {
-		$userLocation = $_POST['userLocation'] ;
+		$userLocationEd = $_POST['userLocationEd'] ;
 	}
-	if ( empty($_POST['yob']) ) {
-		$yobErr = "DOB details cannot be empty" ;
-	} else {
-		$yob = $_POST['yob'] ;
-	}
-	if ( empty($_POST['userPhone']) ) {
+	if ( empty($_POST['userPhoneEd']) ) {
 		$userPhoneErr = "Input Phone Number" ;
 	} else {
-		$userPhone = $_POST['userPhone'] ;
+		$userPhoneEd = $_POST['userPhoneEd'] ;
 	} 
-	if ( empty($_POST['userGender']) ) {
+	if ( empty($_POST['userGenderEd']) ) {
 		$userGenderErr = "Select Gender" ;
 	} else {
-		$userGender = $_POST['userGender'] ;
+		$userGenderEd = $_POST['userGenderEd'] ;
 	}
 
 	$id= $_POST['id'] ;
 
-	if ( empty($fnameErr) && empty($snameErr) && empty($userLocationErr) && empty($yobErr) && empty($userPhoneErr) && empty($userGenderErr) ) {
-		$updateSql = " UPDATE users SET fName='$fname' , sName='$sname' , userLocation='$userLocation' , userAge='$yob' ,  userPhone='$userPhone' , userGender='$userGender' WHERE id='$id' " ;
+	if ( empty($fnameErr) && empty($snameErr) && empty($userLocationErr) && empty($userPhoneErr) && empty($userGenderErr) ) {
+		$updateSql = " UPDATE users SET fName='$fnameEd' , sName='$snameEd' , userLocation='$userLocationEd' ,   userPhone='$userPhoneEd' , userGender='$userGenderEd' WHERE id='$id' " ;
 		if ( $conn->query($updateSql) === TRUE ) {
 			$_SESSION['recUpdated'] ;
 			$_SESSION['classTypeAccept'] ;
@@ -181,34 +183,6 @@ if ( isset($_POST['detailsEditUpdate']) ) {
 
 <style type="text/css">
 	
-	/*#adminnav {
-		background-color: #ffe135;
-	}
-	#adminnav {
-		padding-top: 10px;
-		padding-bottom: 10px;
-		background-color: #ffe135;
-	}
-	.nav-linkAdmin {
-		color: #000;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	.nav-linkAdmin:hover {
-		color: #000;
-	}
-	#activeadmin {
-		text-transform: uppercase;
-		font-weight: 700;
-		text-decoration: underline;
-	}
-	.nav-itemadmin:hover {
-		text-transform: uppercase;
-		text-decoration: underline;
-	}
-	.dropdown-itemAdmin {
-		padding: 5px;
-	}*/
 
 
 body { font-size: 14px; }
@@ -229,8 +203,8 @@ li a { width: 100%; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
 
-
-
+/*#userListings { padding: 50px; }*/
+#userListingsJumbotron { padding:20px; }
 
 
 @media only screen and (max-width: 600px) {
@@ -244,9 +218,14 @@ li a { width: 100%; }
 
  
 
+#userListingsJumbotron { padding:0px; }
+
+#edituser { /*margin-top: 10px;*/ }
+#deleteUser { margin-top: 10px; }
+
 }	
 
-
+  
 
 </style>
 
@@ -272,7 +251,7 @@ li a { width: 100%; }
 
 	<div class="row">
 
-		<div class="col-md-2">
+		<div class="col-md-2 bg-light text-left">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -281,16 +260,16 @@ li a { width: 100%; }
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
-				      </button>
+				      </button> 
 				    </div>
 				    <div class="collapse navbar-collapse" id="myNavbar">
 				      <ul class="nav navbar-nav text-nowrap">
-				        <li class="active"> <a href="#" class="text-dark bg-light font-weight-bold">Dashboard</a> </li>
-				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
-						  <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>
-						  <li> <a href="#" class="text-dark">Four Wheeler Vehicles</a> </li>
+				        <li> <a href="dashboardadmin.php" class="text-dark">Dashboard</a> </li>
+				        <li class="active"> <a href="regdusersadmin.php" class="text-dark bg-light font-weight-bold">Users</a> </li>
+						  <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>  
+						  <li> <a href="fourwheeleradmin.php" class="text-dark">Four Wheeler Vehicles</a> </li>
 						  <li> <a href="#" class="text-dark">Bookings</a> </li>
-						 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li> 
+						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li>  
 				      </ul>
 				    </div>
 				  </div>
@@ -302,36 +281,47 @@ li a { width: 100%; }
 			
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-2"></div>
 
-					<div class="col-md-9">
-						<div class="jumbotron">
+						<div class="jumbotron w-100" id="userListingsJumbotron">
 							
-							<table class="table table-hovered">
-
-								<p style="text-align:center; font-weight:700;" class="alert alert-<?php 
+							<p style="font-size:15px;" class="alert alert-<?php 
 									if (isset($_GET['recordDismissed'])) {
-										echo $_SESSION['classTypeAccept'] ;
-										session_unset();
-										session_destroy();
+										echo $_SESSION['classTypeError'] ;
+										// session_unset();
+										// session_destroy();
 									}
 									if (isset($_GET['recUpdt'])) {
 										echo $_SESSION['classTypeAccept'] ;
-										session_unset();
-										session_destroy();
+										// session_unset();
+										// session_destroy();
 									}
 									if (isset($_GET['recF'])) {
 										echo $_SESSION['classTypeError'] ;
-										session_unset();
-										session_destroy();
+										// session_unset();
+										// session_destroy();
 									}
-								?> " >
+									if (isset($_GET['userdetailsdup'])) {
+										echo $_SESSION['classTypeError'] ;
+										// session_unset();
+										// session_destroy();
+									}
+									if (isset($_GET['userdetailsfail'])) {
+										echo $_SESSION['classTypeError'] ;
+										// session_unset();
+										// session_destroy();
+									}	
+									if (isset($_GET['userdetailsaccepted'])) {
+										echo $_SESSION['classTypeAccept'] ;
+										// session_unset();
+										// session_destroy();
+									}
+								?> w-50 text-center text-success text-nowrap font-weight-bold " >
 									<?php
 										if ( isset($_GET['recordDismissed']) ) {
 											if (isset($_SESSION['recordCut'] )) {
 												echo $_SESSION['recordCut'] ; ;
 												session_unset() ;
-												session_destory() ;
+												// session_destory() ;
 											} else {
 												echo "Record Deleted";
 											}
@@ -340,7 +330,7 @@ li a { width: 100%; }
 											if (isset($_SESSION['recUpdated'] )) {
 												echo $_SESSION['recUpdated'] ; ;
 												session_unset() ;
-												session_destory() ;
+												// session_destory() ;
 											} else {
 												echo "Record Successfully Updated";
 											}
@@ -349,22 +339,51 @@ li a { width: 100%; }
 											if (isset($_SESSION['recFail'] )) {
 												echo $_SESSION['recFail'] ; ;
 												session_unset() ;
-												session_destory() ;
+												// session_destory() ;
 											} else {
 												echo "Record Update Failed.";
 											}
 										}
-
+										if ( isset($_GET['userdetailsdup']) ) {
+											if (isset($_SESSION['userDup'])) {
+												echo $_SESSION['userDup'] ;
+												session_unset() ;
+												// session_destory() ;
+											} else {
+												echo "A user with the same details has already registered. Try again with different details. ^admin";
+											}
+										}
+										if ( isset($_GET['userdetailsfail']) ) {
+											if (isset($_SESSION['userFail'])) {
+												echo $_SESSION['userFail'] ;
+												session_unset() ;
+												// session_destory() ;
+											} else {
+												echo "Reg Failed. ^admin";
+											}
+										}
+										if ( isset($_GET['userdetailsaccepted']) ) {
+											if (isset($_SESSION['userAccept'])) {
+												echo $_SESSION['userAccept'] ;
+												session_unset() ;
+												// session_destory() ;
+											} else {
+												echo "Successful User Entry. ^admin";
+											}
+										}
 										 ;
 									?>
 								</p>
 
+
+							<table class="table table-hovered table-responsive-sm table-bordered w-100" id="userListings">
+
 								<?php
 									$adminFetchRecords = "SELECT * FROM users" ;
 									$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
-								?>
+								?> 
 								
-								<tr>
+								<tr class="text-center">
 									<th hidden>ID</th>
 									<th>First Name</th>
 									<th>Second Name</th>
@@ -389,109 +408,88 @@ li a { width: 100%; }
 										<td> <?php echo $rowFetch['userLocation'] ; ?> </td>
 										<td> <?php echo $rowFetch['userGender'] ; ?> </td>
 										<td> <?php echo $rowFetch['userPhone'] ; ?> </td>
-										<td> <?php echo $rowFetch['reg_date'] ; ?> </td>
+										<td  class="text-center"> <?php echo $rowFetch['reg_date'] ; ?> </td>
 										<td>
-											<a href="regdusersadmin.php?edit=<?php echo $rowFetch['id']?>" class="btn btn-outline-warning">Edit</a>
-											<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-outline-danger">Delete</a>
+											<a href="regdusersadmin.php?edit=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-warning" id="edituser">Edit</a>
+											<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger" id="deleteUserID"  >Delete</a>
+											<!-- <a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger" id="deleteUserID" data-toggle="modal" data-target="#deleteUser" >Delete</a> -->
 										</td>
 									</tr>
 									<?php  }
 										} else {
 										    echo "Enter Second Name to Retrieve Booking Record .";
 										} ?>
+					<div class="container-fluid">
+						<!--  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
+						    Hire
+						  </button> -->
+						  <div class="modal" id="deleteUser">
+						    <div class="modal-dialog">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						        </div>
+						        <div class="modal-body text-center" >
+						          
+						          <p>Are you Sure?</p>
+
+						        </div>
+						        <div class="modal-footer">
+				        	<form action="regdusersadmin.php">
+						        	<!-- <a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger">Delete</a> -->
+						        	<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger deletebtn">Delete</a>
+						          <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+				          </form>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+						  
+						</div>
+					</div>		 	
 
 							</table>
 
 						</div>
 
 						<br/> <br/>
-						<div class="container bg-warning" style="padding:15px;">
-							<p style="text-align:center; font-weight:700;">New User Registration / Update Existing Records</p>
-						</div>
+						<article class="container bg-warning" style="padding:15px;">
+							<aside style="letter-spacing: 2px;" class="text-center font-weight-bolder" >Update Existing Records</aside>
+						</article>
 						<form class="form" action="regdusersadmin.php" method="post">
-							<p class="alert alert-<?php
-								if (isset($_GET['userdetailsaccepted'])) {
-										echo $_SESSION['classTypeAccept'] ;
-										session_unset();
-										session_destroy();
-									}
-								if (isset($_GET['userdetailsfail'])) {
-										echo $_SESSION['classTypeError'] ;
-										session_unset();
-										session_destroy();
-									}
-								if (isset($_GET['userdetailsdup'])) {
-										echo $_SESSION['classTypeError'] ;
-										session_unset();
-										session_destroy();
-									}				
-							?>">
-								<?php
-									if ( isset($_GET['userdetailsaccepted']) ) {
-										if (isset($_SESSION['userAccept'])) {
-											echo $_SESSION['userAccept'] ;
-											session_unset() ;
-											session_destory() ;
-										} else {
-											echo "Successful Registration. You can now login with the details.";
-										}
-									}
-									if ( isset($_GET['userdetailsfail']) ) {
-										if (isset($_SESSION['userFail'])) {
-											echo $_SESSION['userFail'] ;
-											session_unset() ;
-											session_destory() ;
-										} else {
-											echo "Registration Failed. Check input details then try again.";
-										}
-									}
-									if ( isset($_GET['userdetailsdup']) ) {
-										if (isset($_SESSION['userDup'])) {
-											echo $_SESSION['userDup'] ;
-											session_unset() ;
-											session_destory() ;
-										} else {
-											echo "A user with the same details has already registered. Try again with different details.";
-										}
-									}
-								?>
-							</p>
+							<input type="hidden" name="id" id="id" class="form-control" value="<?php echo $id; ?>">
 							<div class="row">
 								<div class="col-md">
-									 <input type="hidden" name="id" id="id" class="form-control" value="<?php echo $id; ?>">
 									<div class="form-group">
-										<label for="fname">First Name<sup style="color:red;">*</sup></label>
-										<input type="text" name="fname" class="form-control" id="fname" value="<?php echo $fname ; ?>">
+										<label for="fnameEd">First Name<sup style="color:red;">*</sup></label>
+										<input type="text" name="fnameEd" class="form-control form-control-lg" id="fnameEd" value="<?php echo $fnameEd  ?>">
 										<span> <?php echo $fnameErr; ?> </span>
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group">
-										<label for="sname">Second Name<sup style="color:red;">*</sup></label>
-										<input type="text" name="sname" class="form-control" id="sname" value="<?php echo $sname ; ?>">
+										<label for="snameEd">Second Name<sup style="color:red;">*</sup></label>
+										<input type="text" name="snameEd" class="form-control form-control-lg" id="snameEd" value="<?php echo $snameEd  ?>">
 										<span> <?php echo $snameErr; ?> </span>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="userLocation">User Location<sup style="color:red;">*</sup></label>
-								<input type="text" name="userLocation" class="form-control" style="width:60%;" id="userLocation"  value="<?php echo $userLocation ; ?>">
+								<label for="userLocationEd">User Location<sup style="color:red;">*</sup></label>
+								<input type="text" name="userLocationEd" class="form-control form-control-lg" style="width:60%;" id="userLocationEd"  value="<?php echo $userLocationEd  ?>">
 								<span> <?php echo $userLocationErr; ?> </span>
 							</div>
 							<div class="form-group">
-								<label for="yob">Input DOB (format: dd/mm/yyyy)</label>
-								<input type="phone" name="yob" class="form-control" max-length="8" minlength="8" style="width:60%;"  value="<?php echo $yob ; ?>">
-								<span> <?php echo $yobErr; ?> </span>
-							</div>
-							<div class="form-group">
-								<label for="userPhone">Input Phone Number<sup style="color:red;">*</sup></label>
-								<input type="phone" name="userPhone" class="form-control" max-length="10" style="width:60%;" id="userPhone"  value="<?php echo $userPhone ; ?>">
+								<label for="userPhoneEd">Input Phone Number<sup style="color:red;">*</sup></label>
+								<input type="phone" name="userPhoneEd" class="form-control form-control-lg" max-length="10" style="width:60%;" id="userPhoneEd"  value="<?php echo $userPhoneEd  ?>">
 								<span> <?php echo $userPhoneErr; ?> </span>
 							</div>
 							<div class="form-group">
-								<label for="userGender">Select Gender<sup style="color:red;">*</sup></label>
-								<select name="userGender" class="form-control"  style="width:60%;" id="userGender">
-									<option></option><option value="male">Male</option><option value="female">Female</option>
+								<label for="userGenderEd">Select Gender<sup style="color:red;">*</sup></label>
+								<select name="userGenderEd" class="form-control form-control-lg"  style="width:60%;" id="userGenderEd" > 
+									<option value="<?php echo $userGenderEd  ?>" > <?php echo $userGenderEd ; ?> </option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
 								</select>
 								<span> <?php echo $userGenderErr; ?> </span>
 							</div>
@@ -500,255 +498,89 @@ li a { width: 100%; }
 							<?php
 								if (  $update === TRUE ) :
 							?>
-								<input type="submit" name="detailsEditUpdate" class="form-control btn btn-warning" id="detailsEditUpdate" value="Update Details" style="width:40%;">
+								<input type="submit" name="detailsEditUpdate" class="form-control form-control-lg btn btn-lg btn-warning  w-100 " id="detailsEditUpdate" value="Update Details">
 							<?php else : ?>
 							<div class="row">
 								<div class="col-md">
-									<input type="submit" name="detailsSubmit" class="form-control btn btn-success" id="detailsSubmit" value="Submit Details" style="width:40%;">
+									<input type="submit" name="detailseditSubmit" class="form-control form-control-lg btn btn-lg btn-success w-100 h-100" id="detailseditSubmit" value="Submit Update Details">
 								</div>
 								<div class="col-md">
-									<input type="reset" name="reset" class="form-control reset" id="reset" style="width:40%; border:none; text-decoration:underline;">
+									<input type="reset" name="reset" class="form-control  form-control-lg reset border  border-dark w-100 h-100" id="reset" style="width:40%;  text-decoration:underline;">
 								</div>
 							</div>
 						<?php endif; ?>
 						</form>
-
-					</div>
-
-					<div class="col-md-1"></div>
 				</div>
-			</div> 		
+			</div> 	
+
+
+
+			<br/> <br/>
+			<article class="container bg-warning" style="padding:15px;">
+				<aside style="letter-spacing: 2px;" class="text-center font-weight-bolder" >Add New User</aside>
+			</article>	
+			<br/>
+
+			<form class="form" action="#" method="post">
+				
+				<div class="row">
+					<div class="col-md">
+						<div class="form-group">
+							<label for="fnameAdminreg">First Name<sup style="color:red;">*</sup></label>
+							<input type="text" name="fnameAdminreg" class="form-control form-control-lg" id="fnameAdminreg">
+							<span> <?php echo $fnameAdminregErr; ?> </span>
+						</div>
+					</div>
+					<div class="col-md">
+						<div class="form-group">
+							<label for="snameAdminreg">Second Name<sup style="color:red;">*</sup></label>
+							<input type="text" name="snameAdminreg" class="form-control form-control-lg" id="snameAdminreg">
+							<span> <?php echo $snameAdminregErr; ?> </span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="userLocationAdminreg">User Location<sup style="color:red;">*</sup></label>
+					<input type="text" name="userLocationAdminreg" class="form-control form-control-lg" style="width:60%;" id="userLocationAdminreg" >
+					<span> <?php echo $userLocationAdminregErr; ?> </span>
+				</div>
+				<div class="form-group">
+					<label for="yobAdminreg">Input DOB (format: dd/mm/yyyy)</label>
+					<input type="date" name="yobAdminreg" class="form-control form-control-lg" style="width:60%;" >
+					<span> <?php echo $yobAdminregErr; ?> </span>
+				</div>
+				<div class="form-group">
+					<label for="userPhoneAdminreg">Input Phone Number<sup style="color:red;">*</sup></label>
+					<input type="phone" name="userPhoneAdminreg" class="form-control form-control-lg" max-length="10" min-length="10" style="width:60%;" id="userPhoneAdminreg"  >
+					<span> <?php echo $userPhoneAdminregErr; ?> </span>
+				</div>
+				<div class="form-group">
+					<label for="userGenderAdminreg">Select Gender<sup style="color:red;">*</sup></label>
+					<select name="userGenderAdminreg" class="form-control form-control-lg"  style="width:60%;" id="userGenderAdminreg">
+						<option></option><option value="male">Male</option><option value="female">Female</option>
+					</select>
+					<span> <?php echo $userGenderAdminregErr; ?> </span> 
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md">
+						<input type="submit" name="detailsadminSubmit" class="form-control form-control-lg btn btn-lg btn-success w-100 h-100" id="detailsadminSubmit" value="Submit Details">
+					</div>
+					<div class="col-md">
+						<input type="reset" name="reset" class="form-control  form-control-lg reset border  border-dark w-100 h-100" id="reset" style="width:40%;  text-decoration:underline;">
+					</div>
+				</div>
+
+			</form>
 
 		</div>
 
 	</div>
 </div>
 
-
-
-<!-- <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-2"></div>
-
-		<div class="col-md-9">
-			<div class="jumbotron">
-				
-				<table class="table table-hovered">
-
-					<p style="text-align:center; font-weight:700;" class="alert alert-<?php 
-						if (isset($_GET['recordDismissed'])) {
-							echo $_SESSION['classTypeAccept'] ;
-							session_unset();
-							session_destroy();
-						}
-						if (isset($_GET['recUpdt'])) {
-							echo $_SESSION['classTypeAccept'] ;
-							session_unset();
-							session_destroy();
-						}
-						if (isset($_GET['recF'])) {
-							echo $_SESSION['classTypeError'] ;
-							session_unset();
-							session_destroy();
-						}
-					?> " >
-						<?php
-							if ( isset($_GET['recordDismissed']) ) {
-								if (isset($_SESSION['recordCut'] )) {
-									echo $_SESSION['recordCut'] ; ;
-									session_unset() ;
-									session_destory() ;
-								} else {
-									echo "Record Deleted";
-								}
-							}
-							if ( isset($_GET['recUpdt']) ) {
-								if (isset($_SESSION['recUpdated'] )) {
-									echo $_SESSION['recUpdated'] ; ;
-									session_unset() ;
-									session_destory() ;
-								} else {
-									echo "Record Successfully Updated";
-								}
-							}
-							if ( isset($_GET['recF']) ) {
-								if (isset($_SESSION['recFail'] )) {
-									echo $_SESSION['recFail'] ; ;
-									session_unset() ;
-									session_destory() ;
-								} else {
-									echo "Record Update Failed.";
-								}
-							}
-
-							 ;
-						?>
-					</p>
-
-					<?php
-						$adminFetchRecords = "SELECT * FROM users" ;
-						$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
-					?>
-					
-					<tr>
-						<th hidden>ID</th>
-						<th>First Name</th>
-						<th>Second Name</th>
-						<th>Location</th>
-						<th>Gender</th>
-						<th>Phone Number</th>
-						<th>Regd. Date</th>
-						<th colspan="2">Action</th>
-					</tr>
-
-					<?php
-						$adminFetchRecords = "SELECT * FROM users" ;
-						$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
-
-						if ($adminFetchRecordsResult->num_rows > 0) {
-					   	 while($rowFetch = $adminFetchRecordsResult->fetch_assoc()) {
-					?>
-						<tr>
-							<td hidden> <?php echo $rowFetch['id'] ; ?> </td>
-							<td> <?php echo $rowFetch['fName'] ; ?> </td>
-							<td> <?php echo $rowFetch['sName'] ; ?> </td>
-							<td> <?php echo $rowFetch['userLocation'] ; ?> </td>
-							<td> <?php echo $rowFetch['userGender'] ; ?> </td>
-							<td> <?php echo $rowFetch['userPhone'] ; ?> </td>
-							<td> <?php echo $rowFetch['reg_date'] ; ?> </td>
-							<td>
-								<a href="regdusersadmin.php?edit=<?php echo $rowFetch['id']?>" class="btn btn-outline-warning">Edit</a>
-								<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-outline-danger">Delete</a>
-							</td>
-						</tr>
-						<?php  }
-							} else {
-							    echo "Enter Second Name to Retrieve Booking Record .";
-							} ?>
-
-				</table>
-
-			</div>
-
-			<br/> <br/>
-			<div class="container bg-warning" style="padding:15px;">
-				<p style="text-align:center; font-weight:700;">New User Registration / Update Existing Records</p>
-			</div>
-			<form class="form" action="regdusersadmin.php" method="post">
-				<p class="alert alert-<?php
-					if (isset($_GET['userdetailsaccepted'])) {
-							echo $_SESSION['classTypeAccept'] ;
-							session_unset();
-							session_destroy();
-						}
-					if (isset($_GET['userdetailsfail'])) {
-							echo $_SESSION['classTypeError'] ;
-							session_unset();
-							session_destroy();
-						}
-					if (isset($_GET['userdetailsdup'])) {
-							echo $_SESSION['classTypeError'] ;
-							session_unset();
-							session_destroy();
-						}				
-				?>">
-					<?php
-						if ( isset($_GET['userdetailsaccepted']) ) {
-							if (isset($_SESSION['userAccept'])) {
-								echo $_SESSION['userAccept'] ;
-								session_unset() ;
-								session_destory() ;
-							} else {
-								echo "Successful Registration. You can now login with the details.";
-							}
-						}
-						if ( isset($_GET['userdetailsfail']) ) {
-							if (isset($_SESSION['userFail'])) {
-								echo $_SESSION['userFail'] ;
-								session_unset() ;
-								session_destory() ;
-							} else {
-								echo "Registration Failed. Check input details then try again.";
-							}
-						}
-						if ( isset($_GET['userdetailsdup']) ) {
-							if (isset($_SESSION['userDup'])) {
-								echo $_SESSION['userDup'] ;
-								session_unset() ;
-								session_destory() ;
-							} else {
-								echo "A user with the same details has already registered. Try again with different details.";
-							}
-						}
-					?>
-				</p>
-				<div class="row">
-					<div class="col-md">
-						 <input type="hidden" name="id" id="id" class="form-control" value="<?php echo $id; ?>">
-						<div class="form-group">
-							<label for="fname">First Name<sup style="color:red;">*</sup></label>
-							<input type="text" name="fname" class="form-control" id="fname" value="<?php echo $fname ; ?>">
-							<span> <?php echo $fnameErr; ?> </span>
-						</div>
-					</div>
-					<div class="col-md">
-						<div class="form-group">
-							<label for="sname">Second Name<sup style="color:red;">*</sup></label>
-							<input type="text" name="sname" class="form-control" id="sname" value="<?php echo $sname ; ?>">
-							<span> <?php echo $snameErr; ?> </span>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="userLocation">User Location<sup style="color:red;">*</sup></label>
-					<input type="text" name="userLocation" class="form-control" style="width:60%;" id="userLocation"  value="<?php echo $userLocation ; ?>">
-					<span> <?php echo $userLocationErr; ?> </span>
-				</div>
-				<div class="form-group">
-					<label for="yob">Input DOB (format: dd/mm/yyyy)</label>
-					<input type="phone" name="yob" class="form-control" max-length="8" minlength="8" style="width:60%;"  value="<?php echo $yob ; ?>">
-					<span> <?php echo $yobErr; ?> </span>
-				</div>
-				<div class="form-group">
-					<label for="userPhone">Input Phone Number<sup style="color:red;">*</sup></label>
-					<input type="phone" name="userPhone" class="form-control" max-length="10" style="width:60%;" id="userPhone"  value="<?php echo $userPhone ; ?>">
-					<span> <?php echo $userPhoneErr; ?> </span>
-				</div>
-				<div class="form-group">
-					<label for="userGender">Select Gender<sup style="color:red;">*</sup></label>
-					<select name="userGender" class="form-control"  style="width:60%;" id="userGender">
-						<option></option><option value="male">Male</option><option value="female">Female</option>
-					</select>
-					<span> <?php echo $userGenderErr; ?> </span>
-				</div>
-				<br/>
-
-				<?php
-					if (  $update === TRUE ) :
-				?>
-					<input type="submit" name="detailsEditUpdate" class="form-control btn btn-warning" id="detailsEditUpdate" value="Update Details" style="width:40%;">
-				<?php else : ?>
-				<div class="row">
-					<div class="col-md">
-						<input type="submit" name="detailsSubmit" class="form-control btn btn-success" id="detailsSubmit" value="Submit Details" style="width:40%;">
-					</div>
-					<div class="col-md">
-						<input type="reset" name="reset" class="form-control reset" id="reset" style="width:40%; border:none; text-decoration:underline;">
-					</div>
-				</div>
-			<?php endif; ?>
-			</form>
-
-		</div>
-
-		<div class="col-md-1"></div>
-	</div>
-</div> -->
-
 <br/> <br/> <br/> <br/>
 .
-
-<br/><br/>  
+ 
 
 <footer class="footer bg-success rounded-left">
 	<div class="container-fluid">

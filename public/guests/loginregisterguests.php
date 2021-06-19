@@ -52,7 +52,7 @@ if ( isset($_POST['detailsSubmit']) ) {
 
 $insSql = " SELECT * FROM users WHERE fName='$fname' &&  sName='$sname' && userLocation='$userLocation' && userGender='$userGender' && userAge='$yob' && userPhone='$userPhone' && userPassword='$userPassword' " ;
 $insResult = mysqli_query($conn,$insSql) ;
-$insNums = mysqli_num_rows($insResult) ;
+$insNums = mysqli_num_rows($insResult) ; 
 
 if ( $insNums>=1 ) {
 	$_SESSION['userDup'] ;

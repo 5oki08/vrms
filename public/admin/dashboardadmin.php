@@ -80,7 +80,7 @@ li a { width: 100%; }
 
 
 @media only screen and (max-width: 600px) {
-  
+   
 .heading1subj { display: block; margin-top: 3px; margin-bottom: 3px; }
 .navbar-toggle { float: right; }
 .carousel-inner img { width: 400; height: 270; }
@@ -134,12 +134,12 @@ li a { width: 100%; }
 				    </div>
 				    <div class="collapse navbar-collapse" id="myNavbar">
 				      <ul class="nav navbar-nav text-nowrap">
-				        <li class="active"> <a href="#" class="text-dark bg-light font-weight-bold">Dashboard</a> </li>
+				        <li class="active"> <a href="dashboardadmin.php" class="text-dark bg-light font-weight-bold">Dashboard</a> </li>
 				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
-						  <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>
-						  <li> <a href="#" class="text-dark">Four Wheeler Vehicles</a> </li>
+						  <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li> 
+						  <li> <a href="fourwheeleradmin.php" class="text-dark">Four Wheeler Vehicles</a> </li>
 						  <li> <a href="#" class="text-dark">Bookings</a> </li>
-						 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li> 
+						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li> 
 				      </ul>
 				    </div>
 				  </div>
@@ -161,6 +161,20 @@ li a { width: 100%; }
 							?>
 						</p>
 						<p class="card-text text-center">Registered Users</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<p class="text-center">
+							<?php
+								$countRecords = " SELECT COUNT(*) AS TotalregdFourWheels FROM fourwheel " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalregdFourWheels'];
+							?>
+						</p>
+						<p class="card-text text-center">Registered Four Wheel Vehicles</p>
 					</div>
 				</div>
 

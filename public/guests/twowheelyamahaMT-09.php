@@ -157,7 +157,7 @@ function carousel() {
 			<div class="container-fluid">
 				  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
 				    Hire
-				  </button>
+				  </button> 
 				  <div class="modal" id="hirebuttonguests">
 				    <div class="modal-dialog">
 				      <div class="modal-content">

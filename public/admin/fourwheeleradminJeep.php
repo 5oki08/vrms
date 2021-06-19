@@ -2,10 +2,15 @@
 
 require '../../connection.php' ;
 
+$id = 0 ;
+if ( isset($_GET['edit']) ) {
+ 	# code...
+ } 
+
+
 ?>
 
 
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +48,7 @@ li a { width: 100%; }
 
 
 .d-sm-table-cell { padding-left: 10px; padding-right: 10px; }
- 
+
 
 @media only screen and (max-width: 600px) { 
 
@@ -117,65 +122,21 @@ li a { width: 100%; }
 					
 				    <div class=" navbar-expand bg-light d-table" id="twowheelNav">
 				      <ul class="nav navbar-nav text-nowrap d-table-row">
-						 <li class="active d-sm-table-cell"> <a href="fourwheeleradmin.php" class="text-dark bg-light">Aston Martin</a> </li>
+				        <li class=" d-sm-table-cell"> <a href="fourwheeleradmin.php" class="text-dark bg-light">Aston Martin</a> </li>
 				        <li class=" d-sm-table-cell"> <a href="fourwheeleradminMitsubishi.php" class="text-dark bg-light">Mitsubishi</a> </li>
-						<li class=" d-sm-table-cell"> <a href="fourwheeleradminJeep.php" class="text-dark bg-light">Jeep</a> </li> 
-						<li class=" d-sm-table-cell"> <a href="fourwheeladminAddNew.php" class="text-light bg-success font-weight-bold btn btn-lg btn-outline-success">Add New</a> </li>       
-				      </ul>  
+						<li class="active d-sm-table-cell"> <a href="fourwheeleradminJeep.php" class="text-dark bg-light">Jeep</a> </li> 
+						<li class=" d-sm-table-cell"> <a href="fourwheeladminAddNew.php" class="text-light bg-success font-weight-bold btn btn-lg btn-outline-success">Add New</a> </li>    
+				      </ul>
 				    </div> 
 				</nav>
 			</header>
-			<br/>
 
-			<!-- <div class="card-deck"> 
-
-			
-				<div class="card">
-					<img src="../../images/fourwheeler/vantageA.jpg" id="fourwheelercardimg" class="card-img-top">
-					<div class="card-body" style="height: 100%;">
-						<p class="text-center">
-							<p class="text-center font-weight-bold h3">Aston Martin Vantage</p>
-							<hr style="width: 50%;" />
-							<p>The Aston Martin Vantage is a two-seater sports car manufactured by British luxury car manufacturer Aston Martin as a successor to the previous outgoing model which had been in production for 12 years.</p>
-						</p> <br/>
-						<a href="fourwheeleeradminVantage.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>  
-					</div>
-				</div> 
-
-				<br/>
-
-				<div class="card">
-					<img src="../../images/fourwheeler/db5B.jpg" id="fourwheelercardimg" class="card-img-top">
-					<small>Aston Martin DB5, chassis DB5/2008/R /Source: RM Sothebys</small>
-					<div class="card-body" style="height: 100%;">
-						<p class="text-center">
-							<p class="text-center font-weight-bold h3">Aston Martin DB5</p>
-							<hr style="width: 50%;" />
-							<p>The engine was enlarged from the 3.6 liter engine in the DB4 Series V to a more modern 4.0 liter all-aluminum straight-six engine that produced 282 hp and 288 foot pounds of torque and gave the car a top speed of about 145 mph (233 km/h).</p>
-						</p> <br/>
-						<a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
-					</div>
-				</div>
-
-				<br/>
-
-				<div class="card">
-					<img src="../../images/fourwheeler/dbxB.jpg" id="fourwheelercardimg" class="card-img-top">
-					<div class="card-body" style="height: 100%;">
-						<p class="text-center">
-							<p class="text-center font-weight-bold h3">Aston Martin DBX</p>
-							<hr style="width: 50%;" />
-							<p>The Aston Martin DBX delivers all the practicality and refinement you’d expect from a luxury SUV, with a driver-focused approach that sets it apart from its closest rivals. The British sports car manufacturer has gone with what it knows best - applying its technical wizardry to produce the finest-handling SUV available.</p>
-						</p> <br/>
-						<a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
-					</div>
-				</div>
-
-			</div> -->
-			<div class="card-deck"> 
+			<div class="container-fluid">
+				
+				<div class="card-deck"> 
 					<?php
 					$id = 0 ;
-						$adminFetchRecords = "SELECT * FROM fourwheel WHERE brand='Aston Martin' " ;
+						$adminFetchRecords = "SELECT * FROM fourwheel WHERE brand='Jeep' " ;
 						$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
 
 						if ($adminFetchRecordsResult->num_rows > 0) {
@@ -184,31 +145,28 @@ li a { width: 100%; }
 					   	 	
 					?>
 					<div class="card">
-						<!-- <img src="../../images/adminFourwheel/evo6.jpg" id="fourwheelercardimg" class="card-img-top w-25"> php to insert image --> 
+						<img src="" id="fourwheelercardimg" class="card-img-top">
 						<div class="card-body" style="height: 100%;">
 							<p class="text-center">
 								<p hidden> <?php echo $rowFetch['id'] ; ?> </p>
 								<p class="text-center font-weight-bold h3"> <?php echo $rowFetch['FourwheelName'] ; ?> </p>
 								<hr style="width: 50%;" />
+								<!-- <p> <img src='<?php echo $carImage;  ?>' alt="" id=""> </p> 
+								<?php
+			                      // echo "<img src='../../images/adminFourwheel/" . $rowFetch['carImage'] ."'>"; 
+						
+			                     ?>-->
 							</p> <br/>
 							  <?php switch($id): 
 								case 1: ?>
 								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?>  -->
-								    <a href="fourwheeleeradminVantage.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
-								    </div> 
+								    <a href="fourwheeleradminJeepWrangler.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
+								    </div>
 								<?php break; ?>
 								<?php case 2: ?>
+								    </div>
+								    <a href="fourwheeleradminJeepGrandCherokee.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
 								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?> -->
-								    <a href="fourwheeleradminDB5.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
-								    </div> 
-								<?php break; ?>
-								<?php case 3: ?>
-								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?> -->
-								    <a href="fourwheeleradminDBx.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a> 
-								    </div> 
 								<?php break; ?>
 								<?php endswitch; ?>
 						</div> 
@@ -217,11 +175,14 @@ li a { width: 100%; }
 					} ?>
 				</div> 
 
+				
+			</div>
+
 		</div>
 
 	</div>
 </div>
-
+ 
 
   
  
