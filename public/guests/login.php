@@ -2,9 +2,9 @@
 session_start() ;
 require '../../connection.php' ;
 
-require_once '../registered/activeusersession.php' ;
+// require_once '../registered/activeusersession.php' ;
+ 
 
-// $_SESSION['activeuser'] = "$userloginphone" ;
 $_SESSION['failCred'] = "Check Credentials" ;
 $_SESSION['classTypeError'] = "danger" ;
 
@@ -26,7 +26,7 @@ if ( isset($_POST['loginSubmit']) ) {
 		$userloginpasswordErr = "Incorrect Password" ;
 	} else {
 		$userloginpassword = $_POST['userloginpassword'] ;
-	}
+	} 
 
 	$loginSql = " SELECT * FROM users WHERE userPhone='$userloginphone' && sName='$userloginLastName' && userPassword='".md5($userloginpassword)."' " ;
 	$loginResult = mysqli_query($conn,$loginSql) ;
@@ -34,18 +34,40 @@ if ( isset($_POST['loginSubmit']) ) {
 
 	if ( $loginNum == 1 ) {
 		if ( empty($userloginphoneErr) && empty($userloginLastNameErr) && empty($userloginpasswordErr) ) {
-			$_SESSION['activeuser'] = $userloginLastName ;
-			// constant($_SESSION['activeuser']) ;
-			header('location: ../registered/homeregistered.php?logged') ;
+			// $_SESSION['loggedin'] ; 
+			$_SESSION['user_name'] = $userloginLastName ;   
+
+			if(!empty($_POST["remember"])) {
+				setcookie('userloginphone', $_POST['userloginphone'], time( ) +  (86400 * 2), "/");
+				setcookie('userloginLastName', $_POST['userloginLastName'], time( ) +  (86400 * 2), "/");
+				setcookie('userloginpassword', $_POST['userloginpassword'], time( ) +  (86400 * 2), "/");
+			} else {
+				setcookie('userloginphone',"");
+				setcookie('userloginLastName', $_POST['userloginLastName'], time( ) +  (86400 * 2), "/");
+				setcookie('userloginpassword',"");
+			}
+
+			header('location: ../registered/homeregistered.php?#') ;  
+			exit() ;
 		}
 	} else {
 			$_SESSION['failCred'] ;
 			$_SESSION['classTypeError'] ;
 			header('location: homeguests.php?credentialsReject') ;
+			exit() ; 
 		}
+
+ 
+
+
+
 
 
 }
+
+
+
+
 
 ?>
 

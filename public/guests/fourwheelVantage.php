@@ -1,3 +1,5 @@
+<?php require '../../connection.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,28 +24,20 @@ body { font-size: 14px; }
 #mainheader1 {  padding: 5px; }
 #heading1 { letter-spacing: 1px; text-align: center; margin-top: 5px; list-style-type: none;}
 .heading1subj { display: inline; margin-left:7px; margin-right:7px; }
-#heading2 { padding: 10px;}
-.nav-link {}
 .active { text-transform: uppercase; text-decoration: underline; font-weight: 600;}
-li a { width: 100%; }
-.carousel-inner img { width: 1100; height: 470; }
-#asidehome { padding: 10px; height: 100%; }
-.card-text { margin-top: 50px; }
-.form { padding: 20px; }
-.form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+
+
+#fourwheelermoreinfo { width: 100%; }
+
+#fourwheeltitles { padding:10px; }
+
+
+.footer { padding: 30px; }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
-#fourwheelercardimg { width: 100%; }
-#fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }
-#fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
-#detailedFourwheelerimg { width:350px; height:260px;	}
+#socialmediaicons{ margin-left: 5px; margin-right: 5px; }
 
-#hirebtnlinkguests { padding: 10px; width: 20%; }
-#hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
-
-/*.form-group { padding: 15px; }*/
 
 
 
@@ -56,11 +50,6 @@ li a { width: 100%; }
 #footerSec2 { margin-bottom: 30px; }
 #footerSec3 {}
 
-#twowheelnavigation { border: none; }
-
-
-#hirebtnlinkguests { padding: 10px; width: 50%; }
-#hirebtnlinkguests:hover { color: #000; background-color: #fff; font-weight: 600; }
 
 
 
@@ -93,28 +82,14 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
+	      <a class="navbar-brand" href="#"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeguests.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutguests.php" class="text-dark">About Us</a> </li>
-	        <li class="dropdown">
-			 	<a href="twowheeler.php" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheeler.php">Ducatti</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelS.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaha.php">Yamaha</a>
-			    </div>
-			 </li>
-	        <li class="dropdown">
-			 	<a href="fourwheeler.php" class="text-dark dropdown-toggle active bg-light font-weight-bold" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheeler.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishi.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
-			    </div>
-			 </li>
+	       <li> <a href="twowheeler.php" class="text-dark">Two Wheeler Vehicles</a> </li>
+			<li class="active"> <a href="fourwheeler.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
 	      </ul>
 	    </div>
 	  </div>
@@ -131,44 +106,45 @@ li a { width: 100%; }
 		<div class="col-md-1"></div>
 
 		<div class="col-md-4">
-			<div class="container-fluid">
-				<div class="" style="max-width:500px">
-				  <!-- <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageC.jpg" id="detailedFourwheelerimg"> -->
-				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageA.jpg" id="detailedFourwheelerimg">
-				  <img class="vantagefourwheeler" src="../../images/fourwheeler/vantageB.jpg" id="detailedFourwheelerimg">
-				</div>
-<script>
-var myIndex = 0;
-carousel();
+			<?php
+			 // $id = 1 ;
+			 	$fetchCarRecords = " SELECT * FROM fourwheel WHERE FourwheelName='Vantage' " ; 
+			 	$fetchCarRecordsResult = mysqli_query($conn,$fetchCarRecords) ;
 
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("vantagefourwheeler");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 2000); // Change image every 2 seconds
-}
-</script>
-			</div>
+			 	if ($fetchCarRecordsResult->num_rows > 0) {
+				   	 while($rowFetch = $fetchCarRecordsResult->fetch_assoc()) {
+			 ?>
+			 <p hidden> <?php echo $rowFetch['id'] ; ?> </p>  
+			 <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top"> 
+			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;"> <?php echo $rowFetch['brand'] ;?> <?php echo $rowFetch['FourwheelName'] ;?> </kbd><br/><br/>
 		</div>
 
 		<div class="col-md-6">
-			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Aston Martin Vantage</kbd><br/><br/>
-			<form class="form">
+			 
+			<form class="form" action="#" method="post">  
+				 
 				
+				 <div class="form-group">
+						<div class="row">
+							<div class="col-md">
+								<label for="brand">Brand </label>
+								<input type="text" name="brand" id="brand" class="form-control form-control-lg" value="<?php echo $rowFetch['brand'] ; ?>" disabled >
+							</div>
+							<div class="col-md">
+								<label for="carName">Car Name</label>
+								<input type="text" name="carName" id="carName" class="form-control form-control-lg" value="<?php echo $rowFetch['FourwheelName'] ; ?>"disabled> 
+							</div>
+						</div>
+					</div>
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md">
 							<label for="modelcolor">Color</label>
-							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="Red" disabled="">
+							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="<?php echo $rowFetch['modelColor'] ; ?>" disabled="">
 						</div>
 						<div class="col-md">
 							<label for="modelYear">Model Year</label>
-							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="2020" disabled="">
+							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="<?php echo $rowFetch['modelyear'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
@@ -176,12 +152,12 @@ function carousel() {
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md">
-							<label for="modelFuelType">Fuel Type</label>
-							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="Petrol" disabled="">
+							<label for="modelFuelType">Engine Capacity</label>
+							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="<?php echo $rowFetch['enginecapacity'] ; ?>" disabled=""> 
 						</div>
 						<div class="col-md">
 							<label for="modelSittingCapacity">Sitting Capacity</label>
-							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="4" disabled="">
+							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="<?php echo $rowFetch['sittingcapacity'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
@@ -190,11 +166,11 @@ function carousel() {
 					<div class="row">
 						<div class="col-md">
 							<label for="modelEngineCylinders">Engine Cylinders</label>
-							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="8" disabled="">
+							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="<?php echo $rowFetch['enginecylinders'] ; ?>" disabled="">
 						</div>
 						<div class="col-md">
 							<label for="modelSteering">Steering Side</label>
-							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="right" disabled="">
+							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="<?php echo $rowFetch['steeringside'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
@@ -203,11 +179,11 @@ function carousel() {
 					<div class="row">
 						<div class="col-md">
 							<label for="modelDriveModes">Drive Modes</label>
-							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="3" disabled="">
+							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="<?php echo $rowFetch['drivemodes'] ; ?>" disabled="">
 						</div>
 						<div class="col-md">
 							<label for="modelTransmission">Transmission</label>
-							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="manual" disabled="">
+							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="<?php echo $rowFetch['transmission'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
@@ -216,11 +192,11 @@ function carousel() {
 					<div class="row">
 						<div class="col-md">
 							<label for="modelGearbox">Gearbox</label>
-							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="AMG Speedshift 9G TCT Automatic" disabled="">
+							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="<?php echo $rowFetch['gearbox'] ; ?>" disabled="">
 						</div>
 						<div class="col-md">
 							<label for="modelWheelDrive">Wheel Drive</label>
-							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="AWD" disabled="">
+							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="<?php echo $rowFetch['wheeldrive'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
@@ -229,11 +205,11 @@ function carousel() {
 					<div class="row">
 						<div class="col-md">
 							<label for="modelPowerSteering">Power Steering</label>
-							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="Available" disabled="">
+							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="<?php echo $rowFetch['powersteering'] ; ?>" disabled="">
 						</div>
 						<div class="col-md">
 							<label for="modelSpareWheel">Spare Wheel</label>
-							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="Available" disabled="">
+							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="<?php echo $rowFetch['sparewheel'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
@@ -242,30 +218,30 @@ function carousel() {
 					<div class="row">
 						<div class="col-md">
 							<label for="modelHorsepower">Horsepower</label>
-							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="500" disabled="">
+							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="<?php echo $rowFetch['horsepower'] ; ?>" disabled="">
 						</div>
 						<div class="col-md">
 							<label for="modelHybrid">Hybrid</label>
-							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="No" disabled="">
+							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="<?php echo $rowFetch['hybrid'] ; ?>" disabled="">
 						</div>
 					</div>
 				</div>
 				<br/>
 				<div class="form-group">
 					<label for="modelPrice">Price per day (KES) </label>
-					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="5555" disabled="">
+					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="<?php echo $rowFetch['priceperday'] ; ?>" disabled="">
 				</div>
-
+				<?php  } } ?>
 			</form>
 		</div>
-	</div>
+	</div> 
 	<br/>
 	
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
 			<div class="container-fluid">
-				 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
+				 <button class="btn btn-primary btn-lg w-50 mx-auto" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
 				    Hire
 				  </button>
 				  <div class="modal" id="hirebuttonguests">
@@ -318,7 +294,7 @@ function carousel() {
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -327,11 +303,21 @@ function carousel() {
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
 </footer>
+
+
+<div class="w-75 mx-auto text-center font-weight-bold">
+	<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
+</div>
+
+
 
 
 

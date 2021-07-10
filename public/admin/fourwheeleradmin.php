@@ -2,6 +2,23 @@
 
 require '../../connection.php' ;
 
+
+$id = 0 ;
+if ( isset($_GET['delete'] ) ) {
+	$id = $_GET['delete'] ;
+
+	$deleteRecordSql = "DELETE FROM fourwheel WHERE id='$id' " ;
+	if ( $conn->query($deleteRecordSql) ===  TRUE ) {
+		$_SESSION['recordCut'] ;
+		$_SESSION['classTypeAccept'] ;
+		header('location: fourwheeleradmin.php?recordDismissed') ;
+	}
+}
+
+
+
+
+
 ?>
 
 
@@ -43,6 +60,8 @@ li a { width: 100%; }
 
 
 .d-sm-table-cell { padding-left: 10px; padding-right: 10px; }
+
+#fourwheelermoreinfo { width: 100%; }
  
 
 @media only screen and (max-width: 600px) { 
@@ -83,7 +102,7 @@ li a { width: 100%; }
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2 bg-light text-left">
+		<div class="col-md-3 bg-light text-left">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -99,8 +118,13 @@ li a { width: 100%; }
 				        <li> <a href="dashboardadmin.php" class="text-dark">Dashboard</a> </li>
 				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
 					    <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>   
-					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
-					    <li> <a href="#" class="text-dark">Bookings</a> </li>
+					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark  btn btn-lg border border-dark  bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
+					    <li> <a href="fourwheelerbookingadmin.php" class="text-dark">Bookings <sup class="badge badge-secondary"><?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?></sup> </a> </li>
 						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li>  
 				      </ul>
 				    </div> 
@@ -110,7 +134,7 @@ li a { width: 100%; }
 			</header>
 		</div>
 
-		<div class="col-md-10">
+		<div class="col-md-9">
 			
 			<header class=" text-center w-100">
 				<nav  class="navbar navbar-inverse bg-light  border border-top-0 border-left-0 border-right-0">
@@ -125,53 +149,38 @@ li a { width: 100%; }
 				    </div> 
 				</nav>
 			</header>
+			
 			<br/>
 
-			<!-- <div class="card-deck"> 
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
 
-			
-				<div class="card">
-					<img src="../../images/fourwheeler/vantageA.jpg" id="fourwheelercardimg" class="card-img-top">
-					<div class="card-body" style="height: 100%;">
-						<p class="text-center">
-							<p class="text-center font-weight-bold h3">Aston Martin Vantage</p>
-							<hr style="width: 50%;" />
-							<p>The Aston Martin Vantage is a two-seater sports car manufactured by British luxury car manufacturer Aston Martin as a successor to the previous outgoing model which had been in production for 12 years.</p>
-						</p> <br/>
-						<a href="fourwheeleeradminVantage.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>  
-					</div>
-				</div> 
-
-				<br/>
-
-				<div class="card">
-					<img src="../../images/fourwheeler/db5B.jpg" id="fourwheelercardimg" class="card-img-top">
-					<small>Aston Martin DB5, chassis DB5/2008/R /Source: RM Sothebys</small>
-					<div class="card-body" style="height: 100%;">
-						<p class="text-center">
-							<p class="text-center font-weight-bold h3">Aston Martin DB5</p>
-							<hr style="width: 50%;" />
-							<p>The engine was enlarged from the 3.6 liter engine in the DB4 Series V to a more modern 4.0 liter all-aluminum straight-six engine that produced 282 hp and 288 foot pounds of torque and gave the car a top speed of about 145 mph (233 km/h).</p>
-						</p> <br/>
-						<a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
+						<p style="font-size:15px;" class="alert alert-<?php 
+								if (isset($_GET['recordDismissed'])) {
+									echo $_SESSION['classTypeAccept'] ;
+									// session_unset();
+									// session_destroy();
+								}
+							?> w-50 text-center text-success text-nowrap font-weight-bold mx-auto" >
+								<?php
+									if ( isset($_GET['recordDismissed']) ) {
+										if (isset($_SESSION['recordCut'])) {
+											echo $_SESSION['recordCut'] ;
+											session_unset() ;
+											// session_destory() ;
+										} else {
+											echo "Record Deleted ^admin";
+										}
+									}
+								?>
+							</p>
+					<div class="col-md-3"></div>
 					</div>
 				</div>
+			</div>
 
-				<br/>
-
-				<div class="card">
-					<img src="../../images/fourwheeler/dbxB.jpg" id="fourwheelercardimg" class="card-img-top">
-					<div class="card-body" style="height: 100%;">
-						<p class="text-center">
-							<p class="text-center font-weight-bold h3">Aston Martin DBX</p>
-							<hr style="width: 50%;" />
-							<p>The Aston Martin DBX delivers all the practicality and refinement you’d expect from a luxury SUV, with a driver-focused approach that sets it apart from its closest rivals. The British sports car manufacturer has gone with what it knows best - applying its technical wizardry to produce the finest-handling SUV available.</p>
-						</p> <br/>
-						<a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
-					</div>
-				</div>
-
-			</div> -->
 			<div class="card-deck"> 
 					<?php
 					$id = 0 ;
@@ -194,28 +203,28 @@ li a { width: 100%; }
 							  <?php switch($id): 
 								case 1: ?>
 								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?>  -->
-								    <a href="fourwheeleeradminVantage.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+								    <a href="fourwheeleeradminVantage.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
 								    </div> 
 								<?php break; ?>
 								<?php case 2: ?>
 								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?> -->
-								    <a href="fourwheeleradminDB5.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
+								   <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+								    <a href="fourwheeleradminDB5.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
 								    </div> 
 								<?php break; ?>
 								<?php case 3: ?>
 								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?> -->
-								    <a href="fourwheeleradminDBx.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a> 
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+								    <a href="fourwheeleradminDBx.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
 								    </div> 
 								<?php break; ?>
-								<?php endswitch; ?>
+								<?php endswitch; ?> 
 						</div> 
 					</div>
 					<?php  }
 					} ?>
-				</div> 
+			</div> 
 
 		</div>
 
@@ -227,6 +236,10 @@ li a { width: 100%; }
  
 
 
-
+<script type="text/javascript">
+function confirm_change() {
+  return confirm('are you sure?');
+}
+</script> 
 </body>
 </html>

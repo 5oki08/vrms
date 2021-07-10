@@ -210,25 +210,10 @@ li a { width: 100%; }
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
-	        <li class="active"> <a href="homeregistered.php" class="text-dark bg-light font-weight-bold">Home</a> </li>
-	        <li> <a href="aboutregistered.php" class="text-dark">About Us</a> </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheelerregistered.php">Ducatti</a> 
-			      <a class="dropdown-item h4 text-center" href="twowheelSregistered.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaharegistered.php">Yamaha</a>
-			    </div>
-			 </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheelerregistered.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishiregistered.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeepregistered.php">Jeep</a>
-			    </div>
-			 </li>
-			 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li> 
+	        <li> <a href="homeguests.php" class="text-dark">Home</a> </li>
+	        <li> <a href="aboutguests.php" class="text-dark">About Us</a> </li>
+			<li> <a href="twowheeler.php" class="text-dark">Two Wheeler Vehicles**</a> </li>
+			<li> <a href="fourwheeler.php" class="text-dark">Four Wheeler Vehicles</a> </li>
 	      </ul>
 	    </div>
 	  </div>

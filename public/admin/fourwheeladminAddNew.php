@@ -16,7 +16,7 @@ $uploadImage1 = '' ;
 
 $brandErr = $carNameErr = $modelcolorErr = $modelYearErr = $enginecapacityErr = $modelSittingCapacityErr = $modelEngineCylindersErr = $modelSteeringErr = $modelDriveModesErr = $modelTransmissionErr = $modelGearboxErr = $modelWheelDriveErr = $modelPowerSteeringErr = $modelSpareWheelErr = $modelHorsepowerErr = $modelHybridErr = $modelPriceErr = '' ;
 $uploadImage1Err = '' ;
-
+ 
 
 if ( isset($_POST['adminRegCar']) ) {
 
@@ -106,12 +106,10 @@ if ( isset($_POST['adminRegCar']) ) {
 		$modelPrice = $_POST['modelPrice'] ;
 	}   
 
-   //  $uploadimage = $_FILES['uploadImage1']['name'];
-  	// $target = "../../images/adminFourwheel/".basename($uploadimage); 
 
-  	// $uploadimage = addslashes(file_get_contents($_FILES['uploadImage1']['tmp_name']));
+	$target = "../../images/adminFourwheel/".basename($_FILES['uploadImage1']['name']) ;
 
-
+	$uploadImage1 = $_FILES['uploadImage1']['name'] ;
 
 	$fetchcarRecords = " SELECT * FROM fourwheel WHERE brand='$brand' && FourwheelName='$carName' && modelColor='$modelcolor' && modelyear='$modelYear' && enginecapacity='$enginecapacity' && sittingcapacity='$modelSittingCapacity' && enginecylinders='$modelEngineCylinders' && steeringside='$modelSteering' && 	drivemodes='$modelDriveModes' && transmission='$modelTransmission' && gearbox='$modelGearbox' && wheeldrive='$modelWheelDrive' && powersteering='$modelPowerSteering' && sparewheel='$modelSpareWheel' && horsepower='$modelHorsepower' && hybrid='$modelHybrid' && priceperday='$modelPrice' && carImage='$uploadImage1'  " ; 
 	$fetchResult = mysqli_query($conn,$fetchcarRecords) ;
@@ -122,16 +120,17 @@ if ( isset($_POST['adminRegCar']) ) {
 		header('location: fourwheeladminAddNew.php?Rej') ;
 	} else {
 		if (empty($brandErr) && empty($carNameErr) && empty($modelcolorErr) && empty($modelYearErr) && empty($enginecapacityErr) && empty($modelSittingCapacityErr) && empty($modelEngineCylindersErr) && empty($modelSteeringErr) && empty($modelDriveModesErr) && empty($modelTransmissionErr) && empty($modelGearboxErr) && empty($modelWheelDriveErr) && empty($modelPowerSteeringErr) && empty($modelSpareWheelErr) && empty($modelHorsepowerErr) && empty($modelHybridErr) && empty($modelPriceErr) ) {
-			$carStmt = $conn->prepare(" INSERT INTO fourwheel (brand,FourwheelName,modelColor,modelyear,enginecapacity,sittingcapacity,enginecylinders,steeringside,drivemodes,transmission,gearbox,wheeldrive,powersteering,sparewheel,horsepower,hybrid,priceperday,carImage) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ") ;
-			$carStmt->bind_param("ssssssssssssssssss",$brand,$carName,$modelcolor,$modelYear,$enginecapacity,$modelSittingCapacity,$modelEngineCylinders,$modelSteering,$modelDriveModes,$modelTransmission,$modelGearbox,$modelWheelDrive,$modelPowerSteering,$modelSpareWheel,$modelHorsepower,$modelHybrid,$modelPrice,$uploadImage1) ;		
+
+			$carStmt = $conn->prepare(" INSERT INTO fourwheel (brand,FourwheelName,modelColor,modelyear,enginecapacity,sittingcapacity,enginecylinders,steeringside,drivemodes,transmission,gearbox,wheeldrive,powersteering,sparewheel,horsepower,hybrid,priceperday,carImage) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'$uploadImage1') ") ;
+			$carStmt->bind_param("sssssssssssssssss",$brand,$carName,$modelcolor,$modelYear,$enginecapacity,$modelSittingCapacity,$modelEngineCylinders,$modelSteering,$modelDriveModes,$modelTransmission,$modelGearbox,$modelWheelDrive,$modelPowerSteering,$modelSpareWheel,$modelHorsepower,$modelHybrid,$modelPrice) ;		
 			if ( $carStmt->execute() === TRUE ) { 
-				// move_uploaded_file($_FILES['uploadImage1']['tmp_name'], $target) ;
+				move_uploaded_file($_FILES['name']['tmp_name'], $target) ;
 				$_SESSION['carAdd'] ;
 				$_SESSION['classTypeAccept'] ;
 				header('location: fourwheeladminAddNew.php?carAddTrue') ;
 			} else {
 				$_SESSION['carRej'] ;
-				$_SESSION['classTypeError'] ;
+				$_SESSION['classTypeError'] ; 
 				header('location: fourwheeladminAddNew.php?carAddFalse') ;
 			}
 
@@ -146,13 +145,6 @@ if ( isset($_POST['adminRegCar']) ) {
 }
 
 
-// if( move_uploaded_file($_FILES['uploadImage1']['tmp_name'],$foldertarget.$filename)  ){
-			 //        $imagequery = "insert into fourwheel(carImage) values('".$filename."')";
-			 //        mysqli_query($conn,$imagequery);
-			 //     }
-
-
- 
 
 
 ?>
@@ -240,7 +232,7 @@ span { font-size: 12px; color: red; font-style: italic; }
 <div class="container-fluid">
 	<div class="row">
 
-		<div class="col-md-2 bg-light text-left">
+		<div class="col-md-3 bg-light text-left">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -256,8 +248,13 @@ span { font-size: 12px; color: red; font-style: italic; }
 				        <li> <a href="dashboardadmin.php" class="text-dark">Dashboard</a> </li>
 				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
 					    <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>   
-					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
-					    <li> <a href="#" class="text-dark">Bookings</a> </li>
+					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark btn btn-lg border border-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
+					    <li> <a href="fourwheelerbookingadmin.php" class="text-dark">Bookings <sup class="badge badge-secondary"><?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?></sup> </a> </li>
 						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li>  
 				      </ul>
 				    </div> 
@@ -267,15 +264,14 @@ span { font-size: 12px; color: red; font-style: italic; }
 			</header>
 		</div>
 
-		<div class="col-md-10">
+		<div class="col-md-9">
 			
 			<header class=" text-center w-100">
 				<nav  class="navbar navbar-inverse bg-light  border border-top-0 border-left-0 border-right-0">
 					
 				    <div class=" navbar-expand bg-light d-table" id="twowheelNav">
 				      <ul class="nav navbar-nav text-nowrap d-table-row">
-				        <!-- <li class="active d-sm-table-cell"> <a href="fourwheeleradmin.php" class="text-dark bg-light">Aston Martin</a> </li> -->
-				         <li class="d-sm-table-cell"> <a href="fourwheeleradmin.php" class="text-dark bg-light">Aston Martin</a> </li>
+				        <li class="d-sm-table-cell"> <a href="fourwheeleradmin.php" class="text-dark bg-light">Aston Martin</a> </li>
 				        <li class=" d-sm-table-cell"> <a href="fourwheeleradminMitsubishi.php" class="text-dark bg-light">Mitsubishi</a> </li>
 						<li class=" d-sm-table-cell"> <a href="fourwheeleradminJeep.php" class="text-dark bg-light">Jeep</a> </li> 
 						<li class="active d-sm-table-cell"> <a href="fourwheeladminAddNew.php" class="text-light bg-success font-weight-bold btn btn-lg btn-outline-success">Add New</a> </li>      

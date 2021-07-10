@@ -1,24 +1,30 @@
 <?php 
 
 require '../../connection.php' ;
-require '../guests/login.php' ;
-
-$_SESSION['noactiveaccount'] = "No active account. Kindly log in.";
-$_SESSION['classTypeError'] = "danger" ;
-
-if ( isset($_POST['activeuser']) ) {
-	if ( empty($_POST['activeuser']) ) {
-		$_SESSION['noactiveaccount'] ;
-		$_SESSION['classTypeError'] ;
-		header('location: ../guests/homeguests.php?logIn') ;
-	} else {
-		$_POST['activeuser'] ;
-	}
-}
-	
+session_start() ;
 
 
+// if ( isset($_GET['#']) ) {
+// 	if (isset($_GET['#'])) {
+// 		echo $_SESSION['user_name'] ;
+// 	} else {
+// 		echo $_SESSION['user_name'] ;
+// 	}
+// }
+
+
+
+$fetch = $conn->query( " SELECT snameregistered,status FROM selecteddrive WHERE snameregistered='{$_COOKIE['userloginLastName']}' " );
+$fetchroww = $fetch->fetch_array() ;
+
+ 
 ?>
+
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -65,10 +71,7 @@ li a { width: 100%; }
 .carousel-inner img { width: 1100; height: 470; }
 .carousel-inner { margin: 0 auto; width: 80%; }
 
- 
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
-.footer-links { color: #000; font-size: 15px; }
-.footer-links:hover { font-weight: 600; color: #000; }
+
 
 
 .grid-container { display: grid; grid-template-areas: 'head head head head' 'neck neck thorax thorax' 'neck neck thorax thorax' 'abdomen abdomen abdomen abdomen' ; margin-left: 20px; margin-right: 20px; grid-gap: 10px; }
@@ -83,6 +86,10 @@ li a { width: 100%; }
 .homereg3:hover { background-color: #F4A460; color: #fff; }
 .homereg4:hover { background-color: #DC143C; color: #fff; }
 
+
+.footer { padding: 30px;  }
+.footer-links { color: #000; font-size: 15px; }
+.footer-links:hover { font-weight: 600; color: #000; }
 
 
 @media only screen and (max-width: 600px) {
@@ -107,6 +114,7 @@ li a { width: 100%; }
 
 </head>
 <body>
+
  
 
 <header id="mainheader1" class="">
@@ -125,36 +133,28 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
+	      <a class="navbar-brand" href="#"></a>
+
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li class="active"> <a href="homeregistered.php" class="text-dark bg-light font-weight-bold">Home</a> </li>
 	        <li> <a href="aboutregistered.php" class="text-dark">About Us</a> </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
+			<li> <a href="twowheelerregistered.php" class="text-dark">Two Wheeler Vehicles</a> </li>
+			<li> <a href="fourwheelerregistered.php" class="text-dark">Four Wheeler Vehicles</a> </li>
+			 <li class="dropdown btn-outline-primary">
+			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $_COOKIE['userloginLastName']  ; ?></a>
 			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheelerregistered.php">Ducatti</a> 
-			      <a class="dropdown-item h4 text-center" href="twowheelSregistered.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaharegistered.php">Yamaha</a>
+			      <a class="dropdown-item h4 text-center" href="mybookingregistered.php">My Booking </a>
+			      <a class="dropdown-item h4 text-center" href="myaccountregistered.php">My Account</a>
+			      <a class="dropdown-item h4 text-center" href="logoutregistered.php">Log Out</a>
 			    </div>
-			 </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheelerregistered.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishiregistered.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeepregistered.php">Jeep</a>
-			    </div>
-			 </li>
-			 <li> <a href="mybookingregistered.php" class="text-dark">My Booking</a> </li>
-			 <li> <a href="myaccountregistered.php" class="text-dark"> My Account</a> </li>
-			 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li>
-	      </ul>
+			 </li>  
+	      </ul>  
 	    </div>
-	  </div>
+	  </div> 
 	</nav>
-
+ 
 </header>
 
 <br/>
@@ -209,7 +209,7 @@ li a { width: 100%; }
 
 <br/><br/> 
 
-<footer class="footer bg-warning">
+<footer class="footer" style="background-color: #C0C0C0;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
@@ -226,7 +226,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -235,11 +235,22 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
 </footer>
+
+
+<div class="w-75 mx-auto text-center font-weight-bold">
+	<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+	<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+	<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
+</div>
+
+
+
 
 
 </body>

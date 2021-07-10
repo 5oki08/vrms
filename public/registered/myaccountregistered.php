@@ -1,8 +1,8 @@
 <?php
 
 require '../../connection.php' ;
-require '../guests/login.php' ;
-// session_start();
+// require '../guests/login.php' ;
+session_start();
 
 if ( isset($_POST['activeuser']) ) {
 	if ( empty($_POST['activeuser']) ) {
@@ -13,7 +13,10 @@ if ( isset($_POST['activeuser']) ) {
 		$_POST['activeuser'] ;
 	}
 }
+ 
 
+
+ 
 
 
 $_SESSION['updateDprofile'] = "Profile Successfully Updated." ;
@@ -22,8 +25,8 @@ $_SESSION['FailupdateDprofile'] = "Failed Profile Update." ;
 $_SESSION['classTypeError'] = "danger" ;
 
 
-$registeredLocation = $registeredPhone = $registeredConfirmNewPassword = '' ;
-$registeredLocationErr = $registeredPhoneErr = $registeredConfirmNewPasswordErr = '' ;
+$registeredLocation = $registeredPhone = $profilePhoto = '' ;
+$registeredLocationErr = $registeredPhoneErr  = '' ;
 
 
 if ( isset($_POST['submitUpdateDetails']) ) {
@@ -38,14 +41,28 @@ if ( isset($_POST['submitUpdateDetails']) ) {
 	} else {
 		$registeredPhone = $_POST['registeredPhone'] ;
 	}
+	$id = $_POST['id'] ;
 
+
+	// $target = "profileImages/".basename($_FILES['inputProfilephoto']['name']) ;
+	// $profilePhoto = $_FILES['inputProfilephoto']['name'] ;
+
+	$targetdir = "profileImages/" ;
+	$targetpath = $targetdir.basename($_FILES['inputProfilephoto']['name']) ;
+	 
 
 	if ( empty($registeredLocationErr) && empty($registeredPhoneErr) ) {
-		$updateProfile = " UPDATE users SET userLocation='$registeredLocation' && userPhone='$registeredPhone' WHERE registeredSecondname='{$_SESSION['activeuser']}' " ;
-
+		$updateProfile = " UPDATE users SET userLocation='$registeredLocation' , userPhone='$registeredPhone' , profilePicture='{$_FILES['inputProfilephoto']['name']}' WHERE id='$id' " ; 
 		$resultUpdatePass = mysqli_query($conn,$updateProfile) ;
-
-		if ( $resultUpdatePass ) {
+ 
+		if ( $conn->query($resultUpdatePass) === TRUE ) {
+			// move_uploaded_file($_FILES['name']['tmp_name'], $target) ;
+			move_uploaded_file($_FILES['inputProfilephoto']['name'],$targetpath) ;
+			// if ( move_uploaded_file($_FILES['inputProfilephoto']['name'],$targetpath) ) {
+			// 	$_SESSION['updateDprofile'] ;
+			// $_SESSION['classTypeAccept'] ;
+			// header('location: myaccountregistered.php?ProfileUpdateSuccess') ;
+			// }
 			$_SESSION['updateDprofile'] ;
 			$_SESSION['classTypeAccept'] ;
 			header('location: myaccountregistered.php?ProfileUpdateSuccess') ;
@@ -98,12 +115,14 @@ li a { width: 100%; }
 .card-text { margin-top: 50px; }
 .form { padding: 20px; }
 .form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+.footer { padding: 30px; }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
 #fourwheelercardimg { width: 100%; }
-#fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }
+/*#fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }*/
+#fourwheelermoreinfo { width: 100%; }
+
 #fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
 
 
@@ -146,31 +165,22 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
+	      <a class="navbar-brand" href="#"><!-- <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"> --></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeregistered.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutregistered.php" class="text-dark">About Us</a> </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
+			<li> <a href="twowheelerregistered.php" class="text-dark">Two Wheeler Vehicles</a> </li>
+			<li> <a href="fourwheelerregistered.php" class="text-dark">Four Wheeler Vehicles</a> </li>
+			 <li class="dropdown btn-outline-primary">
+			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $_COOKIE['userloginLastName']  ; ?></a>
 			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheelerregistered.php">Ducatti</a> 
-			      <a class="dropdown-item h4 text-center" href="twowheelSregistered.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaharegistered.php">Yamaha</a>
+			      <a class="dropdown-item h4 text-center" href="mybookingregistered.php">My Booking</a>
+			      <a class="dropdown-item h4 text-center active" href="myaccountregistered.php">My Account</a>
+			      <a class="dropdown-item h4 text-center" href="logoutregistered.php">Log Out</a>
 			    </div>
-			 </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheelerregistered.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishiregistered.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeepregistered.php">Jeep</a>
-			    </div>
-			 </li>
-			 <li> <a href="mybookingregistered.php" class="text-dark">My Booking</a> </li>
-			 <li class="active"> <a href="myaccountregistered.php" class="text-dark bg-light font-weight-bold"> My Account</a> </li>
-			 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li> 
+			 </li>  
 	      </ul>
 	    </div> 
 	  </div>
@@ -220,72 +230,128 @@ li a { width: 100%; }
 
 			</div>
 			<div class="col-md" >
+				<?php
+
+								$fetchuserdata = "SELECT * FROM users WHERE sName='{$_COOKIE['userloginLastName']}' ";
+								$fetchuserdataResults = $conn->query($fetchuserdata);
+
+								if ($fetchuserdataResults->num_rows > 0) {
+									 while($rowFetchuserdetails = $fetchuserdataResults->fetch_array()) {
+								
+							?> 
 				<div class="container">
 					<div class="jumbotron" id="picturecontainer">
-						<img src="../../images/myaccountimagex.png">
+						 <img src="profileImages/<?=$rowFetch['profilePicture']?>" class="mx-auto" id="fourwheelermoreinfo">
 					</div>
 					<div class="container-fluid">
 
 						<form class="form" action="myaccountregistered.php" method="post" enctype="multipart/form-data">
-							<?php
-								$fetchuserdata = "SELECT * FROM users WHERE sName='{$_SESSION['activeuser']}' ";
-								$fetchuserdataResults = $conn->query($fetchuserdata);
+							<div class="form-group" hidden>
+								<input type="number" name="id" id="id" value="<?php echo $rowFetchuserdetails['id'] ; ?>" class="form-control form-control-lg">
+							</div>	
 
-								if ($fetchuserdataResults->num_rows > 0) {
-									 while($rowFetchuserdetails = $fetchuserdataResults->fetch_assoc()) {
+							<div class="form-group">
+								<?php if ( isset($_GET['edit']) ) :  ?>
+									<label for="inputProfilephoto">Select profile image</label>
+									<input type="file" name="inputProfilephoto" id="inputProfilephoto" class="form-control form-control-lg">
+								<?php else: ?>
+									<label for="inputProfilephoto" hidden>Select profile image</label>
+									<input type="file" name="inputProfilephoto" id="inputProfilephoto" class="form-control form-control-lg" hidden>
+								<?php endif ; ?>
+							</div>	
+
 								
-							?>
-
-							<div class="form-group">
-								<label for="inputProfilephoto">Select profile image</label>
-								<input type="file" name="inputProfilephoto" id="inputProfilephoto" class="form-control form-control-lg">
-							</div>	
-
 							<div class="form-group">
 								<div class="row">
 									<div class="col-md">
-										<label for="registeredFirstname">First Name</label>
-										<input type="text" name="registeredFirstname" id="registeredFirstname" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['fName'] ; ?>" disabled>
+										<?php if ( isset($_GET['edit']) ) :  ?>
+											<label for="registeredFirstname">First Name</label>
+											<input type="text" name="registeredFirstname" id="registeredFirstname" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['fName'] ; ?>" disabled>
+										<?php else: ?>	
+											<label for="registeredFirstname">First Name</label>
+											<input type="text" name="registeredFirstname" id="registeredFirstname" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['fName'] ; ?>" disabled>
+										<?php endif ; ?>	
 									</div>
 									<div class="col-md">
-										<label for="registeredSecondname">Second Name</label>
+										<?php if ( isset($_GET['edit']) ) :  ?>
+											<label for="registeredSecondname">Second Name</label>
+											<input type="text" name="registeredSecondname" id="registeredSecondname" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['sName'] ; ?>" disabled>
+										<?php else: ?>	
+											<label for="registeredSecondname">Second Name</label>
 										<input type="text" name="registeredSecondname" id="registeredSecondname" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['sName'] ; ?>" disabled>
+										<?php endif ; ?>	
 									</div>
 								</div>
-							</div>	
+							</div>
 
+							
 							<div class="form-group">
-								<label for="registeredLocation">User Location</label>
-								<input type="text" name="registeredLocation" id="registeredLocation" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userLocation'] ; ?>" disabled>
-								<!-- <span id="submiterrormsg"> <?php echo $registeredLocationErr ; ?> </span> -->
+								<?php if ( isset($_GET['edit']) ) :  ?>
+									<label for="registeredLocation">User Location</label>
+									<input type="text" name="registeredLocation" id="registeredLocation" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userLocation'] ; ?>">
+								<?php else: ?>	
+									<label for="registeredLocation">User Location</label>
+									<input type="text" name="registeredLocation" id="registeredLocation" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userLocation'] ; ?>" disabled>
+								<?php endif ; ?>
 							</div>		
 
+							
 							<div class="form-group">
-								<label for="registeredGender">Gender</label>
-								<input type="text" name="registeredGender" id="registeredGender" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userGender'] ; ?>" disabled>
+								<?php if ( isset($_GET['edit']) ) :  ?>
+									<label for="registeredGender">Gender</label>
+									<input type="text" name="registeredGender" id="registeredGender" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userGender'] ; ?>" disabled>
+								<?php else: ?>	
+									<label for="registeredGender">Gender</label>
+									<input type="text" name="registeredGender" id="registeredGender" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userGender'] ; ?>" disabled>
+								<?php endif ; ?>
 							</div>	
 
+							
 							<div class="form-group">
-								<label for="registeredPhone">Phone Number</label>
-								<input type="phone" name="registeredPhone" id="registeredPhone" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userPhone'] ; ?>" disabled>
-								<!-- <span id="submiterrormsg"> <?php echo $registeredPhoneErr ; ?> </span> -->
+								<?php if ( isset($_GET['edit']) ) :  ?>
+									<label for="registeredPhone">Phone Number</label>
+									<input type="phone" name="registeredPhone" id="registeredPhone" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userPhone'] ; ?>">
+								<?php else: ?>
+									<label for="registeredPhone">Phone Number</label>
+									<input type="phone" name="registeredPhone" id="registeredPhone" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userPhone'] ; ?>" disabled>	
+								<?php endif ; ?>
+							</div>
+
+							
+							<div class="form-group">
+								<?php if ( isset($_GET['edit']) ) :  ?>
+									<label for="registeredcurrentPassword">Current Password</label>
+									<input type="password" name="registeredcurrentPassword" id="registeredPassword" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userPassword'] ; ?>" disabled>
+								<?php else: ?>
+									<label for="registeredcurrentPassword">Current Password</label>
+									<input type="password" name="registeredcurrentPassword" id="registeredPassword" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userPassword'] ; ?>" disabled>	
+								<?php endif ; ?>
 							</div>	
 
+							<br/>							
 							<div class="form-group">
-								<label for="registeredcurrentPassword">Current Password</label>
-								<input type="password" name="registeredcurrentPassword" id="registeredPassword" class="form-control form-control-lg" value="<?php echo $rowFetchuserdetails['userPassword'] ; ?>" disabled>
-							</div>		
-
-							<!-- <div class="form-group">
+								<?php
+									if ( isset($_GET['edit']) ) : 
+								?>
 								<div class="row">
 									<div class="col-md">
-										<input type="submit" name="submitUpdateDetails" id="submitUpdateDetails" class="form-control btn btn-outline-success">
+										<a href="myaccountregistered.php?edit=<?php echo $rowFetchuserdetails['id'];?>" class="btn btn-lg btn-warning text-light font-weight-bold w-50" hidden="">Edit</a>
 									</div>
 									<div class="col-md">
-										<input type="reset" name="resetupdateDetails" id="resetupdateDetails" class="form-control" > 
+										<input type="submit" name="submitUpdateDetails" id="submitUpdateDetails" class="form-control btn btn-lg btn-outline-success w-50"> 
 									</div>
 								</div>
-							</div> -->
+								<?php else: ?>
+								<div class="row">
+									<div class="col-md">
+										<a href="myaccountregistered.php?edit=<?php echo $rowFetchuserdetails['id'];?>" class="btn btn-lg btn-outline-warning w-50">Edit</a>
+									</div>
+									<div class="col-md">
+										<input type="submit" name="submitUpdateDetails" id="submitUpdateDetails" class="form-control btn btn-lg btn-outline-success w-50" hidden=""> 
+									</div>
+								</div>	
+								<?php endif ; ?>
+							</div>
 							<?php  }
 					} ?>
 						</form>
@@ -311,14 +377,14 @@ li a { width: 100%; }
 
 <br/><br/> 
 
-<footer class="footer bg-warning">
+<footer class="footer" style="background-color:#C0C0C0;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md text-center" id="footerSec1">
 				<p style="text-decoration:underline;">Quick Links</p>
-				<a href="homeregistered.php" class="footer-links">Home</a><br/>
-				<a href="aboutregistered.php" class="footer-links">About Us</a><br/>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
 				<a href="#" class="footer-links">Privacy Policy</a>
 			</div>
 			<div class="col-md text-center" id="footerSec2">
@@ -328,7 +394,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -337,11 +403,19 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
-</footer> 
+</footer>
+
+
+<div class="w-75 mx-auto text-center font-weight-bold">
+	<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+	<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+	<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
+</div>
 
 
 

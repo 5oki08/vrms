@@ -1,27 +1,27 @@
 <?php
 
 require '../../connection.php' ;
-require '../guests/login.php' ;
-
-// require 'activeusersession.php' ; 
- 
- // define("activeuser" , $_SESSION['activeuser']);
-
-// session_start() ;
-
-if ( isset($_POST['activeuser']) ) {
-	if ( empty($_SESSION['activeuser']) ) {
-		$_SESSION['noactiveaccount'] ;
-		$_SESSION['classTypeError'] ;
-		header('location: ../guests/homeguests.php?logIn') ;
-	} else {
-		$_SESSION['activeuser'] ;
-	} 
-} 
+// require '../guests/login.php' ;
+session_start() ; 
 
 
+// if ( isset($_POST['activeuser']) ) {
+// 	if ( empty($_SESSION['activeuser']) ) {
+// 		$_SESSION['noactiveaccount'] ;
+// 		$_SESSION['classTypeError'] ;
+// 		header('location: ../guests/homeguests.php?logIn') ;
+// 	} else {
+// 		$_SESSION['activeuser'] ;
+// 	} 
+// } 
 
-?>
+
+$fetch = $conn->query( " SELECT snameregistered,status FROM selecteddrive WHERE snameregistered='{$_COOKIE['userloginLastName']}' " );
+$fetchroww = $fetch->fetch_array() ;
+
+
+
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +56,7 @@ li a { width: 100%; }
 .card-text { margin-top: 50px; }
 .form { padding: 20px; }
 .form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+.footer { padding: 30px;}
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
@@ -64,8 +64,9 @@ li a { width: 100%; }
 #fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }
 #fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
 
-
-
+#sup1 { font-size:15px; }
+#sup2 { font-size:15px; }
+#sup3 { font-size:15px; }
 
 @media only screen and (max-width: 600px) {
   
@@ -86,7 +87,7 @@ li a { width: 100%; }
 
 </head>
 <body>
-
+ 
 
 <header id="mainheader1" class="">
 	<ul id="heading1">
@@ -110,25 +111,16 @@ li a { width: 100%; }
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeregistered.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutregistered.php" class="text-dark">About Us</a> </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
+			<li> <a href="twowheelerregistered.php" class="text-dark">Two Wheeler Vehicles</a> </li>
+			<li> <a href="fourwheelerregistered.php" class="text-dark">Four Wheeler Vehicles</a> </li>
+			 <li class="dropdown btn-outline-primary">
+			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $_COOKIE['userloginLastName']  ; ?> </a>
 			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheelerregistered.php">Ducatti</a> 
-			      <a class="dropdown-item h4 text-center" href="twowheelSregistered.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaharegistered.php">Yamaha</a>
+			      <a class="dropdown-item h4 text-center active" href="mybookingregistered.php">My Booking  </a>
+			      <a class="dropdown-item h4 text-center" href="myaccountregistered.php">My Account</a>
+			      <a class="dropdown-item h4 text-center" href="logoutregistered.php">Log Out</a>
 			    </div>
-			 </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheelerregistered.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishiregistered.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeepregistered.php">Jeep</a>
-			    </div>
-			 </li> 
-			 <li class="active"> <a href="mybookingregistered.php" class="text-dark bg-light font-weight-bold">My Booking</a> </li>
-			 <li> <a href="myaccountregistered.php" class="text-dark"> My Account</a> </li>
-			 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li>
+			 </li>  
 	      </ul>
 	    </div>
 	  </div>
@@ -138,92 +130,151 @@ li a { width: 100%; }
 
 <br/>
 
+<div class="container w-75 mx-auto ">
+	<p class="badge badge-success border border-radius" style="padding:10px; font-size:15px;">Approved : <?php if ( $fetchroww['status'] ) {
+	$countRecords = " SELECT COUNT(status) AS TotalApprovedChanges FROM selecteddrive WHERE status='approved' && snameregistered='{$_COOKIE['userloginLastName']}' " ;
+	$countRecordsResult = mysqli_query($conn,$countRecords) ;
+	$dataF = $countRecordsResult->fetch_assoc();
+	echo $dataF['TotalApprovedChanges'];
+} ?> </p>
+	<span class="badge badge-danger border border-radius" style="padding:10px; font-size:15px;">Denied : <?php if ( $fetchroww['status'] ) {
+	$countRecords = " SELECT COUNT(status) AS TotalDeniedChanges FROM selecteddrive WHERE status='denied' && snameregistered='{$_COOKIE['userloginLastName']}' " ;
+	$countRecordsResult = mysqli_query($conn,$countRecords) ;
+	$dataF = $countRecordsResult->fetch_assoc();
+	echo $dataF['TotalDeniedChanges'];
+} ?>  </span>
+	<span class="badge border border-radius" style="padding:10px; font-size:15px;">Waiting Approval : <?php if ( $fetchroww['status'] ) {
+	$countRecords = " SELECT COUNT(status) AS TotalWaitingChanges FROM selecteddrive WHERE status='WaitingApproval' && snameregistered='{$_COOKIE['userloginLastName']}' " ;
+	$countRecordsResult = mysqli_query($conn,$countRecords) ;
+	$dataF = $countRecordsResult->fetch_assoc();
+	echo $dataF['TotalWaitingChanges'];
+} ?> </span>
+</div>
+
+<br/>
+
 <div class="jumbotron">
 	<div class="row">
 		
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<form class="form" action="mybookingregistered.php" method="post">
-						<input type="text" name="searchSecondNameRecord" id="searchSecondNameRecord" class="form-control form-control-lg" placeholder="Input Second Name ...">
-						<br/>
-						<input type="submit" name="searchSecondNamebtn" id="searchSecondNamebtn" class="btn btn-lg btn-outline-primary" value="Search Record"> 
-					</form>
-				</div>
-				<div class="col-md-3"></div>
-			</div>
-			
+		
 			<table class="table table-hovered">
-				<tr>
-					<th> Second Name Registered </th>
-					<th> Selected Drive </th>
-					<th> Days Hired </th>
-					<th> Payment Mode </th>
-					<th> Status </th>
-				</tr>
-
-			<?php
-
-				$searchSecondNameRecord = '' ;
-
-				if ( isset($_POST['searchSecondNamebtn']) ) {
-					if ( !empty($_POST['searchSecondNameRecord']) ) {
-						$searchSecondNameRecord = $_POST['searchSecondNameRecord'] ;
-					}
-				}
-
-				$fetchBookingsql = "SELECT * FROM selecteddrive WHERE snameregistered='$searchSecondNameRecord' ";
-				$resultBooking = $conn->query($fetchBookingsql);
-
-				if ($resultBooking->num_rows > 0) {
-				    while($rowFetch = $resultBooking->fetch_assoc()) {
-			?>
-				<tr>
-					<td> <?php echo $rowFetch["snameregistered"]; ?> </td> 
-					<td> <?php echo $rowFetch["selectedDrivetwoWheel"] ; ?> </td>
-					<td> <?php echo $rowFetch["numberOfdaysHired"] ; ?> </td>
-					<td> <?php echo $rowFetch["paymentMode"] ; ?> </td>
-				</tr>
-				<?php  }
-					} else {
-					    echo "Enter Second Name to Retrieve Booking Record .";
-					} ?>
-			</table> 
-
-			<!-- <table class="table table-hovered">
 				
 				<tr>
 					<th> Second Name Registered </th>
 					<th> Selected Drive </th>
 					<th> Days Hired </th>
-					<th> Payment Mode </th>
+					<th> Date </th>
 					<th> Status </th>
 				</tr>
 
 				<?php
 
-				$fetchBookingsql = "SELECT * FROM selecteddrive WHERE snameregistered='{$_SESSION['activeuser']}' ";
+				$fetchBookingsql = "SELECT * FROM selecteddrive WHERE snameregistered='{$_COOKIE['userloginLastName']}' ORDER BY reg_date DESC  "; 
 				$resultBooking = $conn->query($fetchBookingsql);
 
 				if ($resultBooking->num_rows > 0) {
-				    while($rowFetch = $resultBooking->fetch_assoc()) {
+				    while($rowFetch = $resultBooking->fetch_assoc()) { 
 
 				?>
 
-				<tr>
-					<td> <?php echo $rowFetch["snameregistered"]; ?> </td> 
-					<td> <?php echo $rowFetch["selectedDrivetwoWheel"] ; ?> </td>
-					<td> <?php echo $rowFetch["numberOfdaysHired"] ; ?> </td>
-					<td> <?php echo $rowFetch["paymentMode"] ; ?> </td>
+				<tr >
+					<td > <?php echo $rowFetch['snameregistered'] ?> </td> 
+					<td > <?php echo $rowFetch["selectedDriveWheel"] ; ?> </td>
+					<td > <?php echo $rowFetch["numberOfdaysHired"] ; ?> </td>
+					<td > <?php echo $rowFetch["reg_date"] ; ?> </td>
+					<!-- <td class="btn btn-lg border border-dark "> <?php echo $rowFetch["status"] ; ?> </td>  -->
+					<?php if ( $rowFetch["status"]=='approved' ) { ?>
+						<td id="bookingStatus" data-toggle="modal" data-target="#bookingStatus" type="button" class="btn btn-lg bg-success "> <?php echo $rowFetch["status"] ; ?> </td>
+					<?php } elseif ( $rowFetch["status"]=='denied' ) { ?>
+						<td id="bookingStatus" data-toggle="modal" data-target="#bookingStatus" type="button" class="btn btn-lg bg-danger " > <?php echo $rowFetch["status"] ; ?> </td>
+					<?php } else { ?>
+						<td id="bookingStatus" data-toggle="modal" data-target="#bookingStatus" type="button" class="btn btn-lg border border-dark " > <?php echo $rowFetch["status"] ; ?> </td>
+					<?php } ?> 
 				</tr>
+				
 
-				<?php  }
-					} ?>
 
-			</table> -->
+
+
+<div class="row">
+			<div class="col"></div>
+			<div class="col">
+				<div class="container-fluid">
+					  
+					  <div class="modal" id="bookingStatus">
+					    <div class="modal-dialog">
+					      <div class="modal-content">
+
+					        <div class="modal-header">
+					        	<h5>Hire Details</h5>
+					          	<button type="button" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+
+					        <div class="modal-body">
+					          
+					        	<form class="form" action="" method="">
+					        		<div class="form-group">
+
+										<label for="snameregistered">Second Name</label>
+										<input type="text" name="snameregistered" class="form-control form-control-lg" id="snameregistered" value="<?php echo $rowFetch["snameregistered"] ; ?>"  disabled> 
+									</div>  
+
+					        		<div class="form-group" >
+					        			<label for="selectedDriveWheel">Selected Drive</label>
+					        			<input type="text" name="selectedDriveWheel" id="selectedDriveWheel" class="form-control form-control-lg" value="<?php echo $rowFetch["selectedDriveWheel"] ; ?>" disabled>
+					        		</div>
+
+					        		<div class="form-group">
+					        			<label for="numberOfdaysHired">Number of Days For Hire</label>
+					        			<input type="number" name="numberOfdaysHired" id="numberOfdaysHired" class="form-control form-control-lg" value="<?php echo $rowFetch["numberOfdaysHired"] ; ?>" disabled>
+					        		</div>
+
+					        		<div class="form-group">
+					        			<label for="paymentMode">Mode of Payment</label>
+						        		<input type="text" name="mpesaCodeInput" id="mpesaCodeInput" class="form-control form-control-lg" value="<?php echo $rowFetch["paymentMode"] ; ?>" disabled>
+					        		</div> 
+
+					        		<div class="form-group">
+					        			<label for="status">Status</label>
+						        		<input type="text" name="status" id="status" class="form-control form-control-lg" value="<?php echo $rowFetch["status"] ; ?>" disabled>
+						        		<!-- <?php if ( $rowFetch["status"]=='approved' ) { ?>
+											<input type="text" name="status" id="status" class="form-control form-control-lg btn btn-lg bg-success" value="<?php echo $rowFetch["status"] ; ?>" disabled>
+										<?php } elseif ( $rowFetch["status"]=='denied' ) { ?>
+											<input type="text" name="status" id="status" class="form-control form-control-lg btn btn-lg bg-danger" value="<?php echo $rowFetch["status"] ; ?>" disabled>
+										<?php } else { ?>
+											<input type="text" name="status" id="status" class="form-control form-control-lg btn btn-lg border border-dark " value="<?php echo $rowFetch["status"] ; ?>" disabled>
+										<?php } ?>  -->
+					        		</div> 
+
+					        		<div class="form-group">
+					        			<button type="button" class="border border-0" data-dismiss="modal" >
+						          			<input type="reset" name="reset" class="form-control form-control-lg btn btn-lg btn-outline-danger" id="reset" value="Close">
+						          		</button>
+					        		</div> 	
+
+					        	</form>
+								
+					        </div>
+
+					        <div class="modal-footer"></div>
+
+					      </div>
+					    </div>
+					  </div>
+					  
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+
+
+<?php  }
+					} else { echo "No Bookings Yet."; } ?> 
+
+			</table> 
 
 		</div>
 		<div class="col-md-1"></div>
@@ -234,16 +285,19 @@ li a { width: 100%; }
 
 
 
+
+
+
 <br/><br/> 
 
-<footer class="footer bg-warning">
+<footer class="footer" style="background-color:#C0C0C0;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md text-center" id="footerSec1">
 				<p style="text-decoration:underline;">Quick Links</p>
-				<a href="homeregistered.php" class="footer-links">Home</a><br/>
-				<a href="aboutregistered.php" class="footer-links">About Us</a><br/>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
 				<a href="#" class="footer-links">Privacy Policy</a>
 			</div>
 			<div class="col-md text-center" id="footerSec2">
@@ -253,7 +307,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -262,13 +316,19 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
-</footer> 
+</footer>
 
 
+<div class="w-75 mx-auto text-center font-weight-bold">
+	<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+	<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+	<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
+</div>
 
 </body>
 </html>

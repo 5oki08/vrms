@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+require '../../connection.php' ;
 
 if ( isset($_POST['activeuser']) ) {
 	if ( empty($_POST['activeuser']) ) {
@@ -42,23 +43,24 @@ body { font-size: 14px; }
 .heading1subj { display: inline; margin-left:7px; margin-right:7px; }
 #heading2 { padding: 10px;}
 .nav-link {}
-.active { text-transform: uppercase; text-decoration: underline; font-weight: 600;}
+.active { text-transform: uppercase; text-decoration: underline; font-weight: 600; border-radius: 15px 5px 15px 0px; }
 li a { width: 100%; }
 .carousel-inner img { width: 1100; height: 470; }
 #asidehome { padding: 10px; height: 100%; }
 .card-text { margin-top: 50px; }
 .form { padding: 20px; }
 .form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+
+.footer { padding: 30px;  }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
-#fourwheelercardimg { width: 100%; }
-#fourwheelermoreinfo { width: 50%; padding: 10px; margin-left: 25%; }
-#fourwheelnavigation { border-right: 2px solid #000; padding: 20px; }
+/*#fourwheelercardimg { width: 100%; }*/
+#fourwheelermoreinfo { width: 100%; }
+#fourwheelnavigation { border-right: 2px solid #000; }
 
-
-
+#fourwheeltitles { padding:10px; }
+ 
 
 @media only screen and (max-width: 600px) {
   
@@ -95,24 +97,22 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
+	      <a class="navbar-brand" href="#"><!-- <img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"> --></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeregistered.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutregistered.php" class="text-dark">About Us</a> </li>
-			 <li class="dropdown">
-			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheelerregistered.php">Ducatti</a> 
-			      <a class="dropdown-item h4 text-center" href="twowheelSregistered.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaharegistered.php">Yamaha</a>
-			    </div>
-			 </li>
+			 <li> <a href="twowheelerregistered.php" class="text-dark">Two Wheeler Vehicles</a> </li>
 			 <li class="active"> <a href="fourwheelerregistered.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
-			 <li> <a href="mybookingregistered.php" class="text-dark">My Booking</a> </li>
-			 <li> <a href="myaccountregistered.php" class="text-dark"> My Account</a> </li>
-			 <li> <a href="logoutregistered.php" class="text-dark">Log Out</a> </li>
+			 <li class="dropdown btn-outline-primary">
+			 	<a href="#" class="text-dark dropdown-toggle" data-toggle="dropdown">Welcome, <?php echo $_COOKIE['userloginLastName']  ; ?></a>
+			 	<div class="dropdown-menu">
+			      <a class="dropdown-item h4 text-center" href="mybookingregistered.php">My Booking</a>
+			      <a class="dropdown-item h4 text-center" href="myaccountregistered.php">My Account</a>
+			      <a class="dropdown-item h4 text-center" href="logoutregistered.php">Log Out</a>
+			    </div>
+			 </li>  
 	      </ul>
 	    </div>
 	  </div>
@@ -126,8 +126,8 @@ li a { width: 100%; }
 	 
 	<div class="col-md-2" id="fourwheelnavigation">
 		<div class="container-fluid">
-			<nav class="navbar navbar-nav">
-				<li class="" id=""><a href="fourwheelerregistered.php" class="nav-link text-center text-dark active" id="">Aston Martin</a></li>
+			<nav class="navbar navbar-nav"> 
+				<li class="" id=""><a href="fourwheelerregistered.php" class="nav-link text-center text-dark active btn btn-lg border border-info" id="fourwheeltitles">Aston Martin</a></li>
 				<li class="" id=""><a href="fourwheelMitsubishiregistered.php" class="nav-link text-center text-dark">Mitsubishi</a></li>
 				<li class="" id=""><a href="fourwheelJeepregistered.php" class="nav-link text-center text-dark">Jeep</a></li>
 			</nav>
@@ -136,51 +136,50 @@ li a { width: 100%; }
 
 	<div class="col-md-8">
 		
-		<div class="card-deck">
+		<div class="card-deck"> 
+			<?php
+			$id = 0 ;
+				$adminFetchRecords = "SELECT * FROM fourwheel WHERE brand='Aston Martin' " ;
+				$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
 
-			
-			<div class="card">
-				<img src="../../images/fourwheeler/vantageA.jpg" id="fourwheelercardimg" class="card-img-top">
+				if ($adminFetchRecordsResult->num_rows > 0) {
+			   	 while($rowFetch = $adminFetchRecordsResult->fetch_assoc()) {
+			   	 	$id++ ;
+			   	 	
+			?>
+			<div class="card"> 
+				<!-- <img src="../../images/adminFourwheel/evo6.jpg" id="fourwheelercardimg" class="card-img-top w-25"> php to insert image --> 
 				<div class="card-body" style="height: 100%;">
 					<p class="text-center">
-						<p class="text-center font-weight-bold h3">Aston Martin Vantage</p>
+						<p hidden> <?php echo $rowFetch['id'] ; ?> </p>
+						<p class="text-center font-weight-bold h3"> <?php echo $rowFetch['FourwheelName'] ; ?> </p>
 						<hr style="width: 50%;" />
-						<p>The Aston Martin Vantage is a two-seater sports car manufactured by British luxury car manufacturer Aston Martin as a successor to the previous outgoing model which had been in production for 12 years.</p>
 					</p> <br/>
-					<a href="fourwheelVantageregistered.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
-				</div>
+					  <?php switch($id): 
+						case 1: ?>
+						    <div> 
+							    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+							    <a href="fourwheelVantageregistered.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:10px;">More Info</a>
+						    </div> 
+						<?php break; ?>
+						<?php case 2: ?>
+						    <div>
+							    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+							    <a href="fourwheelDB5registered.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto"  style="margin-top:10px;">More Info</a>
+						    </div> 
+						<?php break; ?>
+						<?php case 3: ?>
+						    <div>
+							    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+							    <a href="fourwheelDBxregistered.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50"  style="margin-top:10px;">More Info</a> 
+						    </div> 
+						<?php break; ?>
+						<?php endswitch; ?>
+				</div> 
 			</div>
-
-			<br/>
-
-			<div class="card">
-				<img src="../../images/fourwheeler/db5B.jpg" id="fourwheelercardimg" class="card-img-top">
-				<small>Aston Martin DB5, chassis DB5/2008/R /Source: RM Sothebys</small>
-				<div class="card-body" style="height: 100%;">
-					<p class="text-center">
-						<p class="text-center font-weight-bold h3">Aston Martin DB5</p>
-						<hr style="width: 50%;" />
-						<p>The engine was enlarged from the 3.6 liter engine in the DB4 Series V to a more modern 4.0 liter all-aluminum straight-six engine that produced 282 hp and 288 foot pounds of torque and gave the car a top speed of about 145 mph (233 km/h).</p>
-					</p> <br/>
-					<a href="fourwheelDB5registered.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
-				</div>
-			</div>
-
-			<br/>
-
-			<div class="card">
-				<img src="../../images/fourwheeler/dbxB.jpg" id="fourwheelercardimg" class="card-img-top">
-				<div class="card-body" style="height: 100%;">
-					<p class="text-center">
-						<p class="text-center font-weight-bold h3">Aston Martin DBX</p>
-						<hr style="width: 50%;" />
-						<p>The Aston Martin DBX delivers all the practicality and refinement you’d expect from a luxury SUV, with a driver-focused approach that sets it apart from its closest rivals. The British sports car manufacturer has gone with what it knows best - applying its technical wizardry to produce the finest-handling SUV available.</p>
-					</p> <br/>
-					<a href="fourwheelDBxregistered.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold" id="fourwheelermoreinfo">More Info</a>
-				</div>
-			</div>
-
-		</div>
+			<?php  }
+			} ?>
+		</div> 
 
 	</div>
 
@@ -192,14 +191,14 @@ li a { width: 100%; }
 
 <br/><br/><br/>
 
-<footer class="footer bg-warning">
+<footer class="footer" style="background-color:#C0C0C0;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md text-center" id="footerSec1">
 				<p style="text-decoration:underline;">Quick Links</p>
-				<a href="homeregistered.php" class="footer-links">Home</a><br/>
-				<a href="aboutregistered.php" class="footer-links">About Us</a><br/>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
 				<a href="#" class="footer-links">Privacy Policy</a>
 			</div>
 			<div class="col-md text-center" id="footerSec2">
@@ -209,7 +208,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -218,11 +217,19 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
-</footer> 
+</footer>
+
+
+<div class="w-75 mx-auto text-center font-weight-bold">
+	<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+	<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+	<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
+</div> 
 
 
 

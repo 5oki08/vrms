@@ -24,35 +24,7 @@ require '../../connection.php' ;
 <link rel="stylesheet" type="text/css" href="../../../css/styleresponsive.css">	
 
 <style type="text/css">
-	
-	/*#adminnav {
-		background-color: #ffe135;
-	}
-	#adminnav {
-		padding-top: 10px;
-		padding-bottom: 10px;
-		background-color: #ffe135;
-	}
-	.nav-linkAdmin {
-		color: #000;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-	.nav-linkAdmin:hover {
-		color: #000;
-	}
-	#activeadmin {
-		text-transform: uppercase;
-		font-weight: 700;
-		text-decoration: underline;
-	}
-	.nav-itemadmin:hover {
-		text-transform: uppercase;
-		text-decoration: underline;
-	}
-	.dropdown-itemAdmin {
-		padding: 5px;
-	}*/
+
 
 
 
@@ -69,7 +41,7 @@ li a { width: 100%; }
 .card-text { margin-top: 50px; }
 .form { padding: 20px; }
 .form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+.footer { padding: 30px;  }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
@@ -121,7 +93,7 @@ li a { width: 100%; }
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2 bg-light text-left" style="margin-left:none;">
+		<div class="col-md-3" style="margin-left:none;">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -132,13 +104,18 @@ li a { width: 100%; }
 				        <span class="icon-bar"></span>
 				      </button>
 				    </div>
-				    <div class="collapse navbar-collapse" id="myNavbar">
+				    <div class="collapse navbar-collapse float-left" id="myNavbar">
 				      <ul class="nav navbar-nav text-nowrap">
-				        <li class="active"> <a href="dashboardadmin.php" class="text-dark bg-light font-weight-bold">Dashboard</a> </li>
+				        <li class="active"> <a href="dashboardadmin.php" class="text-dark btn btn-lg border border-dark bg-light font-weight-bold">Dashboard</a> </li>
 				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
 						  <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li> 
 						  <li> <a href="fourwheeleradmin.php" class="text-dark">Four Wheeler Vehicles</a> </li>
-						  <li> <a href="#" class="text-dark">Bookings</a> </li>
+						  <li> <a href="fourwheelerbookingadmin.php" class="text-dark">Bookings <sup class="badge badge-secondary"><?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?></sup></a> </li>
 						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li> 
 				      </ul>
 				    </div>
@@ -147,7 +124,7 @@ li a { width: 100%; }
 
 			</header>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-9">
 
 			<div class="card-deck bg-light">
 				<div class="card">
@@ -178,6 +155,13 @@ li a { width: 100%; }
 					</div>
 				</div>
 
+				<div class="card">
+					<div class="card-body">
+						<p class="text-center">null</p>
+						<p class="card-text text-center">Registered Two Wheel Vehicles</p>
+					</div>
+				</div>
+
 				<div class="card bg-warning">
 					<div class="card-body">
 						<p class="text-center">
@@ -187,16 +171,53 @@ li a { width: 100%; }
 								$dataF = $countRecordsResult->fetch_assoc();
 								echo $dataF['TotalregdBookings'];
 							?>
+						</p>	
 						<p class="card-text text-center">Total Bookings</p>
 					</div>
 				</div>
 
-				<div class="card bg-info">
+				<div class="card bg-success text-light">
 					<div class="card-body">
-						<p class="text-center">null</p>
+						<p class="text-center">
+							<?php
+								$countRecords = " SELECT COUNT(status) AS TotalApprovedBookings FROM selecteddrive WHERE status='approved' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalApprovedBookings']; 
+							?>
+						</p>
 						<p class="card-text text-center">Approved Bookings</p>
 					</div>
 				</div>
+
+				<div class="card bg-danger text-light">
+					<div class="card-body">
+						<p class="text-center">
+							<?php
+								$countRecords = " SELECT COUNT(status) AS TotalDeniedBookings FROM selecteddrive WHERE status='denied' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalDeniedBookings']; 
+							?>
+						</p>
+						<p class="card-text text-center">Denied Bookings</p>
+					</div>
+				</div>
+
+				<div class="card bg-dark text-light font-weight-bolder">
+					<div class="card-body">
+						<p class="text-center">
+							<?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?>
+						</p>
+						<p class="card-text text-center">Undecided Bookings</p>
+					</div>
+				</div>
+
 			</div>
 
 			<p class="card-text">The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog.</p>
@@ -206,34 +227,6 @@ li a { width: 100%; }
 				<img src="../../images/vrmslogo.png" style="" class="mx-auto modal-dialog-centered">
 			</div>
 			<br/>
-			<!-- <div class="container">
-				<table class="table table-hovered">
-				
-					<tr>
-						<td>Second Name</td>
-						<td>Selected Vehicle</td>
-						<td>Number Of days</td>
-						<td>Payment Mode</td>
-					</tr>
-			<?php
-									$adminFetchHire = "SELECT * FROM selecteddrive" ;
-									$adminFetchHireResult = mysqli_query($conn,$adminFetchHire) ;
-
-									if ($adminFetchHireResult->num_rows > 0) {
-								   	 while($row = $adminFetchHireResult->fetch_assoc()) {
-								?>
-					<tr>
-						<td> <?php echo $row['snameregistered'] ; ?> </td>
-						<td> <?php echo $row['selectedDrivetwoWheel'] ; ?> </td>
-						<td> <?php echo $row['numberOfdaysHired'] ?> </td>
-						<td> <?php echo $row['paymentMode'] ?> </td>
-					</tr>
-			<?php  }
-										} else {
-										    echo "No bookings .";
-										} ?>
-				</table>	
-			</div> -->
 
 		</div>
 	</div>
@@ -241,133 +234,16 @@ li a { width: 100%; }
 
 
 
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
-
-
-
-
-<br/> <br/> <br/>
-
-<!-- <div class="col-md-6">
-			<kbd class="h2 text-light" style="padding: 10px; border-radius: 5px;">Aston Martin DBx</kbd><br/><br/>
-			<form class="form">
-				
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelcolor">Color</label>
-							<input type="text" name="modelcolor" id="modelcolor" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelYear">Model Year</label>
-							<input type="text" name="modelYear" id="modelYear" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelFuelType">Engine Capacity</label>
-							<input type="text" name="modelFuelType" id="modelFuelType" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelSittingCapacity">Sitting Capacity</label>
-							<input type="number" name="modelSittingCapacity" id="modelSittingCapacity" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelEngineCylinders">Engine Cylinders</label>
-							<input type="number" name="modelEngineCylinders" id="modelEngineCylinders" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelSteering">Steering Side</label>
-							<input type="text" name="modelSteering" id="modelSteering" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelDriveModes">Drive Modes</label>
-							<input type="number" name="modelDriveModes" id="modelDriveModes" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelTransmission">Transmission</label>
-							<input type="text" name="modelTransmission" id="modelTransmission" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelGearbox">Gearbox</label>
-							<input type="text" name="modelGearbox" id="modelGearbox" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelWheelDrive">Wheel Drive</label>
-							<input type="text" name="modelWheelDrive" id="modelWheelDrive" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelPowerSteering">Power Steering</label>
-							<input type="text" name="modelPowerSteering" id="modelPowerSteering" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelSpareWheel">Spare Wheel</label>
-							<input type="text" name="modelSpareWheel" id="modelSpareWheel" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md">
-							<label for="modelHorsepower">Horsepower</label>
-							<input type="number" name="modelHorsepower" id="modelHorsepower" class="form-control form-control-lg" value="" disabled="">
-						</div>
-						<div class="col-md">
-							<label for="modelHybrid">Hybrid</label>
-							<input type="text" name="modelHybrid" id="modelHybrid" class="form-control form-control-lg" value="" disabled="">
-						</div>
-					</div>
-				</div>
-				<br/>
-				<div class="form-group">
-					<label for="modelPrice">Price per day (KES) </label>
-					<input type="number" name="modelPrice" id="modelPrice" class="form-control form-control-lg" value="5555" disabled="">
-				</div>
-
-			</form>
-		</div>
-	</div>
-	<br/>
- -->
-
-<br/><br/><br/>	
-
-
-<br/><br/>  
-
-<footer class="footer bg-success rounded-left">
+<footer class="footer" style="background-color:#C0C0C0;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md text-center" id="footerSec1">
 				<p style="text-decoration:underline;">Quick Links</p>
-				<a href="#p" class="footer-links">Home</a><br/>
-				<a href="#" class="footer-links">About Us</a><br/>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
 				<a href="#" class="footer-links">Privacy Policy</a>
 			</div>
 			<div class="col-md text-center" id="footerSec2">
@@ -377,7 +253,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -386,11 +262,19 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
+	</div> <br/>
+	<div class="w-75 mx-auto text-center font-weight-bold bg-light" style="padding:10px;">
+		<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+		<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+		<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
 	</div>
-</footer> 
+</footer>
+
+
 
 
 

@@ -35,43 +35,68 @@ body {font-size:14px;}
 #mainheader1 {  padding: 5px; }
 #heading1 { letter-spacing: 1px; text-align: center; margin-top: 5px; list-style-type: none;}
 .heading1subj { display: inline; margin-left:7px; margin-right:7px; }
-#heading2 { padding: 10px;}
-.nav-link {}
+/*#heading2 { padding: 10px;}*/
+/*.nav-link {}*/
 .active { text-transform: uppercase; text-decoration: underline; font-weight: 600;}
-li a { width: 100%; }
+/*li a { width: 100%; }*/
 
-.carousel-inner img { width: 1100; height: 470; }
-.carousel-inner { margin: 0 auto; width: 80%; }
+/*.carousel-inner img { width: 1100; height: 470; }*/
+/*.carousel-inner { margin: 0 auto; width: 80%; }*/
+
+#homeguestsmid { background-color: #cecece; }
 
 #asidehome { padding: 10px; height: 100%; }
 .card-text { margin-top: 50px; }
+
+#carouselphoto2 { position:relative; left:175px; }
+#carouselphoto3 { position:absolute; left:680px; bottom:50px; }
+
+
 .form { padding: 20px; }
 .form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+/*#loginSubmit { padding: 10px; width: 100%; height: 100%; }*/
+#loginSubmit { margin-left: 50px; }
+#passwordnewaccount { padding: 5px; }
+
+
+
+/*#userloginphone { padding: 18px; width: 75%; margin: 0 auto; }
+#userloginLastName { padding: 18px; width: 75%; margin: 0 auto; }
+#userloginpassword { padding: 18px; width: 75%; margin: 0 auto; }*/
+
+
+
+.footer { padding: 30px; }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
-#loginSubmit { padding: 10px; width: 100%; height: 100%; }
 
-#userloginphone { padding: 18px; width: 75%; margin: 0 auto; }
-#userloginLastName { padding: 18px; width: 75%; margin: 0 auto; }
-#userloginpassword { padding: 18px; width: 75%; margin: 0 auto; }
+#socialmediaicons{ margin-left: 5px; margin-right: 5px; }
+
 
 
 @media only screen and (max-width: 600px) {
   
 .heading1subj { display: block; margin-top: 3px; margin-bottom: 3px; }
-.navbar-toggle { float: right; }
+/*.navbar-toggle { float: right; }*/
 
-.carousel-inner img { width: 400; height: 270; }
-.carousel-inner { margin: 0 auto; width: 100%; }
+/*.carousel-inner img { width: 400; height: 270; }*/
+/*.carousel-inner { margin: 0 auto; width: 100%; }*/
+
+#carouselphoto2 { width:100%; position: relative; right: 10px; }
+#carouselphoto3 { width:100%; position: relative; left: 30px; }
+
+
+#loginSubmit { margin-top: 10px; }
+
+
+/*#userloginphone { padding: 16px; width: 100%; }
+#userloginLastName { padding: 16px; width: 100%; }
+#userloginpassword { padding: 16px; width: 100%; }*/
+
 
 #footerSec1 { margin-bottom: 30px; }
 #footerSec2 { margin-bottom: 30px; }
 #footerSec3 {}
-
-#userloginphone { padding: 16px; width: 100%; }
-#userloginLastName { padding: 16px; width: 100%; }
-#userloginpassword { padding: 16px; width: 100%; }
 
 
 }
@@ -82,9 +107,9 @@ li a { width: 100%; }
 <body>
 
 
-<header id="mainheader1" class="">
+<header id="mainheader1" class="" >
 	<ul id="heading1">
-		<li class="heading1subj" >3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya </li>
+		<li class="heading1subj" ><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya </li>
 		<li class="heading1subj" > <img src="../../images/phonecall.png" alt="" width="20px" height="20px"> +254 700 000 000 </li>
 		<li class="heading1subj" > <img src="../../images/contacticons/email/gmailemail.png" class="img-fluid" alt="" width="20px" height="20px"> 614rollingstone@gmail.com </li>
 		<li class="heading1subj" > <a href="adminlogin.php">ADMIN login here</a> </li>
@@ -99,66 +124,33 @@ li a { width: 100%; }
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	     <a class="navbar-brand" href="#"><img src="../../images/vrmslogo.png" alt="Logo" width="80" height="80"></a>
+	      <a class="navbar-brand" href="#"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li class="active"> <a href="homeguests.php" class="text-dark bg-light font-weight-bold">Home</a> </li>
 	        <li> <a href="aboutguests.php" class="text-dark">About Us</a> </li>
-			 <li class="dropdown">
-			 	<a href="twowheeler.php" class="text-dark dropdown-toggle" data-toggle="dropdown">Two Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="twowheeler.php">Ducatti</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelS.php">Suzuki</a>
-			      <a class="dropdown-item h4 text-center" href="twowheelYamaha.php">Yamaha</a>
-			    </div>
-			 </li>
-			 <li class="dropdown">
-			 	<a href="fourwheeler.php" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheeler.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishi.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
-			    </div>
-			 </li>
+			<li> <a href="twowheeler.php" class="text-dark">Two Wheeler Vehicles**</a> </li>
+			<li> <a href="fourwheeler.php" class="text-dark">Four Wheeler Vehicles</a> </li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
+</header> 
 
-</header>
 
-
-<div id="vehicleSampling" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#vehicleSampling" data-slide-to="0" class="active"></li>
-    <li data-target="#vehicleSampling" data-slide-to="1"></li>
-    <li data-target="#vehicleSampling" data-slide-to="2"></li>
-  </ul>
-  
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../../images/vrmslogo.png" alt="Logo">
-    </div>
-    <div class="carousel-item">
-      <img src="../../images/twowheeler/twowheeler1.png" alt="Two Wheel Sample">
-    </div>
-    <div class="carousel-item">
-      <img src="../../images/fourwheeler/fielder2018.jpg" alt="Four Wheel Sample" >
-    </div>
-  </div>
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#vehicleSampling" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#vehicleSampling" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
+<div>
+	<div class="w-50" style=" ">
+		<img src="../../images/vrmslogo.png" alt="Logo" class="">
+	</div>
+	<div class="w-50" style="" id="carouselphoto2">
+		<img src="../../images/twowheeler/twowheeler1.png" alt="Two Wheel Sample" class="w-75">
+	</div>
+	<div class="w-50" style="" id="carouselphoto3">
+		<img src="../../images/fourwheeler/fielder2018.jpg" alt="Four Wheel Sample"  class="border border-dark w-75">
+	</div>
 </div>
+
 
 <br/><br/>
 
@@ -166,28 +158,38 @@ li a { width: 100%; }
 	<div class="row mx-auto justify-content-center">
 		<div class="col-md-6">
 			<article>
-				<aside id="asidehome" class="card text-center justify-content-center border border-0 card-light">
-					<div class="card-header bg-light">
-						<p class="text-center">The big brown fox</p>
+				<aside id="asidehome" class="card text-center justify-content-center border border-0">
+					<div class="card-header">
+						<p class="text-center font-weight-bold">The big brown fox</p>
 					</div>
 					<div class="card-body">
-						<p class="card-text text-center"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						<p class="text-center"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. </p>
-						<p class="card-text">Jumpred Over The</p>
+						consequat. <br/>
+						<!-- <p class="card-text">Jumpred Over The</p> -->
+						Jumpred Over The<br/>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</p>
 					</div>
-					<div class="card-footer bg-light">
-						<blockquote class="blockquote">
-							<p>Come let us reason</p>
-							<footer class="blockquote-footer">Culture, Joseph Hill</footer>
-						</blockquote>
+					<div class="card-footer">
+						<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
 					</div>
 				</aside>
 			</article>
 		</div>
 		<div class="col-md-6">
-			<div class="container-fluid">
+			<div class="container-fluid"> <br/>
 				<p class="alert alert-<?php
 					if (isset($_GET['credentialsReject'])) {
 							echo $_SESSION['classTypeError'] ;
@@ -229,7 +231,7 @@ li a { width: 100%; }
 							session_unset();
 							session_destroy();
 						}							
-				?> ">
+				?> border border-0 w-75 mx-auto">
 					<?php
 						if ( isset($_GET['credentialsReject']) ) {
 							if (isset($_SESSION['failCred'])) {
@@ -308,36 +310,36 @@ li a { width: 100%; }
 				<form class="form" method="post" action="login.php">
 					<div class="form-group">
 						<label for="userloginphone" class="control-label">Enter Phone Number</label>
-						<input type="phone" name="userloginphone" id="userloginphone" class="form-control" maxlength="10" minlength="10">
+						<input type="phone" name="userloginphone" id="userloginphone" class="form-control form-control-lg w-75 mx-auto" maxlength="10" minlength="10" value="<?php if(isset($_COOKIE["userloginphone"])) { echo $_COOKIE["userloginphone"]; } ?>">
 						<span> <?php echo $userloginphoneErr; ?> </span>
 					</div>
 					<div class="form-group">
 						<label for="userloginLastName" class="control-label">Enter Last Name</label>
-						<input type="text" name="userloginLastName" id="userloginLastName" class="form-control">
+						<input type="text" name="userloginLastName" id="userloginLastName" class="form-control form-control-lg w-75 mx-auto" value="<?php if(isset($_COOKIE["userloginLastName"])) { echo $_COOKIE["userloginLastName"]; } ?>">
 					</div>
 					<div class="form-group">
 						<label for="userloginpassword" class="control-label">Enter Password</label>
-						<input type="password" name="userloginpassword" id="userloginpassword" class="form-control">
+						<input type="password" name="userloginpassword" id="userloginpassword" class="form-control form-control-lg w-75 mx-auto" value="<?php if(isset($_COOKIE["userloginpassword"])) { echo $_COOKIE["userloginpassword"]; } ?>">
 						<span> <?php echo $userloginpasswordErr; ?> </span>
 					</div> <br/>
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-md-8">
-							<input type="submit" name="loginSubmit" id="loginSubmit" class="form-control btn btn-outline-success btn-lg text-center font-weight-bold" value="Log IN">
+					<div class="form-group">
+						<div class="row" >
+							<div class="col-sm" style="padding: 5px;">
+								<p class="mx-auto w-50"><input type="checkbox" name="remember" class="" /> Remember me</p> 
+							</div>
+							<div class="col-sm " style="padding: 5px;">
+								<input type="submit" name="loginSubmit" id="loginSubmit" class="btn w-50 justify-content btn-lg btn-outline-success text-center font-weight-bold" value="Log in">
+							</div>
 						</div>
-						<div class="col-md-2"></div>
 					</div>
-				</form><br/>
-				<div class="container-fluid">
-					<p>Don't have an account? Register <a href="loginregisterguests.php">here</a></p> 
-					<a href="resetpassword.php">Reset Passsword</a>
-				</div>
+					<div class="form-group w-75 mx-auto text-center" id="passwordnewaccount">
+						<p><a href="resetpassword.php" class="font-weight-bold">Reset Passsword</a> || <a href="loginregisterguests.php"  style="text-decoration:underline;">Register here</a></p>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<br/>
-
 
 
 <footer class="footer bg-info">
@@ -357,7 +359,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -366,11 +368,19 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 	</div>
 </footer>
+
+
+<div class="w-75 mx-auto text-center font-weight-bold">
+	<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
+</div>
 
 
 </body>

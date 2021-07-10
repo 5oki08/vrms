@@ -44,6 +44,7 @@ li a { width: 100%; }
 
 .d-sm-table-cell { padding-left: 10px; padding-right: 10px; }
 
+#fourwheelermoreinfo { width:100%; }
 
 
 @media only screen and (max-width: 600px) { 
@@ -84,7 +85,7 @@ li a { width: 100%; }
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2 bg-light text-left">
+		<div class="col-md-3 bg-light text-left">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -100,8 +101,13 @@ li a { width: 100%; }
 				        <li> <a href="dashboardadmin.php" class="text-dark">Dashboard</a> </li>
 				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
 					    <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>   
-					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
-					    <li> <a href="#" class="text-dark">Bookings</a> </li>
+					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark btn btn-lg border border-dark  bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
+					    <li> <a href="fourwheelerbookingadmin.php" class="text-dark">Bookings <sup class="badge badge-secondary"><?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?></sup> </a> </li>
 						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li>  
 				      </ul>
 				    </div> 
@@ -111,7 +117,7 @@ li a { width: 100%; }
 			</header>
 		</div>
 
-		<div class="col-md-10">
+		<div class="col-md-9">
 			
 			<header class=" text-center w-100">
 				<nav  class="navbar navbar-inverse bg-light  border border-top-0 border-left-0 border-right-0">
@@ -129,7 +135,7 @@ li a { width: 100%; }
 
 			<div class="container-fluid">
 				
-				<div class="card-deck"> 
+				<div class="card-columns"> 
 					<?php
 					$id = 0 ;
 						$adminFetchRecords = "SELECT * FROM fourwheel WHERE brand='Mitsubishi' " ;
@@ -141,21 +147,76 @@ li a { width: 100%; }
 					   	 	
 					?>
 					<div class="card">
-						<!--<img src="../../images/adminFourwheel/evo6.jpg" id="fourwheelercardimg" class="card-img-top w-25">  php to insert image --> 
-						<div class="card-body" style="height: 100%;">
-							<p class="text-center">
+						<div class="card-body" >
+							<p class="text-center"> 
 								<p hidden> <?php echo $rowFetch['id'] ; ?> </p>
-								<p class="text-center font-weight-bold h3"> <?php echo $rowFetch['FourwheelName'] ; ?> </p>
+								<p class="text-center font-weight-bold h3" style=""> <?php echo $rowFetch['FourwheelName'] ; ?> </p>
 								<hr style="width: 50%;" />
 							</p> <br/>
 							  <?php switch($id): 
 								case 1: ?>
+								<div >
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="fourwheeleradminMitsubishiPajero.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								</div>
+								    
+								<?php break; ?>
+								<?php case 2: ?>
+								<div >
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="fourwheeleradminMitsubishievo6.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								</div>
+								<?php break; ?>
+								<?php case 3: ?>
+								<div >
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								</div>
+								<?php break; ?>
+								<?php case 4: ?>
+								    <div >
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								    </div> 
+								<?php break; ?>
+								<?php case 5: ?>
+								    <div >
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								    </div> 
+								<?php break; ?>
+								<?php case 6: ?>
 								    <div>
-								    <!-- <?php echo "<img src='fourwheel/".$rowFetch['carImage']."' >";	?> -->
-								    <a href="fourwheeleradminMitsubishievo6.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								    </div> 
+								<?php break; ?>
+								<?php case 7: ?>
+								    <div>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								    </div> 
+								<?php break; ?>
+								<?php case 8 : ?>
+								    <div>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								    </div> 
+								<?php break; ?>
+								<?php case 9: ?>
+								    <div>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								    </div> 
+								<?php break; ?>
+								<?php case 10: ?>
+								    <div>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto card-img-top" id="fourwheelermoreinfo">
+								    <a href="#" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
 								    </div> 
 								<?php break; ?>
 								<?php endswitch; ?>
+							<p hidden> <?php echo $rowFetch['id'] ; ?> </p>
 						</div> 
 					</div>
 					<?php  }

@@ -13,8 +13,8 @@ $_SESSION['recordCut'] = "Record Deleted" ;
 $_SESSION['recUpdated'] = "Record Successfully Updated" ;
 $_SESSION['recFail'] = "Record Update Failed." ;
 
-$fnameAdminreg = $snameAdminreg = $userLocationAdminreg = $yobAdminreg = $userPhoneAdminreg = $userGenderAdminreg ='' ;
-$fnameAdminregErr = $snameAdminregErr = $userLocationAdminregErr = $yobAdminregErr = $userPhoneAdminregErr = $userGenderAdminregErr = '' ;
+$fnameAdminreg = $snameAdminreg = $userLocationAdminreg = $yobAdminreg = $userPhoneAdminreg = $userGenderAdminreg = $usernewpassAdminreg = '' ;
+$fnameAdminregErr = $snameAdminregErr = $userLocationAdminregErr = $yobAdminregErr = $userPhoneAdminregErr = $userGenderAdminregErr = $usernewpassAdminregErr = '' ;
 
 if ( isset($_POST['detailsadminSubmit']) ) {
 
@@ -48,18 +48,21 @@ if ( isset($_POST['detailsadminSubmit']) ) {
 	} else {
 		$userGenderAdminreg = $_POST['userGenderAdminreg'] ;
 	}
+	$usernewpassAdminreg = $_POST['usernewpassAdminreg'] ;
+	$userconfpassAdminreg = md5($usernewpassAdminreg) ;
 
-$insSql = " SELECT * FROM users WHERE fName='$fnameAdminreg' &&  sName='$snameAdminreg' && userLocation='$userLocationAdminreg' && userGender='$userGenderAdminreg' && userAge='$yobAdminreg' && userPhone='$userPhoneAdminreg' " ;
+
+$insSql = " SELECT * FROM users WHERE fName='$fnameAdminreg' &&  sName='$snameAdminreg' && userLocation='$userLocationAdminreg' && userGender='$userGenderAdminreg' && userAge='$yobAdminreg' && userPhone='$userPhoneAdminreg' && userPassword='$usernewpassAdminreg' " ;
 $insResult = mysqli_query($conn,$insSql) ;
 $insNums = mysqli_num_rows($insResult) ;
 
 if ( $insNums>=1 ) {
-	$_SESSION['userDup'] ;
+	$_SESSION['userDup'] ; 
 	header('location: regdusersadmin.php?userdetailsdup') ;
 } else {
 	if ( empty($fnameAdminregErr) && empty($snameAdminregErr) && empty($userLocationAdminregErr) && empty($yobAdminregErr) && empty($userPhoneAdminregErr) && empty($userGenderAdminregErr) ) {
-		$insStmt = $conn->prepare(" INSERT INTO users (fName,sName,userLocation,userGender,userAge,userPhone) VALUES (?,?,?,?,?,?) ") ;
-		$insStmt->bind_param("ssssss",$fnameAdminreg,$snameAdminreg,$userLocationAdminreg,$userGenderAdminreg,$yobAdminreg,$userPhoneAdminreg) ;
+		$insStmt = $conn->prepare(" INSERT INTO users (fName,sName,userLocation,userGender,userAge,userPhone,userPassword) VALUES (?,?,?,?,?,?,?) ") ;
+		$insStmt->bind_param("sssssss",$fnameAdminreg,$snameAdminreg,$userLocationAdminreg,$userGenderAdminreg,$yobAdminreg,$userPhoneAdminreg,$userconfpassAdminreg) ;
 		if ( $insStmt->execute() === TRUE ) {
 			$_SESSION['userAccept'] ;
 			$_SESSION['classTypeAccept'] ;
@@ -92,25 +95,30 @@ if ( isset($_GET['delete'] ) ) {
 }
 
 
-
+ 
 $update = false ;
 if ( isset($_GET['edit']) ) {
 	$id = $_GET['edit'] ;
 	$update = TRUE ;
 
-	$pulluserRecords = $conn->query(" SELECT * FROM users WHERE id='$id' ") or die($conn->error) ;
+	 
+	$pulluserRecordsResult = $conn->query(" SELECT * FROM users WHERE id='$id' ") or die($conn->error) ;
+  	$userRecordsRow = $pulluserRecordsResult->fetch_array() ;
+	
+	$idE = $userRecordsRow['id'] ;
+	$fnameE = $userRecordsRow['fName'] ;
+	$snameE = $userRecordsRow['sName'] ;
+	$userLocationE = $userRecordsRow['userLocation'] ;
+	$userGenderE = $userRecordsRow['userGender'] ;
+	$userAgeE = $userRecordsRow['userAge'] ;
+	$userPhoneE = $userRecordsRow['userPhone'] ;
+	$userPasswordE = $userRecordsRow['userPassword'] ;
 
-	$userRecordsRow = $pulluserRecords->fetch_array() ;
 
-	$fnameEd = $snameEd = $userLocationEd = $userPhoneEd = $userGenderEd ='' ;
-
-
-	$fnameEd = $userRecordsRow['fName'] ;
-	$snameEd = $userRecordsRow['sName'] ;
-	$userLocationEd = $userRecordsRow['userLocation'] ;
-	$userPhoneEd = $userRecordsRow['userPhone'] ;
-	$userGenderEd = $userRecordsRow['userGender'] ;
 }
+ 
+
+						
 
 $fnameEd = $snameEd = $userLocationEd = $userPhoneEd = $userGenderEd ='' ; 
 
@@ -144,7 +152,7 @@ if ( isset($_POST['detailsEditUpdate']) ) {
 		$userGenderEd = $_POST['userGenderEd'] ;
 	}
 
-	$id= $_POST['id'] ;
+	$id= $_POST['idEd'] ;
 
 	if ( empty($fnameErr) && empty($snameErr) && empty($userLocationErr) && empty($userPhoneErr) && empty($userGenderErr) ) {
 		$updateSql = " UPDATE users SET fName='$fnameEd' , sName='$snameEd' , userLocation='$userLocationEd' ,   userPhone='$userPhoneEd' , userGender='$userGenderEd' WHERE id='$id' " ;
@@ -198,7 +206,7 @@ li a { width: 100%; }
 .card-text { margin-top: 50px; }
 .form { padding: 20px; }
 .form form-control { padding: 15px; }
-.footer { padding: 30px;  width: 80%; justify-content: center; margin: 0 auto; }
+.footer { padding: 30px;  }
 .footer-links { color: #000; font-size: 15px; }
 .footer-links:hover { font-weight: 600; color: #000; }
 
@@ -251,7 +259,7 @@ li a { width: 100%; }
 
 	<div class="row">
 
-		<div class="col-md-2 bg-light text-left">
+		<div class="col-md-3 bg-light text-left">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -265,10 +273,15 @@ li a { width: 100%; }
 				    <div class="collapse navbar-collapse" id="myNavbar">
 				      <ul class="nav navbar-nav text-nowrap">
 				        <li> <a href="dashboardadmin.php" class="text-dark">Dashboard</a> </li>
-				        <li class="active"> <a href="regdusersadmin.php" class="text-dark bg-light font-weight-bold">Users</a> </li>
+				        <li class="active"> <a href="regdusersadmin.php" class="text-dark btn btn-lg border border-dark  bg-light font-weight-bold">Users</a> </li>
 						  <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>  
 						  <li> <a href="fourwheeleradmin.php" class="text-dark">Four Wheeler Vehicles</a> </li>
-						  <li> <a href="#" class="text-dark">Bookings</a> </li>
+						  <li> <a href="fourwheelerbookingadmin.php" class="text-dark">Bookings <sup class="badge badge-secondary"><?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?></sup> </a> </li>
 						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li>  
 				      </ul>
 				    </div>
@@ -277,7 +290,7 @@ li a { width: 100%; }
 
 			</header>
 		</div>
-		<div class="col-md-10">
+		<div class="col-md-9">
 			
 			<div class="container-fluid">
 				<div class="row">
@@ -315,7 +328,7 @@ li a { width: 100%; }
 										// session_unset();
 										// session_destroy();
 									}
-								?> w-50 text-center text-success text-nowrap font-weight-bold " >
+								?> w-50 text-center text-success text-nowrap font-weight-bold mx-auto" >
 									<?php
 										if ( isset($_GET['recordDismissed']) ) {
 											if (isset($_SESSION['recordCut'] )) {
@@ -378,10 +391,10 @@ li a { width: 100%; }
 
 							<table class="table table-hovered table-responsive-sm table-bordered w-100" id="userListings">
 
-								<?php
-									$adminFetchRecords = "SELECT * FROM users" ;
+								<!-- <?php
+									$adminFetchRecords = "SELECT * FROM users WHERE id='$id'" ;
 									$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
-								?> 
+								?>  -->
 								
 								<tr class="text-center">
 									<th hidden>ID</th>
@@ -390,16 +403,17 @@ li a { width: 100%; }
 									<th>Location</th>
 									<th>Gender</th>
 									<th>Phone Number</th>
-									<th>Regd. Date</th>
+									<th hidden>Password</th>
+									<th>Last Update</th>
 									<th colspan="2">Action</th>
 								</tr>
 
 								<?php
-									$adminFetchRecords = "SELECT * FROM users" ;
+									$adminFetchRecords = "SELECT * FROM users " ;
 									$adminFetchRecordsResult = mysqli_query($conn,$adminFetchRecords) ;
 
 									if ($adminFetchRecordsResult->num_rows > 0) {
-								   	 while($rowFetch = $adminFetchRecordsResult->fetch_assoc()) {
+								   	 while($rowFetch = $adminFetchRecordsResult->fetch_array()) {
 								?>
 									<tr>
 										<td hidden> <?php echo $rowFetch['id'] ; ?> </td>
@@ -408,107 +422,70 @@ li a { width: 100%; }
 										<td> <?php echo $rowFetch['userLocation'] ; ?> </td>
 										<td> <?php echo $rowFetch['userGender'] ; ?> </td>
 										<td> <?php echo $rowFetch['userPhone'] ; ?> </td>
+										<td hidden> <?php echo $rowFetch['userPassword'] ; ?> </td>
 										<td  class="text-center"> <?php echo $rowFetch['reg_date'] ; ?> </td>
 										<td>
 											<a href="regdusersadmin.php?edit=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-warning" id="edituser">Edit</a>
-											<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger" id="deleteUserID"  >Delete</a>
-											<!-- <a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger" id="deleteUserID" data-toggle="modal" data-target="#deleteUser" >Delete</a> -->
+											<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger" id="deleteUserID" onclick="confirm_change()" >Delete</a>
 										</td>
 									</tr>
-									<?php  }
-										} else {
-										    echo "Enter Second Name to Retrieve Booking Record .";
-										} ?>
-					<div class="container-fluid">
-						<!--  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#hirebuttonguests" id="hirebtnlinkguests">
-						    Hire
-						  </button> -->
-						  <div class="modal" id="deleteUser">
-						    <div class="modal-dialog">
-						      <div class="modal-content">
-						        <div class="modal-header">
-						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        </div>
-						        <div class="modal-body text-center" >
-						          
-						          <p>Are you Sure?</p>
-
-						        </div>
-						        <div class="modal-footer">
-				        	<form action="regdusersadmin.php">
-						        	<!-- <a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger">Delete</a> -->
-						        	<a href="regdusersadmin.php?delete=<?php echo $rowFetch['id']?>" class="btn btn-lg border border-dark btn-outline-danger deletebtn">Delete</a>
-						          <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
-				          </form>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  
-						</div>
-					</div>		 	
-
+									<?php  } } ?>
 							</table>
 
 						</div>
 
 						<br/> <br/>
+							<?php 
+								if (  $update === TRUE ) :
+							?>
 						<article class="container bg-warning" style="padding:15px;">
-							<aside style="letter-spacing: 2px;" class="text-center font-weight-bolder" >Update Existing Records</aside>
+							<aside style="letter-spacing: 2px;" class="text-center font-weight-bolder w-50 mx-auto" >Update Existing Records</aside>
 						</article>
 						<form class="form" action="regdusersadmin.php" method="post">
-							<input type="hidden" name="id" id="id" class="form-control" value="<?php echo $id; ?>">
+							
+							<input name="idEd" id="idEd" class="form-control form-control-lg" hidden value="<?php echo $idE ; ?>">
 							<div class="row">
 								<div class="col-md">
 									<div class="form-group">
 										<label for="fnameEd">First Name<sup style="color:red;">*</sup></label>
-										<input type="text" name="fnameEd" class="form-control form-control-lg" id="fnameEd" value="<?php echo $fnameEd  ?>">
+										<input type="text" name="fnameEd" class="form-control form-control-lg" id="fnameEd" value="<?php echo $fnameE ; ?>"> 
 										<span> <?php echo $fnameErr; ?> </span>
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group">
 										<label for="snameEd">Second Name<sup style="color:red;">*</sup></label>
-										<input type="text" name="snameEd" class="form-control form-control-lg" id="snameEd" value="<?php echo $snameEd  ?>">
+										<input type="text" name="snameEd" class="form-control form-control-lg" id="snameEd" value="<?php echo $snameE ;  ?>">
 										<span> <?php echo $snameErr; ?> </span>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="userLocationEd">User Location<sup style="color:red;">*</sup></label>
-								<input type="text" name="userLocationEd" class="form-control form-control-lg" style="width:60%;" id="userLocationEd"  value="<?php echo $userLocationEd  ?>">
+								<input type="text" name="userLocationEd" class="form-control form-control-lg" style="width:60%;" id="userLocationEd"  value="<?php echo  $userLocationE;  ?>">
 								<span> <?php echo $userLocationErr; ?> </span>
 							</div>
 							<div class="form-group">
 								<label for="userPhoneEd">Input Phone Number<sup style="color:red;">*</sup></label>
-								<input type="phone" name="userPhoneEd" class="form-control form-control-lg" max-length="10" style="width:60%;" id="userPhoneEd"  value="<?php echo $userPhoneEd  ?>">
+								<input type="phone" name="userPhoneEd" class="form-control form-control-lg" max-length="10" style="width:60%;" id="userPhoneEd"  value="<?php echo $userPhoneE ;  ?>">
 								<span> <?php echo $userPhoneErr; ?> </span>
 							</div>
 							<div class="form-group">
 								<label for="userGenderEd">Select Gender<sup style="color:red;">*</sup></label>
 								<select name="userGenderEd" class="form-control form-control-lg"  style="width:60%;" id="userGenderEd" > 
-									<option value="<?php echo $userGenderEd  ?>" > <?php echo $userGenderEd ; ?> </option>
+									<option value="<?php echo $userGenderE;  ?>"> <?php echo $userGenderE;  ?> </option>
 									<option value="male">Male</option>
 									<option value="female">Female</option>
-								</select>
+								</select> 
 								<span> <?php echo $userGenderErr; ?> </span>
 							</div>
 							<br/>
 
-							<?php
-								if (  $update === TRUE ) :
-							?>
-								<input type="submit" name="detailsEditUpdate" class="form-control form-control-lg btn btn-lg btn-warning  w-100 " id="detailsEditUpdate" value="Update Details">
-							<?php else : ?>
-							<div class="row">
-								<div class="col-md">
-									<input type="submit" name="detailseditSubmit" class="form-control form-control-lg btn btn-lg btn-success w-100 h-100" id="detailseditSubmit" value="Submit Update Details">
-								</div>
-								<div class="col-md">
-									<input type="reset" name="reset" class="form-control  form-control-lg reset border  border-dark w-100 h-100" id="reset" style="width:40%;  text-decoration:underline;">
-								</div>
-							</div>
+							
+								<input type="submit" name="detailsEditUpdate" class="form-control form-control-lg btn btn-lg btn-warning  w-75 " id="detailsEditUpdate" value="Update Details">
+							
 						<?php endif; ?>
+
 						</form>
 				</div>
 			</div> 	
@@ -516,12 +493,12 @@ li a { width: 100%; }
 
 
 			<br/> <br/>
-			<article class="container bg-warning" style="padding:15px;">
-				<aside style="letter-spacing: 2px;" class="text-center font-weight-bolder" >Add New User</aside>
+			<article class="container bg-warning w-75 mx-auto " style="padding:15px;">
+				<aside style="letter-spacing: 2px; padding:10px; text-decoration: underline;" class="text-center font-weight-bolder w-50 mx-auto" >Add New User</aside>
 			</article>	
 			<br/>
 
-			<form class="form" action="#" method="post">
+			<form class="form w-75 mx-auto" action="#" method="post" >
 				
 				<div class="row">
 					<div class="col-md">
@@ -557,9 +534,28 @@ li a { width: 100%; }
 				<div class="form-group">
 					<label for="userGenderAdminreg">Select Gender<sup style="color:red;">*</sup></label>
 					<select name="userGenderAdminreg" class="form-control form-control-lg"  style="width:60%;" id="userGenderAdminreg">
-						<option></option><option value="male">Male</option><option value="female">Female</option>
+						<option></option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
 					</select>
 					<span> <?php echo $userGenderAdminregErr; ?> </span> 
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md">
+							<div class="form-group">
+								<label for="usernewpassAdminreg">Password</label>
+								<input type="password" name="usernewpassAdminreg" id="usernewpassAdminreg" class="form-control form-control-lg" onkeyup="passmatchregAdmin()">
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-group">
+								<label for="userconfpassAdminreg">Confirm Password</label>
+								<input type="password" name="userconfpassAdminreg" id="userconfpassAdminreg" class="form-control form-control-lg" onkeyup="passmatchregAdmin()">
+								<small id="confPassmsg"></small>
+							</div>
+						</div>
+					</div>
 				</div>
 				<br/>
 				<div class="row">
@@ -570,7 +566,7 @@ li a { width: 100%; }
 						<input type="reset" name="reset" class="form-control  form-control-lg reset border  border-dark w-100 h-100" id="reset" style="width:40%;  text-decoration:underline;">
 					</div>
 				</div>
-
+				
 			</form>
 
 		</div>
@@ -582,14 +578,14 @@ li a { width: 100%; }
 .
  
 
-<footer class="footer bg-success rounded-left">
+<footer class="footer" style="background-color:#C0C0C0;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md text-center" id="footerSec1">
 				<p style="text-decoration:underline;">Quick Links</p>
-				<a href="#p" class="footer-links">Home</a><br/>
-				<a href="#" class="footer-links">About Us</a><br/>
+				<a href="homeguests.php" class="footer-links">Home</a><br/>
+				<a href="aboutguests.php" class="footer-links">About Us</a><br/>
 				<a href="#" class="footer-links">Privacy Policy</a>
 			</div>
 			<div class="col-md text-center" id="footerSec2">
@@ -599,7 +595,7 @@ li a { width: 100%; }
 				consequat.
 			</div>
 			<div class="col-md text-center" id="footerSec3">
-				<p>3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
+				<p><img src="../../images/pinLocation.jpg" alt="" width="40px" height="20px"> 3<sup style="color:#000;">rd</sup> Street, CBD, Nairobi, Kenya</p>
 				<p>
 					<img src="../../images/phonecall.png" alt="" width="20px" height="20px">
 					+254 700 000 000
@@ -608,12 +604,39 @@ li a { width: 100%; }
 					<img src="../../images/contacticons/email/gmailemail.png" alt="" width="20px" height="20px">
 					614rollingstone@gmail.com
 				</p>
+				<br/>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
+	</div> <br/>
+	<div class="w-75 mx-auto text-center font-weight-bold bg-light" style="padding:10px;">
+		<a href="https://twitter.com/itscool012" target="_blank"><img src="../../images/contacticons/socialmedia/instagram.png" alt="instagram account" width="20px" height="20px" id="socialmediaicons"></a>
+		<a href="https://www.instagram.com/jam_croc/" target="_blank"><img src="../../images/contacticons/socialmedia/twitter.png" alt="twitter account" width="20px" height="20px" id="socialmediaicons"></a>
+		<p>Samuel Emmanuel Okinyo<sup class="text-dark">©</sup>  2021  All Rights Reserved </p>
 	</div>
 </footer> 
 
+
+
+
+<script type="text/javascript">
+	function passmatchregAdmin() {
+		if ( document.getElementById('usernewpassAdminreg').value !== document.getElementById('userconfpassAdminreg').value ) {
+				document.getElementById('userconfpassAdminreg').style.borderColor = "red" ;
+				document.getElementById('confPassmsg').style.color = "red" ;
+				document.getElementById('confPassmsg').innerHTML = "Password do not match" ;
+				document.getElementById('detailsadminSubmit').disabled = true ;
+			} else {
+				document.getElementById('userconfpassAdminreg').style.borderColor = "black" ;
+				document.getElementById('confPassmsg').style.color = "green" ;
+				document.getElementById('confPassmsg').innerHTML = "  " ;
+				document.getElementById('detailsadminSubmit').disabled = false ;
+			}
+	}
+	function confirm_change() {
+	  return confirm('are you sure?');
+	}
+</script>
 
 </body>
 </html>

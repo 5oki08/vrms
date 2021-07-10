@@ -1,6 +1,6 @@
 <?php
 session_start() ;
-require '../../connection.php' ;
+require_once  '../../connection.php' ;
 
 $_SESSION['userAccept'] = "Successful Registration. You can now login with the details." ;
 $_SESSION['classTypeAccept'] = "success" ;
@@ -10,6 +10,7 @@ $_SESSION['classTypeError'] = "danger" ;
 
 $fname = $sname = $userLocation = $yob = $userPhone = $userGender = $userPassword = $userEncryptPassword = '' ;
 $fnameErr = $snameErr = $userLocationErr = $yobErr = $userPhoneErr = $userGenderErr = $userPasswordErr = '' ;
+$null = '' ;
 
 if ( isset($_POST['detailsSubmit']) ) {
 
@@ -50,17 +51,20 @@ if ( isset($_POST['detailsSubmit']) ) {
 		$userEncryptPassword = md5($userPassword) ;
 	}
 
-$insSql = " SELECT * FROM users WHERE fName='$fname' &&  sName='$sname' && userLocation='$userLocation' && userGender='$userGender' && userAge='$yob' && userPhone='$userPhone' && userPassword='$userPassword' " ;
+$insSql = " SELECT * FROM users WHERE fName='$fname' &&  sName='$sname' && userLocation='$userLocation' && userGender='$userGender' && userAge='$yob' && userPhone='$userPhone' && userPassword='$userPassword' && profilePicture='$null' " ;
 $insResult = mysqli_query($conn,$insSql) ;
 $insNums = mysqli_num_rows($insResult) ; 
-
+ 
 if ( $insNums>=1 ) {
 	$_SESSION['userDup'] ;
 	header('location: loginregisterguests.php?userdetailsdup') ;
 } else {
 	if ( empty($fnameErr) && empty($snameErr) && empty($userLocationErr) && empty($yobErr) && empty($userPhoneErr) && empty($userGenderErr) && empty($userPasswordErr) ) {
-		$insStmt = $conn->prepare(" INSERT INTO users (fName,sName,userLocation,userGender,userAge,userPhone,userPassword) VALUES (?,?,?,?,?,?,?) ") ;
+		$insStmt = $conn->prepare(" INSERT INTO users (fName,sName,userLocation,userGender,userAge,userPhone,userPassword,profilePicture) VALUES (?,?,?,?,?,?,?,'null') ") ;
 		$insStmt->bind_param("sssssss",$fname,$sname,$userLocation,$userGender,$yob,$userPhone,$userEncryptPassword) ;
+
+		
+
 		if ( $insStmt->execute() === TRUE ) {
 			$_SESSION['userAccept'] ;
 			$_SESSION['classTypeAccept'] ;
@@ -69,11 +73,13 @@ if ( $insNums>=1 ) {
 			$_SESSION['userFail'] ;
 			$_SESSION['classTypeError'] ;
 			header('location: loginregisterguests.php?userdetailsfail');
+			exit() ; 
 		}
 	} else {
 		$_SESSION['userFail'] ;
 		$_SESSION['classTypeError'] ;
 		header('location: loginregisterguests.php?userdetailsfail');
+		exit() ; 
 	}
 }
 
@@ -290,7 +296,9 @@ li a { width: 100%; }
 				<div class="form-group">
 					<label for="userGender">Select Gender<sup style="color:red;">*</sup></label>
 					<select name="userGender" class="form-control form-control-lg"  style="width:60%;" id="userGender">
-						<option></option><option value="male">Male</option><option value="female">Female</option>
+						<option></option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
 					</select>
 					<span> <?php echo $userGenderErr; ?> </span>
 				</div>

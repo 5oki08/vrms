@@ -17,7 +17,7 @@
 
 <style type="text/css">
 
-
+ 
 body { font-size: 14px; }
 #mainheader1 {  padding: 5px; }
 #heading1 { letter-spacing: 1px; text-align: center; margin-top: 5px; list-style-type: none;}
@@ -85,15 +85,8 @@ li { list-style-type: none; }
 	      <ul class="nav navbar-nav navbar-expand-md align-content-start">
 	        <li> <a href="homeguests.php" class="text-dark">Home</a> </li>
 	        <li> <a href="aboutguests.php" class="text-dark">About Us</a> </li>
-	        <li class="active"> <a href="twowheeler.php" class="text-dark bg-light font-weight-bold">Two Wheeler Vehicles</a> </li>
-	         <li class="dropdown">
-			 	<a href="fourwheeler.php" class="text-dark dropdown-toggle" data-toggle="dropdown">Four Wheeler Vehicles</a>
-			 	<div class="dropdown-menu">
-			      <a class="dropdown-item h4 text-center" href="fourwheeler.php">Aston Martin</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelMitsubishi.php">Mitsubishi</a>
-			      <a class="dropdown-item h4 text-center" href="fourwheelJeep.php">Jeep</a>
-			    </div>
-			 </li>
+	        <li class="active"> <a href="twowheeler.php" class="text-dark bg-light font-weight-bold">Two Wheeler Vehicles**</a> </li> 
+			<li> <a href="fourwheeler.php" class="text-dark">Four Wheeler Vehicles</a> </li>
 	      </ul>
 	    </div>
 	  </div>

@@ -49,6 +49,8 @@ li a { width: 100%; }
 
 .d-sm-table-cell { padding-left: 10px; padding-right: 10px; }
 
+#fourwheelermoreinfo { width: 100%; }
+
 
 @media only screen and (max-width: 600px) { 
 
@@ -88,7 +90,7 @@ li a { width: 100%; }
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2 bg-light text-left">
+		<div class="col-md-3 bg-light text-left">
 			<header id="mainheader1" class=" border border-0">
 				<nav class="navbar navbar-inverse navbar-light bg-light border border-0 w-100 h-100">
 				  <div class="container-fluid">
@@ -104,8 +106,13 @@ li a { width: 100%; }
 				        <li> <a href="dashboardadmin.php" class="text-dark">Dashboard</a> </li>
 				        <li> <a href="regdusersadmin.php" class="text-dark">Users</a> </li>
 					    <li> <a href="#" class="text-dark">Two Wheeler Vehicles</a> </li>   
-					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
-					    <li> <a href="#" class="text-dark">Bookings</a> </li>
+					    <li class="active"> <a href="fourwheeleradmin.php" class="text-dark btn btn-lg border border-dark bg-light font-weight-bold">Four Wheeler Vehicles</a> </li>
+					    <li> <a href="fourwheelerbookingadmin.php" class="text-dark">Bookings <sup class="badge badge-secondary"><?php
+								$countRecords = " SELECT COUNT(status) AS TotalUndecidedBookings FROM selecteddrive WHERE status='WaitingApproval' " ;
+								$countRecordsResult = mysqli_query($conn,$countRecords) ;
+								$dataF = $countRecordsResult->fetch_assoc();
+								echo $dataF['TotalUndecidedBookings']; 
+							?></sup> </a> </li>
 						 <li> <a href="../registered/logoutregistered.php" class="text-dark">Log Out</a> </li>  
 				      </ul>
 				    </div> 
@@ -115,7 +122,7 @@ li a { width: 100%; }
 			</header>
 		</div>
 
-		<div class="col-md-10">
+		<div class="col-md-9">
 			
 			<header class=" text-center w-100">
 				<nav  class="navbar navbar-inverse bg-light  border border-top-0 border-left-0 border-right-0">
@@ -159,14 +166,16 @@ li a { width: 100%; }
 							</p> <br/>
 							  <?php switch($id): 
 								case 1: ?>
-								    <div>
-								    <a href="fourwheeleradminJeepWrangler.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
-								    </div>
+								<div>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top">
+								    <a href="fourwheeleradminJeepWrangler.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								</div>
 								<?php break; ?>
 								<?php case 2: ?>
-								    </div>
-								    <a href="fourwheeleradminJeepGrandCherokee.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 h-25" id="fourwheelermoreinfo">More Info</a>
-								    <div>
+								<div>
+								    <img src="../../images/fourwheeler/<?=$rowFetch['carImage']?>" class="mx-auto" id="fourwheelermoreinfo" class="card-img-top" >
+								    <a href="fourwheeleradminJeepGrandCherokee.php" class="btn btn-lg text-center btn-outline-primary text-dark font-weight-bold w-50 mx-auto" style="margin-top:30px;">More Info</a>
+								</div>	
 								<?php break; ?>
 								<?php endswitch; ?>
 						</div> 
